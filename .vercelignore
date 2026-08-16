@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules/
+
+# Local build outputs
+.next/
+out/
+dist/
+build/
+
+# Local env files (Crucial so you don't leak secrets!)
+.env*.local
+.env
+
+# IDE / System files
+.DS_Store
+.vscode/
+.idea/
+
+# Vercel's own state folder
+.vercel

@@ -1,0 +1,364 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@font-face {
+  font-family: 'SerenityEmoji';
+  src: url('/fonts/serenity-emoji.woff2') format('woff2'),
+    url('/fonts/serenity-emoji.ttf') format('truetype');
+  font-display: swap;
+  unicode-range: U+1F600-1F64F, U+1F300-1F5FF, U+1F680-1F6FF;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 157 100% 36%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 157 80% 45%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 35%;
+
+    --accent: 157 100% 36%;
+    --accent-foreground: 0 0% 97%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 97%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 92%;
+    --ring: 157 100% 36%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 0 0% 4%;
+
+    --sidebar-primary: 157 100% 36%;
+
+    --sidebar-primary-foreground: 0 0% 97%;
+
+    --sidebar-accent: 157 80% 45%;
+
+    --sidebar-accent-foreground: 0 0% 97%;
+
+    --sidebar-border: 0 0% 88%;
+
+    --sidebar-ring: 157 100% 36%;
+
+    /* GooeyNav color variables */
+    --color-1: #00B871;
+    --color-2: #10d98c;
+    --color-3: #00B871;
+    --color-4: #10d98c;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 97%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 97%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 97%;
+
+    --primary: 157 100% 36%;
+    --primary-foreground: 0 0% 97%;
+
+    --secondary: 157 80% 45%;
+    --secondary-foreground: 0 0% 97%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 157 100% 36%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 97%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 157 100% 36%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 97%;
+    --sidebar-primary: 157 100% 36%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 157 80% 45%;
+    --sidebar-accent-foreground: 0 0% 4%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 157 100% 36%;
+
+    /* GooeyNav color variables */
+    --color-1: #00B871;
+    --color-2: #10d98c;
+    --color-3: #00B871;
+    --color-4: #10d98c;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-manrope;
+  }
+
+  /* Global emoji styling - white pixel font */
+  body {
+    font-family: 'Manrope', 'SerenityEmoji', sans-serif;
+  }
+
+  /* Force white color for emoji unicode ranges */
+  body :is(h1, h2, h3, h4, h5, h6, p, span, div, a, button, li, td, th, label) {
+    font-family: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-poppins;
+    font-family: 'Poppins', 'SerenityEmoji', sans-serif;
+  }
+
+  :where(p, span, li, a, button, label, td, th, div) {
+    font-family: 'Manrope', 'SerenityEmoji', sans-serif;
+  }
+
+  :where(p, span, li, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
+
+@layer components {
+
+  /* Emoji styling - monochrome white pixel emojis */
+  .emoji-white {
+    font-family: 'SerenityEmoji', sans-serif;
+    filter: grayscale(100%);
+  }
+
+  .glow-text {
+    background: linear-gradient(135deg, #00b871 0%, #10d98c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: brightness(0.95);
+  }
+
+  .dark .glow-text {
+    filter: brightness(1.1);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 184, 113, 0.25);
+    box-shadow: 0 2px 12px rgba(0, 184, 113, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .glass-effect:hover {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 184, 113, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 184, 113, 0.2);
+  }
+
+  .dark .glass-effect {
+    background: rgba(10, 10, 10, 0.5);
+    border: 1px solid rgba(0, 184, 113, 0.2);
+  }
+
+  .dark .glass-effect:hover {
+    background: rgba(10, 10, 10, 0.7);
+    border-color: rgba(0, 184, 113, 0.5);
+  }
+
+  .neon-border {
+    border: 2px solid #00b871;
+    box-shadow:
+      0 0 10px rgba(0, 184, 113, 0.5),
+      0 0 20px rgba(0, 184, 113, 0.3);
+  }
+
+  .neon-border:hover {
+    border-color: #10d98c;
+    box-shadow:
+      0 0 15px rgba(16, 217, 140, 0.6),
+      0 0 30px rgba(16, 217, 140, 0.4);
+  }
+
+  .hover-lift {
+    transition: all 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 184, 113, 0.2);
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  /* Navbar Grid Animation */
+  @keyframes gridSlide {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+
+    100% {
+      transform: translateX(40px) translateY(40px);
+    }
+  }
+
+  /* Float animation for backgrounds - GPU accelerated */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    25% {
+      transform: translate3d(10px, -10px, 0);
+    }
+
+    50% {
+      transform: translate3d(20px, 0, 0);
+    }
+
+    75% {
+      transform: translate3d(10px, 10px, 0);
+    }
+  }
+
+  /* Pulse glow animation */
+  @keyframes pulseGlow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 5px rgba(0, 184, 113, 0.3);
+    }
+
+    50% {
+      box-shadow: 0 0 20px rgba(0, 184, 113, 0.6), 0 0 30px rgba(0, 184, 113, 0.3);
+    }
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 640px) {
+
+    /* Improve tap targets for mobile */
+    button,
+    a[role="button"],
+    [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* Better spacing for mobile content */
+    section {
+      scroll-margin-top: 4rem;
+    }
+
+    /* Optimize animations for mobile performance */
+    .hover-lift:active {
+      transform: translateY(-2px);
+    }
+
+    /* Smooth scrolling for mobile */
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent horizontal overflow */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Improve touch feedback */
+    * {
+      -webkit-tap-highlight-color: rgba(0, 184, 113, 0.2);
+    }
+
+    /* Better focus states for accessibility */
+    :focus-visible {
+      outline: 2px solid hsl(var(--primary));
+      outline-offset: 2px;
+    }
+
+    /* Optimize font sizes for readability */
+    html {
+      font-size: 16px;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1024px) {
+
+    /* Improve tap targets for tablets */
+    button,
+    a[role="button"] {
+      min-height: 40px;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Dark mode mobile optimizations */
+  @media (max-width: 640px) {
+    .dark .glass-effect {
+      background: rgba(10, 10, 10, 0.4);
+    }
+  }
+}

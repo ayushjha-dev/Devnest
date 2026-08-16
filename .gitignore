@@ -1,0 +1,23 @@
+node_modules
+.next
+uploads
+data/
+.DS_store
+
+# pnpm
+.pnpm-debug.log*
+pnpm-lock.yaml
+
+# Environment variables
+.env.local
+.env*.local
+*.json
+!package.json
+!tsconfig.json
+!components.json
+scripts
+.vercel
+.env*
+
+# Temporarily exclude certificates for initial push
+public/certificates/
