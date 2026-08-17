@@ -1,47 +1,79 @@
 import { Layout } from "@/components/Layout";
 import { Trophy, Medal, Award, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import arcadeGames from "@/data/arcade-games.json";
+import { db } from "@/lib/firebase";
+import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
 interface LeaderboardEntry {
   rank: number;
   name: string;
+  email: string;
   xp: number;
   isCurrentUser?: boolean;
 }
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentUserRank, setCurrentUserRank] = useState<number | null>(null);
   const { rewardTiers } = arcadeGames;
 
   useEffect(() => {
-    // Mock data - replace with actual API call
-    const mockData: LeaderboardEntry[] = [
-      { rank: 1, name: "Ayush Kumar", xp: 980 },
-      { rank: 2, name: "Rahul Verma", xp: 920 },
-      { rank: 3, name: "Priya Sharma", xp: 870 },
-      { rank: 4, name: "Sneha Reddy", xp: 850 },
-      { rank: 5, name: "Karthik Iyer", xp: 820 },
-      { rank: 6, name: "Ananya Singh", xp: 800 },
-      { rank: 7, name: "Rohan Kapoor", xp: 760, isCurrentUser: true },
-      { rank: 8, name: "Deepak Joshi", xp: 740 },
-      { rank: 9, name: "Sanjana Mehta", xp: 720 },
-      { rank: 10, name: "Amit Kumar", xp: 700 },
-    ];
-
-    setLeaderboard(mockData);
-    const currentUser = mockData.find((entry) => entry.isCurrentUser);
-    if (currentUser) {
-      setCurrentUserRank(currentUser.rank);
-    }
+    fetchLeaderboard();
   }, []);
 
+  const fetchLeaderboard = async () => {
+    try {
+      const arcadeUser = localStorage.getItem("arcadeUser");
+      const currentUserEmail = arcadeUser ? JSON.parse(arcadeUser).email : null;
+
+      const usersRef = collection(db, "arcade_users");
+      const q = query(usersRef, orderBy("totalXp", "desc"), limit(10));
+      const snapshot = await getDocs(q);
+
+      const data: LeaderboardEntry[] = snapshot.docs.map((doc, index) => {
+        const userData = doc.data();
+        return {
+          rank: index + 1,
+          name: userData.name,
+          email: userData.email,
+          xp: userData.totalXp || 0,
+          isCurrentUser: userData.email === currentUserEmail,
+        };
+      });
+
+      setLeaderboard(data);
+      const currentUser = data.find((entry) => entry.isCurrentUser);
+      if (currentUser) {
+        setCurrentUserRank(currentUser.rank);
+      }
+    } catch (error) {
+      console.error("Error fetching leaderboard:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading leaderboard...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   const getMedalIcon = (rank: number) => {
-    if (rank === 1) return <Medal className="w-6 h-6 medal-gold" />;
-    if (rank === 2) return <Medal className="w-6 h-6 medal-silver" />;
-    if (rank === 3) return <Medal className="w-6 h-6 medal-bronze" />;
+    if (rank === 1) return <Medal className="w-6 h-6 text-yellow-500" />;
+    if (rank === 2) return <Medal className="w-6 h-6 text-gray-400" />;
+    if (rank === 3) return <Medal className="w-6 h-6 text-orange-600" />;
     return null;
   };
 
@@ -60,18 +92,18 @@ export default function Leaderboard() {
           {/* Header */}
           <div className="mb-8">
             <Link href="/arcade">
-              <button className="glass-button flex items-center gap-2 mb-6">
+              <Button variant="outline" className="flex items-center gap-2 mb-6">
                 <ArrowLeft className="w-4 h-4" />
                 Back to Arcade
-              </button>
+              </Button>
             </Link>
 
             <div className="text-center mb-8">
-              <div className="text-5xl mb-4">🏆</div>
-              <h1 className="arcade-title text-4xl font-bold mb-2 glow-text">
+              <Trophy className="w-12 h-12 mx-auto mb-4 text-primary" />
+              <h1 className="text-4xl font-bold mb-2">
                 LEADERBOARD
               </h1>
-              <p className="text-lg" style={{ color: "#9AA3B2" }}>
+              <p className="text-lg text-muted-foreground">
                 Top cybersecurity champions
               </p>
             </div>
@@ -79,21 +111,21 @@ export default function Leaderboard() {
 
           {/* Current User Stats */}
           {currentUser && (
-            <div className="glass-card p-6 mb-8">
+            <div className="glass-card p-6 mb-8 border-2 border-primary">
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div>
-                  <div className="text-sm mb-1" style={{ color: "#9AA3B2" }}>
+                  <div className="text-sm mb-1 text-muted-foreground">
                     Your Rank
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="arcade-mono text-3xl font-bold glow-text">
+                    <span className="text-3xl font-bold">
                       #{currentUser.rank}
                     </span>
                     <div>
-                      <div className="font-semibold" style={{ color: "#F5F7FA" }}>
+                      <div className="font-semibold">
                         {currentUser.name}
                       </div>
-                      <div className="arcade-mono text-sm" style={{ color: "#4AFFB0" }}>
+                      <div className="text-sm text-primary font-mono">
                         {currentUser.xp} XP
                       </div>
                     </div>
@@ -102,7 +134,7 @@ export default function Leaderboard() {
 
                 {nextReward && (
                   <div className="flex-1 min-w-[200px]">
-                    <div className="text-sm mb-2" style={{ color: "#9AA3B2" }}>
+                    <div className="text-sm mb-2 text-muted-foreground">
                       Next Reward: {nextReward.reward}
                     </div>
                     <div className="glass-progress-track">
@@ -113,7 +145,7 @@ export default function Leaderboard() {
                         }}
                       />
                     </div>
-                    <div className="text-xs mt-1 text-right arcade-mono" style={{ color: "#9AA3B2" }}>
+                    <div className="text-xs mt-1 text-right font-mono text-muted-foreground">
                       {nextReward.xp - currentUser.xp} XP to go
                     </div>
                   </div>
@@ -123,64 +155,71 @@ export default function Leaderboard() {
           )}
 
           {/* Leaderboard List */}
-          <div className="space-y-3">
-            {leaderboard.map((entry) => (
-              <div
-                key={entry.rank}
-                className={`leaderboard-row ${entry.isCurrentUser ? "current-user" : ""}`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 flex items-center justify-center">
-                      {getMedalIcon(entry.rank) || (
-                        <span
-                          className="arcade-mono text-lg font-bold"
-                          style={{ color: "#9AA3B2" }}
-                        >
-                          #{entry.rank}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold"
-                        style={{
-                          background: "rgba(74, 255, 176, 0.15)",
-                          color: "#4AFFB0",
-                        }}
-                      >
-                        {entry.name.charAt(0)}
+          {leaderboard.length === 0 ? (
+            <div className="glass-card p-12 text-center">
+              <Trophy className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+              <p className="text-lg text-muted-foreground">
+                No players yet. Be the first to play!
+              </p>
+              <Link href="/arcade">
+                <Button className="mt-4">Start Playing</Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {leaderboard.map((entry) => (
+                <div
+                  key={entry.rank}
+                  className={`leaderboard-row ${entry.isCurrentUser ? "current-user border-2 border-primary" : ""}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 flex items-center justify-center">
+                        {getMedalIcon(entry.rank) || (
+                          <span
+                            className="font-mono text-lg font-bold text-muted-foreground"
+                          >
+                            #{entry.rank}
+                          </span>
+                        )}
                       </div>
-                      <div>
-                        <div className="font-semibold" style={{ color: "#F5F7FA" }}>
-                          {entry.name}
+
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold bg-primary/10 text-primary"
+                        >
+                          {entry.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-semibold">
+                            {entry.name}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="arcade-mono text-lg font-bold" style={{ color: "#4AFFB0" }}>
-                    {entry.xp} XP
+                    <div className="font-mono text-lg font-bold text-primary">
+                      {entry.xp} XP
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Reward Tiers */}
           <div className="mt-12 glass-card p-6">
-            <h3 className="arcade-title text-xl font-semibold mb-4 flex items-center gap-2">
-              <Award className="w-5 h-5" style={{ color: "#4AFFB0" }} />
+            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <Award className="w-5 h-5 text-primary" />
               Reward Tiers
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {rewardTiers.map((tier, index) => (
-                <div key={index} className="flex items-center justify-between p-3 rounded-lg" style={{ background: "rgba(255, 255, 176, 0.03)" }}>
-                  <span className="text-sm" style={{ color: "#F5F7FA" }}>
+                <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+                  <span className="text-sm">
                     {tier.reward}
                   </span>
-                  <span className="arcade-mono text-sm font-bold" style={{ color: "#4AFFB0" }}>
+                  <span className="font-mono text-sm font-bold text-primary">
                     {tier.xp} XP
                   </span>
                 </div>

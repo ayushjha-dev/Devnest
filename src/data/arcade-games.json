@@ -62,9 +62,9 @@
     }
   ],
   "rewardTiers": [
-    { "xp": 200, "reward": "Devnest Sticker 🎁" },
-    { "xp": 500, "reward": "Devnest Badge 🏅" },
-    { "xp": 800, "reward": "T-Shirt Entry 👕" },
-    { "xp": 1000, "reward": "Top-3 Prize Eligibility 🏆" }
+    { "xp": 200, "reward": "Devnest Sticker" },
+    { "xp": 500, "reward": "Devnest Badge" },
+    { "xp": 800, "reward": "T-Shirt Entry" },
+    { "xp": 1000, "reward": "Top-3 Prize Eligibility" }
   ]
 }
