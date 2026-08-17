@@ -15,6 +15,7 @@ pnpm-lock.yaml
 !package.json
 !tsconfig.json
 !components.json
+!src/data/*.json
 scripts
 .vercel
 .env*
