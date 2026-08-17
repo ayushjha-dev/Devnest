@@ -1,0 +1,252 @@
+/* Devnest Arcade - Minimalist Glassmorphism Styles */
+
+.arcade-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0A0E14 0%, #12161F 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft gradient blobs background */
+.arcade-container::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(74, 255, 176, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.arcade-container::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(94, 212, 255, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Glass card base */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(74, 255, 176, 0.3);
+}
+
+/* Glass button */
+.glass-button {
+  background: rgba(74, 255, 176, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(74, 255, 176, 0.3);
+  border-radius: 16px;
+  color: #4AFFB0;
+  font-weight: 600;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(74, 255, 176, 0.1);
+}
+
+.glass-button:hover {
+  background: rgba(74, 255, 176, 0.15);
+  box-shadow: 0 6px 24px rgba(74, 255, 176, 0.2);
+  transform: translateY(-2px);
+}
+
+.glass-button:active {
+  transform: translateY(0);
+}
+
+/* Accent glow text */
+.glow-text {
+  color: #F5F7FA;
+  text-shadow: 0 0 20px rgba(74, 255, 176, 0.3);
+}
+
+.glow-text-cyan {
+  color: #5ED4FF;
+  text-shadow: 0 0 20px rgba(94, 212, 255, 0.3);
+}
+
+/* Progress bar */
+.glass-progress-track {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  height: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-progress-fill {
+  background: linear-gradient(90deg, #4AFFB0 0%, #5ED4FF 100%);
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px rgba(74, 255, 176, 0.4);
+}
+
+/* Badge/pill */
+.glass-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #9AA3B2;
+  white-space: nowrap;
+}
+
+/* Feedback states */
+.feedback-correct {
+  border-color: rgba(74, 255, 176, 0.5);
+  background: rgba(74, 255, 176, 0.1);
+  box-shadow: 0 0 20px rgba(74, 255, 176, 0.3);
+}
+
+.feedback-wrong {
+  border-color: rgba(255, 107, 129, 0.5);
+  background: rgba(255, 107, 129, 0.1);
+  box-shadow: 0 0 20px rgba(255, 107, 129, 0.3);
+}
+
+/* Leaderboard row */
+.leaderboard-row {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px 20px;
+  transition: all 0.2s ease;
+}
+
+.leaderboard-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.leaderboard-row.current-user {
+  background: rgba(74, 255, 176, 0.08);
+  border-color: rgba(74, 255, 176, 0.3);
+  box-shadow: 0 0 16px rgba(74, 255, 176, 0.2);
+}
+
+/* Medal icons */
+.medal-gold {
+  color: #FFD700;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+.medal-silver {
+  color: #C0C0C0;
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.5));
+}
+
+.medal-bronze {
+  color: #CD7F32;
+  filter: drop-shadow(0 0 8px rgba(205, 127, 50, 0.5));
+}
+
+/* Difficulty stars */
+.difficulty-star {
+  color: #4AFFB0;
+  filter: drop-shadow(0 0 4px rgba(74, 255, 176, 0.4));
+}
+
+.difficulty-star-empty {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* Game icon container */
+.game-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  font-size: 28px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover .game-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(74, 255, 176, 0.2);
+}
+
+/* Typography */
+.arcade-title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #F5F7FA;
+}
+
+.arcade-mono {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(74, 255, 176, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(74, 255, 176, 0.5);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count-up {
+  animation: count-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive touch targets */
+@media (max-width: 768px) {
+  .glass-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .arcade-container::before,
+  .arcade-container::after {
+    width: 80%;
+    height: 80%;
+  }
+}

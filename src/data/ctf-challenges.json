@@ -1,0 +1,67 @@
+{
+  "challenges": [
+    {
+      "id": "level_1",
+      "level": 1,
+      "title": "Base64 Basics",
+      "description": "Decode this Base64 string to find the flag:",
+      "challenge": "RGV2TmVzdHtXM2xjMG0zX1QwX0N5YjNyU2VjfQ==",
+      "flag": "DevNest{W3lc0m3_T0_Cyb3rSec}",
+      "hint": "Base64 is a common encoding scheme. Try an online Base64 decoder.",
+      "skill": "Encoding",
+      "basePoints": 50,
+      "hintPenalty": 10
+    },
+    {
+      "id": "level_2",
+      "level": 2,
+      "title": "Hidden in Plain Sight",
+      "description": "Inspect the HTML source below to find a hidden comment with the flag:",
+      "challenge": "<html>\n<head><title>DevNest Portal</title></head>\n<body>\n<h1>Welcome to DevNest</h1>\n<!-- Flag: DevNest{V13w_S0urc3_M4st3r} -->\n<p>Join our community</p>\n</body>\n</html>",
+      "flag": "DevNest{V13w_S0urc3_M4st3r}",
+      "hint": "Look for HTML comments between <!-- and --> tags",
+      "skill": "View Source",
+      "basePoints": 50,
+      "hintPenalty": 10
+    },
+    {
+      "id": "level_3",
+      "level": 3,
+      "title": "Log Analysis",
+      "description": "Find the suspicious IP address that attempted unauthorized access (format: xxx.xxx.xxx.xxx):",
+      "challenge": "2024-01-15 10:23:45 192.168.1.100 LOGIN SUCCESS user=admin\n2024-01-15 10:24:12 192.168.1.100 LOGOUT user=admin\n2024-01-15 10:25:33 203.0.113.45 LOGIN FAILED user=admin\n2024-01-15 10:25:34 203.0.113.45 LOGIN FAILED user=admin\n2024-01-15 10:25:35 203.0.113.45 LOGIN FAILED user=root\n2024-01-15 10:25:36 203.0.113.45 LOGIN FAILED user=administrator",
+      "flag": "203.0.113.45",
+      "hint": "Look for multiple failed login attempts from the same IP address",
+      "skill": "Log Reading",
+      "basePoints": 50,
+      "hintPenalty": 10
+    },
+    {
+      "id": "level_4",
+      "level": 4,
+      "title": "Caesar Cipher",
+      "description": "Decrypt this Caesar cipher (ROT13) to get the flag:",
+      "challenge": "QriArfg{P13ne_Gr1kg_Vf_Abg_Frpher}",
+      "flag": "DevNest{C13ar_Te1xt_Is_Not_Secure}",
+      "hint": "ROT13 shifts each letter by 13 positions. Try an online ROT13 decoder.",
+      "skill": "Classical Crypto",
+      "basePoints": 50,
+      "hintPenalty": 10
+    },
+    {
+      "id": "level_5",
+      "level": 5,
+      "title": "Final Challenge",
+      "description": "Combine all your skills. The flag is hidden in this data. First decode from Hex, then Base64:",
+      "challenge": "NTJWMk0wNWxjM1I3UTNsMFpYSmZVM1J2Y205elgwTnZiWEJzWlhSbGZRPT0=",
+      "flag": "DevNest{Cyb3r_St0rm5_Complete}",
+      "hint": "Two-step process: Base64 decode first, then treat result as hex and decode again",
+      "skill": "Multi-layer Decoding",
+      "basePoints": 50,
+      "hintPenalty": 10
+    }
+  ],
+  "completionBonus": 50,
+  "maxWrongAttempts": 3,
+  "wrongAttemptPenalty": 5
+}
