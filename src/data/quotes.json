@@ -1,0 +1,44 @@
+{
+  "quotes": [
+    {
+      "text": "The best way to predict the future is to invent it.",
+      "author": "Alan Kay",
+      "category": "Innovation"
+    },
+    {
+      "text": "Technology is best when it brings people together.",
+      "author": "Matt Mullenweg",
+      "category": "Community"
+    },
+    {
+      "text": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs",
+      "category": "Passion"
+    },
+    {
+      "text": "Innovation distinguishes between a leader and a follower.",
+      "author": "Steve Jobs",
+      "category": "Leadership"
+    },
+    {
+      "text": "Code is poetry written for computers.",
+      "author": "Unknown",
+      "category": "Development"
+    },
+    {
+      "text": "The future is built by those who create.",
+      "author": "Unknown",
+      "category": "Vision"
+    },
+    {
+      "text": "Together, we build. Together, we innovate.",
+      "author": "DevNest",
+      "category": "Community"
+    },
+    {
+      "text": "Every expert was once a beginner.",
+      "author": "Unknown",
+      "category": "Learning"
+    }
+  ]
+}

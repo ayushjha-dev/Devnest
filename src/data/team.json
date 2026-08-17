@@ -1,0 +1,168 @@
+{
+  "coreTeam": [
+    {
+      "id": 1,
+      "name": "Prof. Wakeel Ahmad",
+      "role": "Faculty Coordinator",
+      "designation": "Faculty Coordinator",
+      "bio": "Guiding DevNest's academic initiatives and fostering student-faculty collaboration. Committed to nurturing innovation and technical excellence.",
+      "image": "/team/wakeel.jpeg",
+      "imagePosition": "center 20%",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Aaditya Kumar",
+      "role": "President",
+      "designation": "DevNest President",
+      "bio": "Quiet focus today builds unstoppable strength tomorrow. Visionary leader driving DevNest's mission.",
+      "image": "/team/aaditya.jpeg",
+      "socials": {
+        "github": "#",
+        "linkedin": "https://www.linkedin.com/in/aadityakumarvats/",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Tabinda Naseem",
+      "role": "Vice President",
+      "designation": "DevNest Vice President",
+      "bio": "My soul is alight with the fire of the world's motion, made brighter by my resolve. Empowering tech enthusiasts.",
+      "image": "/team/tabinda.jpeg",
+      "imagePosition": "center 20%",
+      "socials": {
+        "github": "#",
+        "linkedin": "https://www.linkedin.com/in/tabinda-naseem-948625335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Ayush Kumar Jha",
+      "role": "Secretary",
+      "designation": "DevNest Secretary",
+      "bio": "Precision in thought, perfection in execution. Building the future of DevNest with strategic vision.",
+      "image": "/team/ayush.jpeg",
+      "socials": {
+        "github": "#",
+        "linkedin": "https://www.linkedin.com/in/ayush-kumar-jha-058b64323",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Nandini Jaishree",
+      "role": "CFO",
+      "designation": "DevNest Chief Financial Officer",
+      "bio": "Dedicated to fostering innovation and excellence in the DevNest community. Leading with passion and purpose.",
+      "image": "/team/nandhini.jpeg",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Manish Yadav",
+      "role": "Technical Head",
+      "designation": "DevNest Technical Head",
+      "bio": "Leading technical initiatives and driving innovation. Passionate about empowering developers with cutting-edge skills.",
+      "image": "/team/manish.jpeg",
+      "socials": {
+        "github": "#",
+        "linkedin": "https://www.linkedin.com/in/manishyadavcyber",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Sheikh Masood Ahmad",
+      "role": "Ideation and Outreach Coordinator",
+      "designation": "DevNest Ideation and Outreach Coordinator",
+      "bio": "Connecting ideas with opportunities. Building partnerships and expanding DevNest's reach in the tech community.",
+      "image": "/team/masood.jpeg",
+      "imagePosition": "center 10%",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Shivam",
+      "role": "Developer",
+      "designation": "DevNest Developer",
+      "bio": "Contributing to DevNest development initiatives and supporting technical execution.",
+      "image": "/team/shivam.jpeg",
+      "imagePosition": "center 10%",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Vipul",
+      "role": "Technical Coordinator",
+      "designation": "DevNest Technical Coordinator",
+      "bio": "Coordinating technical activities and helping teams deliver high-quality outcomes.",
+      "image": "/team/vipul.jpeg",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Bhupesh",
+      "role": "Event Coordinator",
+      "designation": "DevNest Event Coordinator",
+      "bio": "Managing event logistics and ensuring smooth execution of DevNest activities.",
+      "image": "/team/bhupesh.jpeg.png",
+      "imagePosition": "center 20%",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Anshuman",
+      "role": "Developer",
+      "designation": "DevNest Developer",
+      "bio": "Building and improving DevNest projects with a focus on practical impact.",
+      "image": "/team/anshuman.jpeg",
+      "socials": {
+        "github": "#",
+        "linkedin": "#",
+        "instagram": "#"
+      }
+    }
+  ],
+  "alumni": [
+    {
+      "id": 1,
+      "name": "Hemanth Chakka",
+      "role": "Former Head Developer",
+      "designation": "DevNest Alumni",
+      "bio": "Coordinating technical workshops and hackathons. Building bridges between ideas and implementation.",
+      "image": "/team/heche.png",
+      "imagePosition": "center 10%",
+      "socials": {
+        "github": "#",
+        "linkedin": "https://www.linkedin.com/in/hemanth-chakka/",
+        "instagram": "#"
+      }
+    }
+  ]
+}

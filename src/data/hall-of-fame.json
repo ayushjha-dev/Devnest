@@ -1,0 +1,76 @@
+{
+  "promptathon": [
+    {
+      "teamName": "Team Alpha",
+      "position": "1st Place",
+      "members": [
+        { "name": "John Doe", "role": "Team Lead" },
+        { "name": "Jane Smith", "role": "Developer" },
+        { "name": "Mike Johnson", "role": "Designer" }
+      ],
+      "image": "/events/promptathon-winner-1.jpg",
+      "event": "Promptathon",
+      "year": "2024"
+    },
+    {
+      "teamName": "Team Beta",
+      "position": "2nd Place",
+      "members": [
+        { "name": "Sarah Wilson", "role": "Team Lead" },
+        { "name": "David Brown", "role": "Developer" }
+      ],
+      "image": "/events/promptathon-winner-2.jpg",
+      "event": "Promptathon",
+      "year": "2024"
+    },
+    {
+      "teamName": "Team Gamma",
+      "position": "3rd Place",
+      "members": [
+        { "name": "Emily Davis", "role": "Team Lead" },
+        { "name": "Chris Martin", "role": "Developer" },
+        { "name": "Alex Turner", "role": "Analyst" }
+      ],
+      "image": "/events/promptathon-winner-3.jpg",
+      "event": "Promptathon",
+      "year": "2024"
+    }
+  ],
+  "datadash": [
+    {
+      "teamName": "Data Wizards",
+      "position": "1st Place",
+      "members": [
+        { "name": "Priya Sharma", "role": "Team Lead" },
+        { "name": "Rahul Kumar", "role": "Data Scientist" },
+        { "name": "Anjali Patel", "role": "Analyst" }
+      ],
+      "image": "/events/datadash-winner-1.jpg",
+      "event": "DataDash",
+      "year": "2024"
+    },
+    {
+      "teamName": "Analytics Masters",
+      "position": "2nd Place",
+      "members": [
+        { "name": "Vikram Singh", "role": "Team Lead" },
+        { "name": "Sneha Gupta", "role": "Data Engineer" }
+      ],
+      "image": "/events/datadash-winner-2.jpg",
+      "event": "DataDash",
+      "year": "2024"
+    },
+    {
+      "teamName": "Insight Innovators",
+      "position": "3rd Place",
+      "members": [
+        { "name": "Arjun Reddy", "role": "Team Lead" },
+        { "name": "Meera Krishnan", "role": "ML Engineer" },
+        { "name": "Rohan Verma", "role": "Data Analyst" }
+      ],
+      "image": "/events/datadash-winner-3.jpg",
+      "event": "DataDash",
+      "year": "2024"
+    }
+  ]
+}
