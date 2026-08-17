@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 
 import "@/global.css";
+import "@/styles/arcade.css";
 
 export default function DevnestApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());

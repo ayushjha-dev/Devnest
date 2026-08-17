@@ -3,7 +3,6 @@ import { GameCard } from "@/components/arcade/GameCard";
 import { Trophy } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import "../../styles/arcade.css";
 import arcadeGames from "@/data/arcade-games.json";
 
 export default function ArcadeLanding() {

@@ -2,7 +2,6 @@ import { Layout } from "@/components/Layout";
 import { Trophy, Medal, Award, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import "../../styles/arcade.css";
 import arcadeGames from "@/data/arcade-games.json";
 
 interface LeaderboardEntry {
