@@ -1,6 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,16 +15,95 @@ export default async function handler(
       return res.status(400).json({ message: "Name and email are required" });
     }
 
-    // Check if Firebase is configured
-    if (!db) {
-      console.error("Firebase not initialized");
-      return res.status(500).json({ message: "Database not configured" });
+    // Import Firebase dynamically only on server
+    const { initializeApp, getApps, cert } = await import("firebase-admin/app");
+    const { getFirestore } = await import("firebase-admin/firestore");
+
+    // Initialize Firebase Admin SDK
+    let adminDb;
+    try {
+      if (getApps().length === 0) {
+        // Try to initialize with service account
+        const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT;
+        if (serviceAccount) {
+          const serviceAccountJson = JSON.parse(serviceAccount);
+          initializeApp({
+            credential: cert(serviceAccountJson),
+          });
+        } else {
+          // Fallback: Use client SDK for server-side
+          const { db } = await import("@/lib/firebase");
+          const { collection, addDoc, query, where, getDocs } = await import("firebase/firestore");
+          
+          const usersRef = collection(db, "arcade_users");
+          const q = query(usersRef, where("email", "==", email));
+          const existingUsers = await getDocs(q);
+
+          let userId;
+          let userData;
+
+          if (existingUsers.empty) {
+            userData = {
+              name,
+              email,
+              totalXp: 0,
+              gamesPlayed: 0,
+              registeredAt: new Date().toISOString(),
+            };
+            const docRef = await addDoc(usersRef, userData);
+            userId = docRef.id;
+          } else {
+            userId = existingUsers.docs[0].id;
+            userData = existingUsers.docs[0].data();
+          }
+
+          return res.status(200).json({
+            message: "Registration successful",
+            userId,
+            user: userData,
+          });
+        }
+      }
+
+      adminDb = getFirestore();
+    } catch (adminError) {
+      console.error("Firebase Admin initialization failed:", adminError);
+      // Fallback to client SDK
+      const { db } = await import("@/lib/firebase");
+      const { collection, addDoc, query, where, getDocs } = await import("firebase/firestore");
+      
+      const usersRef = collection(db, "arcade_users");
+      const q = query(usersRef, where("email", "==", email));
+      const existingUsers = await getDocs(q);
+
+      let userId;
+      let userData;
+
+      if (existingUsers.empty) {
+        userData = {
+          name,
+          email,
+          totalXp: 0,
+          gamesPlayed: 0,
+          registeredAt: new Date().toISOString(),
+        };
+        const docRef = await addDoc(usersRef, userData);
+        userId = docRef.id;
+      } else {
+        userId = existingUsers.docs[0].id;
+        userData = existingUsers.docs[0].data();
+      }
+
+      return res.status(200).json({
+        message: "Registration successful",
+        userId,
+        user: userData,
+      });
     }
 
-    // Check if user already exists
-    const usersRef = collection(db, "arcade_users");
-    const q = query(usersRef, where("email", "==", email));
-    const existingUsers = await getDocs(q);
+    // Check if user already exists (Admin SDK)
+    const usersRef = adminDb.collection("arcade_users");
+    const existingUsers = await usersRef.where("email", "==", email).get();
 
     let userId;
     let userData;
@@ -40,7 +117,7 @@ export default async function handler(
         gamesPlayed: 0,
         registeredAt: new Date().toISOString(),
       };
-      const docRef = await addDoc(usersRef, userData);
+      const docRef = await usersRef.add(userData);
       userId = docRef.id;
       console.log("New user created:", userId);
     } else {
