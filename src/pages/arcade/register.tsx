@@ -170,10 +170,6 @@ export default function ArcadeRegister() {
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
                   {isSubmitting ? "Registering..." : "Start Playing"}
                 </Button>
-
-                <p className="text-center text-sm text-muted-foreground">
-                  See the Leaderboard
-                </p>
               </form>
             </div>
 
