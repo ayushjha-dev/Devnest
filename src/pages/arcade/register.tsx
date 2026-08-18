@@ -41,35 +41,38 @@ export default function ArcadeRegister() {
     setIsSubmitting(true);
 
     try {
-      // Store user info in localStorage
-      localStorage.setItem(
-        "arcadeUser",
-        JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          registeredAt: new Date().toISOString(),
-        })
-      );
-
-      // Register user in database (if needed)
+      // Register user in database
       const response = await fetch("/api/arcade/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
+        // Store complete user info in localStorage
+        localStorage.setItem(
+          "arcadeUser",
+          JSON.stringify({
+            userId: data.userId,
+            name: formData.name,
+            email: formData.email,
+            registeredAt: new Date().toISOString(),
+          })
+        );
+
+        console.log("Registration successful:", data);
         // Redirect to games page
         router.push("/arcade");
       } else {
-        // Even if API fails, allow local play
-        router.push("/arcade");
+        console.error("Registration failed:", data);
+        alert(`Registration failed: ${data.message || "Unknown error"}`);
+        setIsSubmitting(false);
       }
     } catch (error) {
-      // On error, still allow local play
       console.error("Registration error:", error);
-      router.push("/arcade");
-    } finally {
+      alert("Registration failed. Please check your internet connection and try again.");
       setIsSubmitting(false);
     }
   };

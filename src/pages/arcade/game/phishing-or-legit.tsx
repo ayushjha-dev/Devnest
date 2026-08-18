@@ -69,6 +69,44 @@ export default function PhishingOrLegitGame() {
     setGameOver(true);
   };
 
+  // Save score to Firebase when game ends
+  useEffect(() => {
+    if (gameOver && score > 0) {
+      const saveScore = async () => {
+        try {
+          const arcadeUser = localStorage.getItem("arcadeUser");
+          if (!arcadeUser) {
+            console.error("No arcade user found");
+            return;
+          }
+
+          const { email } = JSON.parse(arcadeUser);
+          
+          const response = await fetch("/api/arcade/update-xp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email,
+              xpEarned: score,
+              gameId: "phishing-or-legit",
+            }),
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log("Score saved successfully:", data);
+          } else {
+            console.error("Failed to save score:", await response.text());
+          }
+        } catch (error) {
+          console.error("Error saving score:", error);
+        }
+      };
+
+      saveScore();
+    }
+  }, [gameOver, score]);
+
   const renderContent = () => {
     if (currentScenario.type === "email") {
       return (

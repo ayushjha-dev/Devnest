@@ -24,20 +24,22 @@ const firebaseConfig: FirebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "",
 };
 
-// Initialize Firebase (only once)
+// Initialize Firebase (works on both client and server)
 let app: FirebaseApp;
 let db: Firestore;
 let auth: Auth;
 
+// Initialize on both client and server
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0];
+}
+
+db = getFirestore(app);
+
+// Auth only on client
 if (typeof window !== "undefined") {
-  // Client-side initialization
-  if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApps()[0];
-  }
-  
-  db = getFirestore(app);
   auth = getAuth(app);
 }
 
