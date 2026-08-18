@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
-import { Download, RefreshCw, Users } from "lucide-react";
+import { Download, RefreshCw, Users, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 interface ArcadeUser {
@@ -93,6 +93,31 @@ export default function ArcadeAdmin2026() {
     a.click();
   };
 
+  const handleDeleteUser = async (userId: string, userName: string) => {
+    if (!confirm(`Are you sure you want to delete ${userName} from the leaderboard? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/arcade/delete-user", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId }),
+      });
+
+      if (response.ok) {
+        alert("User deleted successfully!");
+        fetchUsers(); // Refresh the list
+      } else {
+        const data = await response.json();
+        alert(`Failed to delete user: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Failed to delete user. Please try again.");
+    }
+  };
+
   return (
     <Layout>
       <div className="min-h-screen py-8">
@@ -169,6 +194,7 @@ export default function ArcadeAdmin2026() {
                       <TableHead className="text-right">Total XP</TableHead>
                       <TableHead className="text-right">Games Played</TableHead>
                       <TableHead>Registered</TableHead>
+                      <TableHead className="text-center">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -183,6 +209,16 @@ export default function ArcadeAdmin2026() {
                         <TableCell className="text-right">{user.gamesPlayed}</TableCell>
                         <TableCell className="text-muted-foreground">
                           {new Date(user.registeredAt).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell className="text-center">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDeleteUser(user.id, user.name)}
+                            className="text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
