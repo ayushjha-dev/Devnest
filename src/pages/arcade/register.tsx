@@ -172,7 +172,7 @@ export default function ArcadeRegister() {
                 </Button>
 
                 <p className="text-center text-sm text-muted-foreground">
-                  By continuing, you agree to participate in DevNest Arcade challenges
+                  See the Leaderboard
                 </p>
               </form>
             </div>
