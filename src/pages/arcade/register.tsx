@@ -55,7 +55,6 @@ export default function ArcadeRegister() {
       setLoadingLeaderboard(false);
     }
   };
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateForm = () => {
     const newErrors: { name?: string; email?: string } = {};
