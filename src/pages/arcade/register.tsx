@@ -170,11 +170,11 @@ export default function ArcadeRegister() {
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
                   {isSubmitting ? "Registering..." : "Start Playing"}
                 </Button>
-              </form>
 
-              <p className="text-center text-sm text-muted-foreground mt-6">
-                By continuing, you agree to participate in DevNest Arcade challenges
-              </p>
+                <p className="text-center text-sm text-muted-foreground">
+                  By continuing, you agree to participate in DevNest Arcade challenges
+                </p>
+              </form>
             </div>
 
             {/* Leaderboard */}
