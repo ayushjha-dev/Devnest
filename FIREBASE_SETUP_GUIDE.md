@@ -1,6 +1,6 @@
 # Firebase Setup Guide for DevNest Arcade
 
-This guide will help you configure Firebase for the multi-user arcade system.
+This guide will help you configure Firebase for the multi-user arcade system with real-time leaderboards.
 
 ## Step 1: Firebase Console Setup
 
