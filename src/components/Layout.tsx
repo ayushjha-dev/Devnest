@@ -30,7 +30,6 @@ export function Layout({ children, pauseTerminal = false, customTheme = 'default
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Events", href: "/events" },
-    { label: "Arcade", href: "/arcade" },
     { label: "Blogs", href: "/blogs" },
     { label: "Team", href: "/team" },
     { label: "Contact", href: "/contact" },
