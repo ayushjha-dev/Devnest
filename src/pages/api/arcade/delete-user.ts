@@ -1,4 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { initializeApp, getApps, cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+
+// Initialize Firebase Admin
+function initAdmin() {
+  if (getApps().length === 0) {
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+    if (projectId && clientEmail && privateKey) {
+      initializeApp({
+        credential: cert({
+          projectId,
+          clientEmail,
+          privateKey,
+        }),
+      });
+    } else {
+      throw new Error("Firebase Admin credentials not configured");
+    }
+  }
+  return getFirestore();
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,50 +39,17 @@ export default async function handler(
       return res.status(400).json({ message: "User ID is required" });
     }
 
-    // Try Firebase Admin first, fallback to client SDK
-    try {
-      const { getApps, initializeApp, cert } = await import("firebase-admin/app");
-      const { getFirestore } = await import("firebase-admin/firestore");
+    // Initialize Firestore
+    const db = initAdmin();
 
-      let adminDb;
-      if (getApps().length === 0) {
-        const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT;
-        if (serviceAccount) {
-          const serviceAccountJson = JSON.parse(serviceAccount);
-          initializeApp({
-            credential: cert(serviceAccountJson),
-          });
-        } else {
-          throw new Error("No Firebase Admin credentials");
-        }
-      }
+    // Delete user document
+    await db.collection("arcade_users").doc(userId).delete();
 
-      adminDb = getFirestore();
+    console.log(`Deleted user: ${userId}`);
 
-      // Delete user document
-      await adminDb.collection("arcade_users").doc(userId).delete();
-
-      console.log(`Deleted user: ${userId}`);
-
-      return res.status(200).json({
-        message: "User deleted successfully",
-      });
-    } catch (adminError) {
-      console.log("Admin SDK failed, using client SDK:", adminError);
-      
-      // Fallback to client SDK
-      const { db } = await import("@/lib/firebase");
-      const { deleteDoc, doc } = await import("firebase/firestore");
-
-      const userRef = doc(db, "arcade_users", userId);
-      await deleteDoc(userRef);
-
-      console.log(`Deleted user: ${userId}`);
-
-      return res.status(200).json({
-        message: "User deleted successfully",
-      });
-    }
+    res.status(200).json({
+      message: "User deleted successfully",
+    });
   } catch (error) {
     console.error("Delete user error:", error);
     res.status(500).json({ 
@@ -67,3 +58,4 @@ export default async function handler(
     });
   }
 }
+

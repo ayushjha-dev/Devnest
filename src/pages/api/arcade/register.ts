@@ -1,4 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { initializeApp, getApps, cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+
+// Initialize Firebase Admin
+function initAdmin() {
+  if (getApps().length === 0) {
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+    if (projectId && clientEmail && privateKey) {
+      initializeApp({
+        credential: cert({
+          projectId,
+          clientEmail,
+          privateKey,
+        }),
+      });
+    } else {
+      throw new Error("Firebase Admin credentials not configured");
+    }
+  }
+  return getFirestore();
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,20 +41,37 @@ export default async function handler(
       return res.status(400).json({ message: "Name and email are required" });
     }
 
-    // Generate a unique user ID
-    const userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    const userData = {
-      name,
-      email,
-      totalXp: 0,
-      gamesPlayed: 0,
-      registeredAt: new Date().toISOString(),
-    };
+    // Initialize Firestore
+    const db = initAdmin();
 
-    console.log("User registered successfully:", userId);
+    // Check if user already exists
+    const usersRef = db.collection("arcade_users");
+    const q = usersRef.where("email", "==", email);
+    const existingUsers = await q.get();
 
-    // Return success - data will be stored in localStorage on client
-    return res.status(200).json({
+    let userId;
+    let userData;
+
+    if (existingUsers.empty) {
+      // Create new user
+      userData = {
+        name,
+        email,
+        totalXp: 0,
+        gamesPlayed: 0,
+        registeredAt: new Date().toISOString(),
+      };
+      const docRef = await usersRef.add(userData);
+      userId = docRef.id;
+      console.log("New user created:", userId);
+    } else {
+      // User already exists
+      userId = existingUsers.docs[0].id;
+      userData = existingUsers.docs[0].data();
+      console.log("Existing user found:", userId);
+    }
+
+    res.status(200).json({
       message: "Registration successful",
       userId,
       user: userData,

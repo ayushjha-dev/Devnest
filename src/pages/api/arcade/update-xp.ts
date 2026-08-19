@@ -1,4 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { initializeApp, getApps, cert } from "firebase-admin/app";
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
+
+// Initialize Firebase Admin
+function initAdmin() {
+  if (getApps().length === 0) {
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+    if (projectId && clientEmail && privateKey) {
+      initializeApp({
+        credential: cert({
+          projectId,
+          clientEmail,
+          privateKey,
+        }),
+      });
+    } else {
+      throw new Error("Firebase Admin credentials not configured");
+    }
+  }
+  return getFirestore();
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,90 +39,37 @@ export default async function handler(
       return res.status(400).json({ message: "Email and xpEarned are required" });
     }
 
-    // Try Firebase Admin first, fallback to client SDK
-    try {
-      const { getApps, initializeApp, cert } = await import("firebase-admin/app");
-      const { getFirestore, FieldValue } = await import("firebase-admin/firestore");
+    // Initialize Firestore
+    const db = initAdmin();
 
-      let adminDb;
-      if (getApps().length === 0) {
-        const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT;
-        if (serviceAccount) {
-          const serviceAccountJson = JSON.parse(serviceAccount);
-          initializeApp({
-            credential: cert(serviceAccountJson),
-          });
-        } else {
-          throw new Error("No Firebase Admin credentials");
-        }
-      }
+    // Find user by email
+    const usersRef = db.collection("arcade_users");
+    const snapshot = await usersRef.where("email", "==", email).get();
 
-      adminDb = getFirestore();
-
-      // Find user by email
-      const usersRef = adminDb.collection("arcade_users");
-      const snapshot = await usersRef.where("email", "==", email).get();
-
-      if (snapshot.empty) {
-        return res.status(404).json({ message: "User not found. Please register first." });
-      }
-
-      // Update user's XP
-      const userDoc = snapshot.docs[0];
-      await userDoc.ref.update({
-        totalXp: FieldValue.increment(xpEarned),
-        gamesPlayed: FieldValue.increment(1),
-        lastPlayedAt: new Date().toISOString(),
-        lastGameId: gameId || "unknown",
-      });
-
-      // Get updated data
-      const updatedDoc = await userDoc.ref.get();
-      const updatedData = updatedDoc.data();
-
-      console.log(`Updated XP for ${email}: +${xpEarned} (Total: ${updatedData?.totalXp})`);
-
-      return res.status(200).json({
-        message: "XP updated successfully",
-        totalXp: updatedData?.totalXp || 0,
-        gamesPlayed: updatedData?.gamesPlayed || 0,
-      });
-    } catch (adminError) {
-      console.log("Admin SDK failed, using client SDK:", adminError);
-      
-      // Fallback to client SDK
-      const { db } = await import("@/lib/firebase");
-      const { collection, query, where, getDocs, updateDoc, doc, increment } = await import("firebase/firestore");
-
-      const usersRef = collection(db, "arcade_users");
-      const q = query(usersRef, where("email", "==", email));
-      const snapshot = await getDocs(q);
-
-      if (snapshot.empty) {
-        return res.status(404).json({ message: "User not found. Please register first." });
-      }
-
-      const userDoc = snapshot.docs[0];
-      const userRef = doc(db, "arcade_users", userDoc.id);
-      
-      await updateDoc(userRef, {
-        totalXp: increment(xpEarned),
-        gamesPlayed: increment(1),
-        lastPlayedAt: new Date().toISOString(),
-        lastGameId: gameId || "unknown",
-      });
-
-      const updatedSnapshot = await getDocs(q);
-      const updatedData = updatedSnapshot.docs[0].data();
-
-      console.log(`Updated XP for ${email}: +${xpEarned} (Total: ${updatedData.totalXp})`);
-
-      return res.status(200).json({
-        message: "XP updated successfully",
-        totalXp: updatedData.totalXp,
-        gamesPlayed: updatedData.gamesPlayed,
-      });
+    if (snapshot.empty) {
+      return res.status(404).json({ message: "User not found. Please register first." });
     }
+
+    // Update user's XP
+    const userDoc = snapshot.docs[0];
+    await userDoc.ref.update({
+      totalXp: FieldValue.increment(xpEarned),
+      gamesPlayed: FieldValue.increment(1),
+      lastPlayedAt: new Date().toISOString(),
+      lastGameId: gameId || "unknown",
+    });
+
+    // Get updated data
+    const updatedDoc = await userDoc.ref.get();
+    const updatedData = updatedDoc.data();
+
+    console.log(`Updated XP for ${email}: +${xpEarned} (Total: ${updatedData?.totalXp})`);
+
+    res.status(200).json({
+      message: "XP updated successfully",
+      totalXp: updatedData?.totalXp || 0,
+      gamesPlayed: updatedData?.gamesPlayed || 0,
+    });
   } catch (error) {
     console.error("Update XP error:", error);
     res.status(500).json({ 
@@ -107,3 +78,4 @@ export default async function handler(
     });
   }
 }
+
