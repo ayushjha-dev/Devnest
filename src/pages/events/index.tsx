@@ -35,89 +35,89 @@ const upcomingEvents: Array<{
   registrationUrl: string;
   learnMoreUrl: string;
 }> = [
-  {
-    id: 3,
-    title: "Designathon & Ideathon",
-    date: "October 2026",
-    time: "TBA",
-    location: "On-Campus",
-    description:
-      "Unleash your creativity and innovation! Design stunning UI/UX solutions and pitch groundbreaking ideas that solve real-world problems. Perfect for designers, developers, and creative thinkers.",
-    domains: [
-      "UI/UX Design",
-      "Product Design",
-      "Innovation",
-      "Prototyping",
-      "Problem Solving",
-    ],
-    capacity: "80+",
-    highlights: [
-      "Two parallel tracks: Design & Ideas",
-      "Mentorship from industry experts",
-      "Prototype your concepts",
-      "Present to judges panel",
-    ],
-    status: "open",
-    icon: "🎨",
-    registrationUrl: "mailto:devnest.techclub@gmail.com",
-    learnMoreUrl: "/events",
-  },
-  {
-    id: 4,
-    title: "LeetCode Competition & Webathon",
-    date: "November 2026",
-    time: "TBA",
-    location: "On-Campus",
-    description:
-      "A dual-track event combining competitive programming and web development. Solve algorithmic challenges on LeetCode while building stunning web applications. Showcase both your problem-solving and development skills.",
-    domains: [
-      "Competitive Programming",
-      "Data Structures",
-      "Algorithms",
-      "Web Development",
-      "Frontend",
-    ],
-    capacity: "120+",
-    highlights: [
-      "LeetCode-style programming challenges",
-      "Web development hackathon track",
-      "Time-bound competitions",
-      "Recognition for both tracks",
-    ],
-    status: "open",
-    icon: "💻",
-    registrationUrl: "mailto:devnest.techclub@gmail.com",
-    learnMoreUrl: "/events",
-  },
-  {
-    id: 5,
-    title: "Startup Hackathon",
-    date: "December 2026",
-    time: "TBA",
-    location: "On-Campus",
-    description:
-      "Build the next big thing! A 24-48 hour hackathon focused on creating startup-ready products. From ideation to MVP, work with your team to develop innovative solutions that could become real startups.",
-    domains: [
-      "Entrepreneurship",
-      "Full-Stack Development",
-      "Product Development",
-      "Business Strategy",
-      "Pitching",
-    ],
-    capacity: "100+",
-    highlights: [
-      "Extended hackathon format",
-      "Mentorship from startup founders",
-      "Pitch to investors",
-      "Seed funding opportunities for winners",
-      "Networking with startup ecosystem",
-    ],
-    status: "open",
-    icon: "🚀",
-    registrationUrl: "mailto:devnest.techclub@gmail.com",
-    learnMoreUrl: "/events",
-  },
-];
+    {
+      id: 3,
+      title: "Designathon & Ideathon",
+      date: "October 2026",
+      time: "TBA",
+      location: "On-Campus",
+      description:
+        "Unleash your creativity and innovation! Design stunning UI/UX solutions and pitch groundbreaking ideas that solve real-world problems. Perfect for designers, developers, and creative thinkers.",
+      domains: [
+        "UI/UX Design",
+        "Product Design",
+        "Innovation",
+        "Prototyping",
+        "Problem Solving",
+      ],
+      capacity: "80+",
+      highlights: [
+        "Two parallel tracks: Design & Ideas",
+        "Mentorship from industry experts",
+        "Prototype your concepts",
+        "Present to judges panel",
+      ],
+      status: "open",
+      icon: "🎨",
+      registrationUrl: "mailto:devnest.techclub@gmail.com",
+      learnMoreUrl: "/events",
+    },
+    {
+      id: 4,
+      title: "LeetCode Competition & Webathon",
+      date: "November 2026",
+      time: "TBA",
+      location: "On-Campus",
+      description:
+        "A dual-track event combining competitive programming and web development. Solve algorithmic challenges on LeetCode while building stunning web applications. Showcase both your problem-solving and development skills.",
+      domains: [
+        "Competitive Programming",
+        "Data Structures",
+        "Algorithms",
+        "Web Development",
+        "Frontend",
+      ],
+      capacity: "120+",
+      highlights: [
+        "LeetCode-style programming challenges",
+        "Web development hackathon track",
+        "Time-bound competitions",
+        "Recognition for both tracks",
+      ],
+      status: "open",
+      icon: "💻",
+      registrationUrl: "mailto:devnest.techclub@gmail.com",
+      learnMoreUrl: "/events",
+    },
+    {
+      id: 5,
+      title: "Startup Hackathon",
+      date: "December 2026",
+      time: "TBA",
+      location: "On-Campus",
+      description:
+        "Build the next big thing! A 24-48 hour hackathon focused on creating startup-ready products. From ideation to MVP, work with your team to develop innovative solutions that could become real startups.",
+      domains: [
+        "Entrepreneurship",
+        "Full-Stack Development",
+        "Product Development",
+        "Business Strategy",
+        "Pitching",
+      ],
+      capacity: "100+",
+      highlights: [
+        "Extended hackathon format",
+        "Mentorship from startup founders",
+        "Pitch to investors",
+        "Seed funding opportunities for winners",
+        "Networking with startup ecosystem",
+      ],
+      status: "open",
+      icon: "🚀",
+      registrationUrl: "mailto:devnest.techclub@gmail.com",
+      learnMoreUrl: "/events",
+    },
+  ];
 
 const pastEvents: Array<{
   id: number;
@@ -134,111 +134,111 @@ const pastEvents: Array<{
   statusBadge: string;
   poster?: string;
 }> = [
-  {
-    id: 4,
-    title: "Prarambh: Tech Quiz & Capture The Flag (CTF)",
-    date: "23 Sept 2026 • Concluded",
-    attendees: "90+",
-    location: "Laptop Lab, LTSU Punjab",
-    description:
-      "DevNest's signature flagship event featuring two parallel high-octane competitions: an exclusive Tech Quiz strictly for 1st Year Freshers, and an elite Capture The Flag (CTF) tournament for Seniors across 2nd & 3rd Year divisions.",
-    domains: [
-      "Tech Quiz (Freshers)",
-      "CTF (Seniors)",
-      "Cybersecurity",
-      "Competitive Logic",
-      "Algorithms",
-    ],
-    highlights: [
-      "TryHackMe Cyber Arena: Dedicated custom competition rooms deployed with hands-on vulnerable targets",
-      "CTF Technical Challenges: Specialized tracks covering Web Exploitation, Cryptography & Digital Forensics",
-      "Dynamic Live Scoring: Real-time leaderboard featuring strategic scoreboard freeze & expert jury adjudication",
-      "Championship Recognition: Top achievers awarded official trophies, cash awards & verified merit certificates",
-    ],
-    icon: "🏆",
-    link: "/events/prarambh",
-    certificateLink: "/certificate-download",
-    statusBadge: "Event Completed • Certificates Issued",
-    poster: "/events/prarambh-2026-poster.jpg",
-  },
-  {
-    id: 1,
-    title: "DataDash",
-    date: "April 10, 2026",
-    attendees: "153",
-    location: "IBM Lab, LTSU Punjab",
-    description:
-      "Where Data Meets Innovation! A data-focused innovation challenge where students transformed insights into impact through analytics, visualization, and practical problem-solving.",
-    domains: [
-      "Data Analytics",
-      "Problem Solving",
-      "Visualization",
-      "Data Storytelling",
-    ],
-    highlights: [
-      "153 participants registered across 46 teams",
-      "Hands-on datasets and real-world problem statements",
-      "Jury reviews and data visualization showcases",
-      "Verified participation credentials issued",
-    ],
-    icon: "📊",
-    link: "/events/datadash",
-    certificateLink: "/certificates/datadash",
-    statusBadge: "Event Concluded • Results Under Review",
-  },
-  {
-    id: 2,
-    title: "Promptathon in Yuva Kaushal",
-    date: "February 25, 2026",
-    attendees: "68",
-    location: "IBM Lab, LTSU Punjab",
-    description:
-      "A grand success! Students showcased exceptional AI prompt engineering skills, pushing the boundaries of AI communication, multi-modal generation, and critical algorithmic thinking.",
-    domains: [
-      "AI & Prompt Engineering",
-      "LLM Reasoning",
-      "Critical Thinking",
-      "Multi-modal AI",
-    ],
-    highlights: [
-      "68 participants across multiple competitive squads",
-      "Phase I & Phase II multi-round prompt challenges",
-      "Practical evaluations with zero hallucination criteria",
-      "Official certificates available across team galleries",
-    ],
-    icon: "⚡",
-    link: "/events/promptathon-2026",
-    certificateLink: "/certificates/promptathon",
-    statusBadge: "Grand Success • Certificates Available",
-    poster: "/events/promptathon/poster.png",
-  },
-  {
-    id: 3,
-    title: "Guest Speaker Event",
-    date: "February 5, 2026",
-    attendees: "150+",
-    location: "Auditorium, LTSU Punjab",
-    description:
-      "Inspiring expert career lecture with Amit Kumar Jaiswal, IIM Bangalore graduate and founder of Aptitude360online, covering competitive exams, career roadmap, and industry aptitude skills.",
-    domains: [
-      "Career Pathways",
-      "Aptitude Skills",
-      "Competitive Exams",
-      "Industry Connect",
-    ],
-    highlights: [
-      "150+ student attendees from all departments",
-      "Keynote on CAT, UPSC, SSC & Placement aptitude",
-      "Live interactive Q&A session with students",
-      "Official participation certificates generated",
-    ],
-    icon: "🎤",
-    link: "/events/guest-speaker-feb",
-    certificateLink: "/certificate-download",
-    statusBadge: "Completed • Verified Credentials",
-    poster: "/events/guest-speaker-feb/image.png",
-  },
-];
+    {
+      id: 4,
+      title: "Prarambh: Tech Quiz & Capture The Flag (CTF)",
+      date: "23 Sept 2026 • Concluded",
+      attendees: "90+",
+      location: "Laptop Lab, LTSU Punjab",
+      description:
+        "DevNest's signature flagship event featuring two parallel high-octane competitions: an exclusive Tech Quiz strictly for 1st Year Freshers, and an elite Capture The Flag (CTF) tournament for Seniors across 2nd & 3rd Year divisions.",
+      domains: [
+        "Tech Quiz (Freshers)",
+        "CTF (Seniors)",
+        "Cybersecurity",
+        "Competitive Logic",
+        "Algorithms",
+      ],
+      highlights: [
+        "TryHackMe Cyber Arena: Dedicated custom competition rooms deployed with hands-on vulnerable targets",
+        "CTF Technical Challenges: Specialized tracks covering Web Exploitation, Cryptography & Digital Forensics",
+        "Dynamic Live Scoring: Real-time leaderboard featuring strategic scoreboard freeze & expert jury adjudication",
+        "Championship Recognition: Top achievers awarded official trophies, cash awards & verified merit certificates",
+      ],
+      icon: "🏆",
+      link: "/events/prarambh",
+      certificateLink: "/certificate-download",
+      statusBadge: "Event Completed • Certificates Issued",
+      poster: "/events/CTF_banner.png",
+    },
+    {
+      id: 1,
+      title: "DataDash",
+      date: "April 10, 2026",
+      attendees: "153",
+      location: "IBM Lab, LTSU Punjab",
+      description:
+        "Where Data Meets Innovation! A data-focused innovation challenge where students transformed insights into impact through analytics, visualization, and practical problem-solving.",
+      domains: [
+        "Data Analytics",
+        "Problem Solving",
+        "Visualization",
+        "Data Storytelling",
+      ],
+      highlights: [
+        "153 participants registered across 46 teams",
+        "Hands-on datasets and real-world problem statements",
+        "Jury reviews and data visualization showcases",
+        "Verified participation credentials issued",
+      ],
+      icon: "📊",
+      link: "/events/datadash",
+      certificateLink: "/certificates/datadash",
+      statusBadge: "Event Concluded • Results Under Review",
+    },
+    {
+      id: 2,
+      title: "Promptathon in Yuva Kaushal",
+      date: "February 25, 2026",
+      attendees: "68",
+      location: "IBM Lab, LTSU Punjab",
+      description:
+        "A grand success! Students showcased exceptional AI prompt engineering skills, pushing the boundaries of AI communication, multi-modal generation, and critical algorithmic thinking.",
+      domains: [
+        "AI & Prompt Engineering",
+        "LLM Reasoning",
+        "Critical Thinking",
+        "Multi-modal AI",
+      ],
+      highlights: [
+        "68 participants across multiple competitive squads",
+        "Phase I & Phase II multi-round prompt challenges",
+        "Practical evaluations with zero hallucination criteria",
+        "Official certificates available across team galleries",
+      ],
+      icon: "⚡",
+      link: "/events/promptathon-2026",
+      certificateLink: "/certificates/promptathon",
+      statusBadge: "Grand Success • Certificates Available",
+      poster: "/events/promptathon/poster.png",
+    },
+    {
+      id: 3,
+      title: "Guest Speaker Event",
+      date: "February 5, 2026",
+      attendees: "150+",
+      location: "Auditorium, LTSU Punjab",
+      description:
+        "Inspiring expert career lecture with Amit Kumar Jaiswal, IIM Bangalore graduate and founder of Aptitude360online, covering competitive exams, career roadmap, and industry aptitude skills.",
+      domains: [
+        "Career Pathways",
+        "Aptitude Skills",
+        "Competitive Exams",
+        "Industry Connect",
+      ],
+      highlights: [
+        "150+ student attendees from all departments",
+        "Keynote on CAT, UPSC, SSC & Placement aptitude",
+        "Live interactive Q&A session with students",
+        "Official participation certificates generated",
+      ],
+      icon: "🎤",
+      link: "/events/guest-speaker-feb",
+      certificateLink: "/certificate-download",
+      statusBadge: "Completed • Verified Credentials",
+      poster: "/events/guest-speaker-feb/image.png",
+    },
+  ];
 
 export default function EventsPage() {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
@@ -281,11 +281,10 @@ export default function EventsPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab("upcoming")}
-                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${
-                    activeTab === "upcoming"
-                      ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] border-2 border-black"
-                      : "text-black hover:bg-[#FAF7EE] border-2 border-transparent"
-                  }`}
+                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${activeTab === "upcoming"
+                    ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] border-2 border-black"
+                    : "text-black hover:bg-[#FAF7EE] border-2 border-transparent"
+                    }`}
                 >
                   <Calendar className="w-4 h-4 text-black" />
                   <span>Upcoming ({upcomingEvents.length})</span>
@@ -294,11 +293,10 @@ export default function EventsPage() {
                 <button
                   type="button"
                   onClick={() => setActiveTab("past")}
-                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${
-                    activeTab === "past"
-                      ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] border-2 border-black"
-                      : "text-black hover:bg-[#FAF7EE] border-2 border-transparent"
-                  }`}
+                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${activeTab === "past"
+                    ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] border-2 border-black"
+                    : "text-black hover:bg-[#FAF7EE] border-2 border-transparent"
+                    }`}
                 >
                   <Award className="w-4 h-4 text-black" />
                   <span>Past ({pastEvents.length})</span>
@@ -355,130 +353,130 @@ export default function EventsPage() {
                     className="glass-panel rounded-3xl p-6 sm:p-8 border border-border/80 hover:border-primary/40 shadow-subtle hover:shadow-premium-hover transition-all duration-300"
                   >
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* Main Left Details */}
-                        <div className="lg:col-span-2">
-                          {/* Domain badges */}
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            {event.domains.map((domain, idx) => (
-                              <span
-                                key={`${domain}-${idx}`}
-                                className="px-2.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20 text-[11px] font-semibold"
-                              >
-                                {domain}
-                              </span>
-                            ))}
+                      {/* Main Left Details */}
+                      <div className="lg:col-span-2">
+                        {/* Domain badges */}
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {event.domains.map((domain, idx) => (
+                            <span
+                              key={`${domain}-${idx}`}
+                              className="px-2.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20 text-[11px] font-semibold"
+                            >
+                              {domain}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Title with icon */}
+                        <div className="flex items-center gap-3.5 mb-3">
+                          <div className="w-12 h-12 rounded-2xl bg-[#FFE600] border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center shrink-0">
+                            <TechIcon name={event.icon} className="w-6 h-6 text-black stroke-[2.3]" />
+                          </div>
+                          <h2 className="text-2xl sm:text-3xl font-poppins font-bold tracking-tight text-foreground">
+                            {event.title}
+                          </h2>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+                          {event.description}
+                        </p>
+
+                        {/* Metadata Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                          <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
+                            <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
+                              <Clock className="w-3.5 h-3.5" />
+                              <span>Timeline</span>
+                            </div>
+                            <span className="text-xs text-foreground font-medium truncate block">
+                              {event.date}
+                            </span>
                           </div>
 
-                          {/* Title with icon */}
-                          <div className="flex items-center gap-3.5 mb-3">
-                            <div className="w-12 h-12 rounded-2xl bg-[#FFE600] border-2 border-black shadow-[2px_2px_0px_#000] flex items-center justify-center shrink-0">
-                              <TechIcon name={event.icon} className="w-6 h-6 text-black stroke-[2.3]" />
+                          <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
+                            <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
+                              <MapPin className="w-3.5 h-3.5" />
+                              <span>Venue</span>
                             </div>
-                            <h2 className="text-2xl sm:text-3xl font-poppins font-bold tracking-tight text-foreground">
-                              {event.title}
-                            </h2>
+                            <span className="text-xs text-foreground font-medium truncate block">
+                              {event.location}
+                            </span>
                           </div>
 
-                          {/* Description */}
-                          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
-                            {event.description}
-                          </p>
-
-                          {/* Metadata Grid */}
-                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                            <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
-                              <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
-                                <Clock className="w-3.5 h-3.5" />
-                                <span>Timeline</span>
-                              </div>
-                              <span className="text-xs text-foreground font-medium truncate block">
-                                {event.date}
-                              </span>
+                          <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
+                            <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
+                              <Users className="w-3.5 h-3.5" />
+                              <span>Capacity</span>
                             </div>
-
-                            <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
-                              <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
-                                <MapPin className="w-3.5 h-3.5" />
-                                <span>Venue</span>
-                              </div>
-                              <span className="text-xs text-foreground font-medium truncate block">
-                                {event.location}
-                              </span>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
-                              <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
-                                <Users className="w-3.5 h-3.5" />
-                                <span>Capacity</span>
-                              </div>
-                              <span className="text-xs text-foreground font-medium truncate block">
-                                {event.capacity} Slots
-                              </span>
-                            </div>
-
-                            <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
-                              <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
-                                <Zap className="w-3.5 h-3.5" />
-                                <span>Highlights</span>
-                              </div>
-                              <span className="text-xs text-foreground font-medium truncate block">
-                                {event.highlights.length} Perks
-                              </span>
-                            </div>
+                            <span className="text-xs text-foreground font-medium truncate block">
+                              {event.capacity} Slots
+                            </span>
                           </div>
 
-                          {/* Highlights List */}
-                          <div>
-                            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                              Event Highlights:
-                            </h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-muted-foreground">
-                              {event.highlights.map((highlight, idx) => (
-                                <div key={`${highlight}-${idx}`} className="flex items-center gap-2">
-                                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                                  <span>{highlight}</span>
-                                </div>
-                              ))}
+                          <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
+                            <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
+                              <Zap className="w-3.5 h-3.5" />
+                              <span>Highlights</span>
                             </div>
+                            <span className="text-xs text-foreground font-medium truncate block">
+                              {event.highlights.length} Perks
+                            </span>
                           </div>
                         </div>
 
-                        {/* Right Registration / Status Card */}
-                        <div className="lg:col-span-1 rounded-2xl p-6 bg-secondary/50 border border-border/60 flex flex-col justify-between items-center text-center">
-                          <div className="w-full flex flex-col items-center">
-                            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500 mb-3">
-                              <Bell className="w-6 h-6 animate-pulse" />
-                            </div>
-
-                            <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-semibold mb-2">
-                              Registrations Opening Soon
-                            </span>
-
-                            <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
-                              Keep your team ready! Registration links and problem statements will be announced across our official channels.
-                            </p>
-                          </div>
-
-                          <div className="w-full mt-6 space-y-2">
-                            <a
-                              href={event.registrationUrl}
-                              className="inline-flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold shadow-subtle hover:shadow-glow-primary transition-all duration-200 active:scale-95"
-                            >
-                              <span>Express Interest</span>
-                              <ArrowRight className="w-4 h-4" />
-                            </a>
-
-                            <Link
-                              href="/events/schedule"
-                              className="inline-flex w-full items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs text-muted-foreground hover:text-foreground transition-colors"
-                            >
-                              <span>See Schedule Details</span>
-                            </Link>
+                        {/* Highlights List */}
+                        <div>
+                          <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                            Event Highlights:
+                          </h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-muted-foreground">
+                            {event.highlights.map((highlight, idx) => (
+                              <div key={`${highlight}-${idx}`} className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                                <span>{highlight}</span>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>
-                    </article>
-                  )
+
+                      {/* Right Registration / Status Card */}
+                      <div className="lg:col-span-1 rounded-2xl p-6 bg-secondary/50 border border-border/60 flex flex-col justify-between items-center text-center">
+                        <div className="w-full flex flex-col items-center">
+                          <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500 mb-3">
+                            <Bell className="w-6 h-6 animate-pulse" />
+                          </div>
+
+                          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-semibold mb-2">
+                            Registrations Opening Soon
+                          </span>
+
+                          <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
+                            Keep your team ready! Registration links and problem statements will be announced across our official channels.
+                          </p>
+                        </div>
+
+                        <div className="w-full mt-6 space-y-2">
+                          <a
+                            href={event.registrationUrl}
+                            className="inline-flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold shadow-subtle hover:shadow-glow-primary transition-all duration-200 active:scale-95"
+                          >
+                            <span>Express Interest</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </a>
+
+                          <Link
+                            href="/events/schedule"
+                            className="inline-flex w-full items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            <span>See Schedule Details</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                )
                 )
               )}
             </div>
@@ -617,11 +615,11 @@ export default function EventsPage() {
                     <div className="lg:col-span-1 flex flex-col justify-center items-center">
                       {event.poster ? (
                         <div className="w-full relative group rounded-2xl overflow-hidden border-2 border-black bg-neutral-950 shadow-[4px_4px_0px_#000] transition-all duration-300 hover:-translate-y-1">
-                          <Link href={event.link} className="block relative aspect-[3/4] w-full max-h-[400px] overflow-hidden bg-neutral-900 cursor-pointer">
+                          <Link href={event.link} className="block relative w-full overflow-hidden bg-neutral-900">
                             <img
                               src={event.poster}
                               alt={`${event.title} Official Poster`}
-                              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                              className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                             />
 
                             {/* Official Poster Badge */}

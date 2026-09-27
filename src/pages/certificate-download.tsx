@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { Layout } from "@/components/Layout";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -12,13 +11,10 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { Download, FileCheck2, Sparkles, CheckCircle2, ExternalLink } from "lucide-react";
+import { Download, Sparkles } from "lucide-react";
 
 const EVENT_MAP: Record<string, string> = {
 	"prarambh-2026": "Prarambh 2026: Tech Quiz & Capture The Flag (CTF)",
-	"datadash-2026": "DataDash 2026 (Where Data Meets Innovation)",
-	"promptathon-2026": "Promptathon in Yuva Kaushal (AI Prompt Engineering)",
-	"aptitude360online-guest": "February Guest Speaker Session (Amit Kumar Jaiswal)",
 };
 
 function cipherFileName(eventName: string, rollNumber: string, name: string): string {
@@ -132,30 +128,6 @@ export default function CertificateDownloadPage() {
 								<span>Download Official Certificate</span>
 							</Button>
 						</form>
-
-						<div className="mt-6 pt-6 border-t border-border/60 space-y-3">
-							<div className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
-								<CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-								<span>
-									Ensure spelling and capitalization matches your registration record. The verified certificate will open in a high-resolution preview.
-								</span>
-							</div>
-
-							<div className="pt-2 text-xs text-muted-foreground flex flex-wrap items-center justify-between gap-2 border-t border-border/40">
-								<span className="font-semibold text-foreground">Dedicated event certificate portals:</span>
-								<div className="flex items-center gap-3">
-									<Link href="/certificates/datadash" className="text-primary hover:underline font-bold inline-flex items-center gap-1">
-										<span>DataDash Portal</span>
-										<ExternalLink className="w-3 h-3" />
-									</Link>
-									<span className="text-border">•</span>
-									<Link href="/certificates/promptathon" className="text-primary hover:underline font-bold inline-flex items-center gap-1">
-										<span>Promptathon Portal</span>
-										<ExternalLink className="w-3 h-3" />
-									</Link>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
