@@ -44,6 +44,7 @@ export function Layout({
     { label: "Blogs", href: "/blogs" },
     { label: "Team", href: "/team" },
     { label: "Hall of Fame", href: "/hall-of-fame" },
+    { label: "Glyph", href: "/glyph" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -95,11 +96,10 @@ export function Layout({
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-2.5 lg:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 whitespace-nowrap ${
-                      active
+                    className={`relative px-2.5 lg:px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 whitespace-nowrap ${active
                         ? "bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#000]"
                         : "text-black hover:bg-[#FAF7EE] hover:border-2 hover:border-black hover:shadow-[2px_2px_0px_#000] border-2 border-transparent"
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </Link>
@@ -127,19 +127,16 @@ export function Layout({
               >
                 <div className="w-5 h-4 flex flex-col justify-between items-center relative">
                   <span
-                    className={`h-0.5 bg-black rounded-full transition-all duration-200 ${
-                      isMenuOpen ? "w-5 rotate-45 translate-y-1.5" : "w-5"
-                    }`}
+                    className={`h-0.5 bg-black rounded-full transition-all duration-200 ${isMenuOpen ? "w-5 rotate-45 translate-y-1.5" : "w-5"
+                      }`}
                   />
                   <span
-                    className={`h-0.5 bg-black rounded-full transition-all duration-200 ${
-                      isMenuOpen ? "opacity-0 scale-x-0" : "w-5"
-                    }`}
+                    className={`h-0.5 bg-black rounded-full transition-all duration-200 ${isMenuOpen ? "opacity-0 scale-x-0" : "w-5"
+                      }`}
                   />
                   <span
-                    className={`h-0.5 bg-black rounded-full transition-all duration-200 ${
-                      isMenuOpen ? "w-5 -rotate-45 -translate-y-2" : "w-5"
-                    }`}
+                    className={`h-0.5 bg-black rounded-full transition-all duration-200 ${isMenuOpen ? "w-5 -rotate-45 -translate-y-2" : "w-5"
+                      }`}
                   />
                 </div>
               </button>
@@ -156,17 +153,15 @@ export function Layout({
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-150 ${
-                      active
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-150 ${active
                         ? "bg-[#FFE600] text-black border-2 border-black shadow-[2px_2px_0px_#000]"
                         : "text-black hover:bg-[#FAF7EE] border-2 border-transparent"
-                    }`}
+                      }`}
                   >
                     <span>{item.label}</span>
                     <ChevronRight
-                      className={`w-4 h-4 transition-transform ${
-                        active ? "text-black translate-x-0.5" : "text-neutral-500"
-                      }`}
+                      className={`w-4 h-4 transition-transform ${active ? "text-black translate-x-0.5" : "text-neutral-500"
+                        }`}
                     />
                   </Link>
                 );
@@ -271,6 +266,14 @@ export function Layout({
                 </li>
                 <li>
                   <Link
+                    href=""
+                    className="text-neutral-700 hover:text-black hover:underline transition-colors duration-150"
+                  >
+                    Documents
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/hall-of-fame"
                     className="text-neutral-700 hover:text-black hover:underline transition-colors duration-150"
                   >
@@ -371,7 +374,7 @@ export function Layout({
               item.href === "/"
                 ? router.pathname === "/"
                 : router.pathname.startsWith(item.href) ||
-                  (item.href === "/blogs" && router.pathname.startsWith("/blog"));
+                (item.href === "/blogs" && router.pathname.startsWith("/blog"));
             const Icon = item.icon;
 
             if (item.highlight) {
@@ -397,11 +400,10 @@ export function Layout({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center justify-center py-1.5 rounded-xl transition-all duration-150 min-h-[44px] ${
-                  active
+                className={`flex flex-col items-center justify-center py-1.5 rounded-xl transition-all duration-150 min-h-[44px] ${active
                     ? "text-black font-bold"
                     : "text-neutral-600 hover:text-black"
-                }`}
+                  }`}
               >
                 <div className={`p-1 rounded-lg ${active ? "bg-[#FFE600] border border-black shadow-[1px_1px_0px_#000]" : ""}`}>
                   <Icon className="w-5 h-5" />
