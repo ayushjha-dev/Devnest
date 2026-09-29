@@ -131,16 +131,18 @@ export default function EventWinnersPage({ event }: Props) {
           <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-white border-2 border-black shadow-[6px_6px_0px_#000] mb-12 sm:mb-16">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Event Poster on Left / Top */}
-              <div className="lg:col-span-4 flex justify-center">
-                <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0px_#000] group bg-neutral-900">
+              <div className="lg:col-span-4 flex justify-center items-start">
+                <div className="relative w-full max-w-[420px] rounded-2xl overflow-hidden border-2 border-black shadow-[4px_4px_0px_#000] group bg-neutral-900">
                   <Image
                     src={event.poster}
                     alt={`${event.title} Official Poster`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 30vw"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    width={1200}
+                    height={800}
+                    sizes="(max-width: 1024px) 80vw, 35vw"
+                    className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                     priority
                   />
+
                   <div className="absolute top-3 left-3 z-10">
                     <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-black/85 backdrop-blur-sm text-[#FFE600] text-[10px] font-black uppercase tracking-wider border border-[#FFE600]/40 shadow-sm">
                       Official Poster
