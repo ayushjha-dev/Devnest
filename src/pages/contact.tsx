@@ -5,7 +5,6 @@ import {
   Mail,
   MapPin,
   MessageCircle,
-  Instagram,
   Linkedin,
   Github,
   Clock,
@@ -97,29 +96,16 @@ export default function ContactPage() {
       icon: Linkedin,
       title: "LinkedIn",
       content: "DevNest Club",
-      link: "https://www.linkedin.com/company/devnestclub",
+      link: "https://www.linkedin.com/company/devnest-official",
       description: "Official announcements, alumni stories, and job boards.",
       color: "bg-[#C4B5FD]",
-    },
-    {
-      icon: Instagram,
-      title: "Instagram",
-      content: "@devnest_tech_club",
-      link: "https://www.instagram.com/devnest_tech_club/",
-      description: "Event reels, hackathon BTS, and photo galleries.",
-      color: "bg-[#FF70A6]",
     },
   ];
 
   const socialLinks = [
     {
-      icon: Instagram,
-      url: "https://www.instagram.com/devnest_tech_club/",
-      label: "Instagram",
-    },
-    {
       icon: Linkedin,
-      url: "https://www.linkedin.com/company/devnestclub",
+      url: "https://www.linkedin.com/company/devnest-official",
       label: "LinkedIn",
     },
     {
@@ -166,7 +152,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Methods Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {contactMethods.map((method, index) => {
               const Icon = method.icon;
 
