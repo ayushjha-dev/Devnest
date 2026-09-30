@@ -177,8 +177,8 @@ export const hallOfFameEvents: HallOfFameEvent[] = [
       "Competition",
     ],
     stats: {
-      participants: "80+",
-      teams: "20+ Teams",
+      participants: "150+",
+      teams: "40+ Teams",
       topPrize: "Trophy + Certificate",
     },
     certificateLink: "/certificate-download",
