@@ -673,17 +673,58 @@ export default function AdminDevnestPage() {
 
     const activeEvent = (currentEventName || "Prarambh").trim();
     const dateFormatted = (currentEventDate || "23rd September 2026").trim();
+    const safeEvent = activeEvent.toLowerCase().replace(/[^a-z0-9_-]+/g, "_");
+    const todayStr = new Date().toISOString().split("T")[0];
 
-    // Export Excel exactly matching C:\Users\itz_Ansh\Downloads\format:
-    // 1. "CTF 3rd Year" sheet
-    // 2. "CTF 2nd Year" sheet
-    // 3. "Tech Quiz" sheet
-    // 4. "All Participants" sheet
-    exportOfficialAttendanceExcel({
-      filename: `devnest_${activeEvent.toLowerCase().replace(/[^a-z0-9_-]+/g, "_")}_attendance_${new Date().toISOString().split("T")[0]}.xlsx`,
-      eventName: activeEvent,
-      defaultDate: dateFormatted,
-      sheets: [
+    // Build sheets based on selected track filter:
+    // If a specific track/year is selected (e.g. 2nd Year, 3rd Year, or Tech Quiz),
+    // only export that single selected sheet instead of all sub-sheet groups.
+    let exportSheets: {
+      sheetName: string;
+      trackTitle?: string;
+      date?: string;
+      teams?: AttendanceTeamSlot[];
+      slotsCount?: number;
+    }[] = [];
+    let fileSuffix = "all_tracks";
+
+    if (prarambhTrackFilter === "ctf-2nd-year") {
+      fileSuffix = "ctf_2nd_year";
+      exportSheets = [
+        {
+          sheetName: "CTF 2nd Year",
+          trackTitle: "CTF 2nd Year",
+          date: dateFormatted,
+          teams: ctf2ndYearTeams,
+          slotsCount: Math.max(30, ctf2ndYearTeams.length),
+        },
+      ];
+    } else if (prarambhTrackFilter === "ctf-3rd-year") {
+      fileSuffix = "ctf_3rd_year";
+      exportSheets = [
+        {
+          sheetName: "CTF 3rd Year",
+          trackTitle: "CTF 3rd Year",
+          date: dateFormatted,
+          teams: ctf3rdYearTeams,
+          slotsCount: Math.max(30, ctf3rdYearTeams.length),
+        },
+      ];
+    } else if (prarambhTrackFilter === "tech-quiz") {
+      fileSuffix = "tech_quiz";
+      exportSheets = [
+        {
+          sheetName: "Tech Quiz",
+          trackTitle: "Tech Quiz",
+          date: dateFormatted,
+          teams: techQuizTeams,
+          slotsCount: Math.max(30, techQuizTeams.length),
+        },
+      ];
+    } else {
+      // "all" - export all tracks in standard university attendance format
+      fileSuffix = "all_tracks";
+      exportSheets = [
         {
           sheetName: "CTF 3rd Year",
           trackTitle: "CTF 3rd Year",
@@ -712,7 +753,14 @@ export default function AdminDevnestPage() {
           teams: allTeams,
           slotsCount: Math.max(30, allTeams.length),
         },
-      ],
+      ];
+    }
+
+    exportOfficialAttendanceExcel({
+      filename: `devnest_${safeEvent}_${fileSuffix}_attendance_${todayStr}.xlsx`,
+      eventName: activeEvent,
+      defaultDate: dateFormatted,
+      sheets: exportSheets,
     });
   };
 
@@ -1213,7 +1261,15 @@ export default function AdminDevnestPage() {
                   title={`Download Excel attendance file with registrations for: ${currentEventName}`}
                 >
                   <Download className="w-4 h-4" />
-                  <span>Export Sheet ({filteredPrarambh.length})</span>
+                  <span>
+                    {prarambhTrackFilter === "ctf-2nd-year"
+                      ? `Export CTF 2nd Year (${filteredPrarambh.length})`
+                      : prarambhTrackFilter === "ctf-3rd-year"
+                      ? `Export CTF 3rd Year (${filteredPrarambh.length})`
+                      : prarambhTrackFilter === "tech-quiz"
+                      ? `Export Tech Quiz (${filteredPrarambh.length})`
+                      : `Export All Tracks (${filteredPrarambh.length})`}
+                  </span>
                 </Button>
 
                 {/* Download Blank Format Template Button */}
