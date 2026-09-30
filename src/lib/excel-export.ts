@@ -1,4 +1,4 @@
-import * as XLSX from "xlsx";
+import * as XLSX from "xlsx-js-style";
 
 export interface ExcelColumn<T> {
   header: string;
@@ -226,10 +226,29 @@ export function createOfficialAttendanceWorksheet({
     resolvedTeams = Array.from(teamMap.values());
   }
 
-  // Row 1 (index 0, A1): University Header
-  ws["A1"] = { t: "s", v: institutionName };
+  // Border definitions matching standard university attendance format (C:\Users\itz_Ansh\Downloads\format)
+  const borderMedium = { style: "medium", color: { rgb: "000000" } };
+  const borderThin = { style: "thin", color: { rgb: "000000" } };
 
-  // Row 2 (index 1, A2): Dynamic Event Header
+  // Row 1 (index 0, Merged A1:J1): University Header - Arial 15pt Bold Centered
+  for (let c = 0; c < 10; c++) {
+    ws[XLSX.utils.encode_cell({ r: 0, c })] = {
+      t: "s",
+      v: c === 0 ? institutionName : "",
+      s: {
+        font: { name: "Arial", sz: 15, bold: true },
+        alignment: { horizontal: "center", vertical: "center" },
+        border: {
+          top: borderMedium,
+          bottom: borderMedium,
+          left: c === 0 ? borderMedium : undefined,
+          right: c === 9 ? borderMedium : undefined,
+        },
+      },
+    };
+  }
+
+  // Row 2 (index 1, Merged A2:J2): Dynamic Event Header - Arial 14pt Bold Centered
   const cleanEvent = (eventName || "Prarambh").trim();
   let eventHeading: string;
   if (/^devnest\s+technical\s+event/i.test(cleanEvent)) {
@@ -239,18 +258,63 @@ export function createOfficialAttendanceWorksheet({
   } else {
     eventHeading = `Devnest Technical Event ${cleanEvent}`;
   }
-  ws["A2"] = { t: "s", v: eventHeading };
+  for (let c = 0; c < 10; c++) {
+    ws[XLSX.utils.encode_cell({ r: 1, c })] = {
+      t: "s",
+      v: c === 0 ? eventHeading : "",
+      s: {
+        font: { name: "Arial", sz: 14, bold: true },
+        alignment: { horizontal: "center", vertical: "center" },
+        border: {
+          top: borderMedium,
+          bottom: borderMedium,
+          left: c === 0 ? borderMedium : undefined,
+          right: c === 9 ? borderMedium : undefined,
+        },
+      },
+    };
+  }
 
-  // Row 3 (index 2): Track Title (A3:G3) and Date (H3:J3)
+  // Row 3 (index 2): Track Title (Merged A3:G3, Left) and Date (Merged H3:J3, Right) - Arial 12pt Bold
   const cleanTrack = (trackTitle || "Tech Quiz").trim();
   const trackHeader = /registration$/i.test(cleanTrack) ? cleanTrack : `${cleanTrack} Registration`;
-  ws["A3"] = { t: "s", v: trackHeader };
+  for (let c = 0; c < 7; c++) {
+    ws[XLSX.utils.encode_cell({ r: 2, c })] = {
+      t: "s",
+      v: c === 0 ? trackHeader : "",
+      s: {
+        font: { name: "Arial", sz: 12, bold: true },
+        alignment: { horizontal: "left", vertical: "center" },
+        border: {
+          top: borderMedium,
+          bottom: borderMedium,
+          left: c === 0 ? borderMedium : undefined,
+          right: c === 6 ? borderThin : undefined,
+        },
+      },
+    };
+  }
 
   const cleanDate = (date || "23rd September 2026").trim();
   const dateHeader = /^dated/i.test(cleanDate) ? cleanDate : `Dated : ${cleanDate}`;
-  ws["H3"] = { t: "s", v: dateHeader };
+  for (let c = 7; c < 10; c++) {
+    ws[XLSX.utils.encode_cell({ r: 2, c })] = {
+      t: "s",
+      v: c === 7 ? dateHeader : "",
+      s: {
+        font: { name: "Arial", sz: 12, bold: true },
+        alignment: { horizontal: "right", vertical: "center" },
+        border: {
+          top: borderMedium,
+          bottom: borderMedium,
+          left: c === 7 ? borderThin : undefined,
+          right: c === 9 ? borderMedium : undefined,
+        },
+      },
+    };
+  }
 
-  // Row 4 (index 3, A4:J4): Standard Columns
+  // Row 4 (index 3, A4:J4): Standard Columns - Arial 11pt Bold Centered with wrapText
   const headers = [
     "Sr No.",
     "Team Name",
@@ -263,9 +327,22 @@ export function createOfficialAttendanceWorksheet({
     "Email",
     "Sign",
   ];
-  headers.forEach((h, c) => {
-    ws[XLSX.utils.encode_cell({ r: 3, c })] = { t: "s", v: h };
-  });
+  for (let c = 0; c < 10; c++) {
+    ws[XLSX.utils.encode_cell({ r: 3, c })] = {
+      t: "s",
+      v: headers[c],
+      s: {
+        font: { name: "Arial", sz: 11, bold: true },
+        alignment: { horizontal: "center", vertical: "center", wrapText: true },
+        border: {
+          top: borderMedium,
+          bottom: borderMedium,
+          left: c === 0 ? borderMedium : borderThin,
+          right: c === 9 ? borderMedium : borderThin,
+        },
+      },
+    };
+  }
 
   // Calculate dynamic capacity without size limits
   // If slotsCount is 0, fit exact registrations (min 1). Otherwise pad up to slotsCount or resolvedTeams.length
@@ -296,56 +373,185 @@ export function createOfficialAttendanceWorksheet({
     const startR = currRow;
     const endR = currRow + 3; // 4 rows per team slot
 
-    // Sr No. (col 0)
-    const displaySr = typeof team?.srNo === "number" ? team.srNo : slot;
-    ws[XLSX.utils.encode_cell({ r: startR, c: 0 })] = {
-      t: typeof displaySr === "number" ? "n" : "s",
-      v: displaySr,
-    };
     merges.push({ s: { c: 0, r: startR }, e: { c: 0, r: endR } });
-
-    // Team Name (col 1)
-    if (team?.teamName) {
-      ws[XLSX.utils.encode_cell({ r: startR, c: 1 })] = { t: "s", v: String(team.teamName) };
-    }
     merges.push({ s: { c: 1, r: startR }, e: { c: 1, r: endR } });
+    merges.push({ s: { c: 2, r: startR }, e: { c: 2, r: endR } });
 
-    // Team Size (col 2)
+    // Sr No. (col 0) - Arial 11pt Bold Centered
+    const displaySr = typeof team?.srNo === "number" ? team.srNo : slot;
+    for (let r = startR; r <= endR; r++) {
+      ws[XLSX.utils.encode_cell({ r, c: 0 })] = {
+        t: r === startR ? (typeof displaySr === "number" ? "n" : "s") : "s",
+        v: r === startR ? displaySr : "",
+        s: {
+          font: { name: "Arial", sz: 11, bold: true },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: {
+            left: borderMedium,
+            right: borderThin,
+            top: r === startR ? borderMedium : undefined,
+            bottom: r === endR ? borderMedium : undefined,
+          },
+        },
+      };
+    }
+
+    // Team Name (col 1) - Arial 11pt Centered
+    const teamNameVal = team?.teamName ? String(team.teamName) : "";
+    for (let r = startR; r <= endR; r++) {
+      ws[XLSX.utils.encode_cell({ r, c: 1 })] = {
+        t: "s",
+        v: r === startR ? teamNameVal : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center", wrapText: true },
+          border: {
+            left: borderThin,
+            right: borderThin,
+            top: r === startR ? borderMedium : undefined,
+            bottom: r === endR ? borderMedium : undefined,
+          },
+        },
+      };
+    }
+
+    // Team Size (col 2) - Arial 11pt Centered
+    let sizeVal: string | number = "";
+    let sizeType: "s" | "n" = "s";
     if (team?.teamSize !== undefined && team?.teamSize !== null && team?.teamSize !== "") {
       const numSize = Number(team.teamSize);
-      ws[XLSX.utils.encode_cell({ r: startR, c: 2 })] = isNaN(numSize)
-        ? { t: "s", v: String(team.teamSize) }
-        : { t: "n", v: numSize };
+      if (!isNaN(numSize)) {
+        sizeVal = numSize;
+        sizeType = "n";
+      } else {
+        sizeVal = String(team.teamSize);
+      }
     }
-    merges.push({ s: { c: 2, r: startR }, e: { c: 2, r: endR } });
+    for (let r = startR; r <= endR; r++) {
+      ws[XLSX.utils.encode_cell({ r, c: 2 })] = {
+        t: r === startR ? sizeType : "s",
+        v: r === startR ? sizeVal : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: {
+            left: borderThin,
+            right: borderThin,
+            top: r === startR ? borderMedium : undefined,
+            bottom: r === endR ? borderMedium : undefined,
+          },
+        },
+      };
+    }
 
     // Members (cols 3 to 9) across 4 rows
     const members = team?.members || [];
     for (let mIdx = 0; mIdx < 4; mIdx++) {
       const r = startR + mIdx;
       rows.push({ hpt: 24, hpx: 24 });
-      const m = members[mIdx];
-      if (m) {
-        if (m.name) ws[XLSX.utils.encode_cell({ r, c: 3 })] = { t: "s", v: String(m.name) };
-        if (m.rollNo !== undefined && m.rollNo !== null && m.rollNo !== "") {
-          const numRoll = Number(m.rollNo);
-          ws[XLSX.utils.encode_cell({ r, c: 4 })] =
-            !isNaN(numRoll) && String(m.rollNo).length <= 15
-              ? { t: "n", v: numRoll }
-              : { t: "s", v: String(m.rollNo) };
+      const m = members[mIdx] || null;
+
+      const topBorder = mIdx === 0 ? borderMedium : borderThin;
+      const bottomBorder = mIdx === 3 ? borderMedium : borderThin;
+
+      // Col 3: Name (Left aligned)
+      ws[XLSX.utils.encode_cell({ r, c: 3 })] = {
+        t: "s",
+        v: m?.name ? String(m.name) : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "left", vertical: "center" },
+          border: { left: borderThin, right: borderThin, top: topBorder, bottom: bottomBorder },
+        },
+      };
+
+      // Col 4: Roll No. (Center aligned)
+      let rollVal: string | number = "";
+      let rollType: "s" | "n" = "s";
+      if (m?.rollNo !== undefined && m?.rollNo !== null && m?.rollNo !== "") {
+        const numRoll = Number(m.rollNo);
+        if (!isNaN(numRoll) && String(m.rollNo).length <= 15) {
+          rollVal = numRoll;
+          rollType = "n";
+        } else {
+          rollVal = String(m.rollNo);
         }
-        if (m.branch) ws[XLSX.utils.encode_cell({ r, c: 5 })] = { t: "s", v: String(m.branch) };
-        if (m.sem) ws[XLSX.utils.encode_cell({ r, c: 6 })] = { t: "s", v: String(m.sem) };
-        if (m.phone !== undefined && m.phone !== null && m.phone !== "") {
-          const numPhone = Number(m.phone);
-          ws[XLSX.utils.encode_cell({ r, c: 7 })] =
-            !isNaN(numPhone) && String(m.phone).length <= 15
-              ? { t: "n", v: numPhone }
-              : { t: "s", v: String(m.phone) };
-        }
-        if (m.email) ws[XLSX.utils.encode_cell({ r, c: 8 })] = { t: "s", v: String(m.email) };
-        if (m.sign) ws[XLSX.utils.encode_cell({ r, c: 9 })] = { t: "s", v: String(m.sign) };
       }
+      ws[XLSX.utils.encode_cell({ r, c: 4 })] = {
+        t: rollType,
+        v: rollVal,
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: { left: borderThin, right: borderThin, top: topBorder, bottom: bottomBorder },
+        },
+      };
+
+      // Col 5: Branch (Center aligned)
+      ws[XLSX.utils.encode_cell({ r, c: 5 })] = {
+        t: "s",
+        v: m?.branch ? String(m.branch) : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: { left: borderThin, right: borderThin, top: topBorder, bottom: bottomBorder },
+        },
+      };
+
+      // Col 6: Sem (Center aligned)
+      ws[XLSX.utils.encode_cell({ r, c: 6 })] = {
+        t: "s",
+        v: m?.sem ? String(m.sem) : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: { left: borderThin, right: borderThin, top: topBorder, bottom: bottomBorder },
+        },
+      };
+
+      // Col 7: Phone NO. (Center aligned)
+      let phoneVal: string | number = "";
+      let phoneType: "s" | "n" = "s";
+      if (m?.phone !== undefined && m?.phone !== null && m?.phone !== "") {
+        const numPhone = Number(m.phone);
+        if (!isNaN(numPhone) && String(m.phone).length <= 15) {
+          phoneVal = numPhone;
+          phoneType = "n";
+        } else {
+          phoneVal = String(m.phone);
+        }
+      }
+      ws[XLSX.utils.encode_cell({ r, c: 7 })] = {
+        t: phoneType,
+        v: phoneVal,
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: { left: borderThin, right: borderThin, top: topBorder, bottom: bottomBorder },
+        },
+      };
+
+      // Col 8: Email (Left aligned)
+      ws[XLSX.utils.encode_cell({ r, c: 8 })] = {
+        t: "s",
+        v: m?.email ? String(m.email) : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "left", vertical: "center" },
+          border: { left: borderThin, right: borderThin, top: topBorder, bottom: bottomBorder },
+        },
+      };
+
+      // Col 9: Sign (Center aligned)
+      ws[XLSX.utils.encode_cell({ r, c: 9 })] = {
+        t: "s",
+        v: m?.sign ? String(m.sign) : "",
+        s: {
+          font: { name: "Arial", sz: 11 },
+          alignment: { horizontal: "center", vertical: "center" },
+          border: { left: borderThin, right: borderMedium, top: topBorder, bottom: bottomBorder },
+        },
+      };
     }
     currRow += 4;
   }
@@ -356,14 +562,26 @@ export function createOfficialAttendanceWorksheet({
 
   // Footer Row 1: Student Coordinator (A to D) & Faculty Coordinator (G to J)
   const f1 = currRow;
-  ws[XLSX.utils.encode_cell({ r: f1, c: 0 })] = {
-    t: "s",
-    v: "Student Coordinator Name and signature : ",
-  };
-  ws[XLSX.utils.encode_cell({ r: f1, c: 6 })] = {
-    t: "s",
-    v: "Faculty Coordinator Name & Signature : ",
-  };
+  for (let c = 0; c < 4; c++) {
+    ws[XLSX.utils.encode_cell({ r: f1, c })] = {
+      t: "s",
+      v: c === 0 ? "Student Coordinator Name and signature : " : "",
+      s: {
+        font: { name: "Arial", sz: 11, bold: true },
+        alignment: { horizontal: "left", vertical: "center" },
+      },
+    };
+  }
+  for (let c = 6; c < 10; c++) {
+    ws[XLSX.utils.encode_cell({ r: f1, c })] = {
+      t: "s",
+      v: c === 6 ? "Faculty Coordinator Name & Signature : " : "",
+      s: {
+        font: { name: "Arial", sz: 11, bold: true },
+        alignment: { horizontal: "left", vertical: "center" },
+      },
+    };
+  }
   merges.push({ s: { c: 0, r: f1 }, e: { c: 3, r: f1 } });
   merges.push({ s: { c: 6, r: f1 }, e: { c: 9, r: f1 } });
   rows.push({ hpt: 24, hpx: 24 });
@@ -371,10 +589,16 @@ export function createOfficialAttendanceWorksheet({
 
   // Footer Row 2: Faculty Co-Coordinator (G to J)
   const f2 = currRow;
-  ws[XLSX.utils.encode_cell({ r: f2, c: 6 })] = {
-    t: "s",
-    v: "Faculty Co-Coordinator Name & Signature : ",
-  };
+  for (let c = 6; c < 10; c++) {
+    ws[XLSX.utils.encode_cell({ r: f2, c })] = {
+      t: "s",
+      v: c === 6 ? "Faculty Co-Coordinator Name & Signature : " : "",
+      s: {
+        font: { name: "Arial", sz: 11, bold: true },
+        alignment: { horizontal: "left", vertical: "center" },
+      },
+    };
+  }
   merges.push({ s: { c: 6, r: f2 }, e: { c: 9, r: f2 } });
   rows.push({ hpt: 24, hpx: 24 });
 
