@@ -60,7 +60,10 @@ import {
   exportToExcel,
   exportMultiSheetExcel,
   exportOfficialAttendanceExcel,
+  exportBlankAttendanceFormat,
   OfficialAttendanceParticipant,
+  AttendanceTeamSlot,
+  AttendanceTeamMember,
 } from "@/lib/excel-export";
 
 export default function AdminDevnestPage() {
@@ -608,7 +611,7 @@ export default function AdminDevnestPage() {
       .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
   }, [prarambhRegistrations, prarambhSearchQuery, prarambhTrackFilter, prarambhStatusFilter]);
 
-  // Export event registrations in official University attendance format matching C:\Users\itz_Ansh\Downloads\format.xlsx
+  // Export event registrations in official University attendance format matching Downloads/format
   const handleExportPrarambhExcel = () => {
     if (filteredPrarambh.length === 0) return;
 
@@ -623,110 +626,57 @@ export default function AdminDevnestPage() {
       (r) => r.competition === "tech-quiz" || r.year === "1st Year"
     );
 
-    // Build participants for Tech Quiz (Individual Contenders)
-    const techQuizParticipants: OfficialAttendanceParticipant[] = [];
-    techQuizRegistrations.forEach((r, idx) => {
-      techQuizParticipants.push({
-        srNo: idx + 1,
-        teamCode: r.teamName || "",
-        participantName: r.fullName,
-        school: r.college && r.college.toLowerCase().includes("uset") ? "USET" : r.college || "USET",
-        rollNumber: r.rollNumber || "N/A",
-        branch: r.branch || "CSE",
-        sem: "1st",
-        contactNo: r.phone || "N/A",
-        email: r.email || "N/A",
-        signature: "",
-      });
-    });
-
-    // Helper to map CTF registrations (Both Leader and Teammate included)
-    const mapCtfParticipants = (list: typeof filteredPrarambh, defaultSem: string) => {
-      const participants: OfficialAttendanceParticipant[] = [];
-      let sr = 1;
-      list.forEach((r, teamIdx) => {
+    // Helper to map registrations into AttendanceTeamSlot array (4 rows per slot in official standard format)
+    const mapToTeamSlots = (list: typeof filteredPrarambh, defaultSem?: string): AttendanceTeamSlot[] => {
+      return list.map((r, teamIdx) => {
         const isDuo = r.teamSize === 2 && Boolean(r.teammateName);
-        const teamCode = r.teamName || `Team G${teamIdx + 1}`;
+        const sem = defaultSem || (r.year === "3rd Year" ? "5th" : r.year === "2nd Year" ? "3rd" : "1st");
+        const teamName = r.teamName || (r.competition === "tech-quiz" && !isDuo ? "" : `Team G${teamIdx + 1}`);
 
-        // Leader / Member 1
-        participants.push({
-          srNo: sr++,
-          teamCode: teamCode,
-          participantName: isDuo ? `${r.fullName} (Leader)` : r.fullName,
-          school: r.college && r.college.toLowerCase().includes("uset") ? "USET" : r.college || "USET",
-          rollNumber: r.rollNumber || "N/A",
-          branch: r.branch || "CSE",
-          sem: defaultSem,
-          contactNo: r.phone || "N/A",
-          email: r.email || "N/A",
-          signature: "",
-        });
-
-        // Teammate / Member 2 (if Duo)
-        if (isDuo && r.teammateName) {
-          participants.push({
-            srNo: sr++,
-            teamCode: teamCode,
-            participantName: `${r.teammateName} (Member)`,
-            school: r.college && r.college.toLowerCase().includes("uset") ? "USET" : r.college || "USET",
-            rollNumber: r.teammateRollNumber || "N/A",
+        const members: AttendanceTeamMember[] = [
+          {
+            name: isDuo ? `${r.fullName} (Leader)` : r.fullName,
+            rollNo: r.rollNumber || "N/A",
             branch: r.branch || "CSE",
-            sem: defaultSem,
-            contactNo: r.teammatePhone || "N/A",
+            sem: sem,
+            phone: r.phone || "N/A",
+            email: r.email || "N/A",
+            sign: "",
+          },
+        ];
+
+        if (isDuo && r.teammateName) {
+          members.push({
+            name: `${r.teammateName} (Member)`,
+            rollNo: r.teammateRollNumber || "N/A",
+            branch: r.branch || "CSE",
+            sem: sem,
+            phone: r.teammatePhone || "N/A",
             email: r.email ? `Team: ${r.email}` : "N/A",
-            signature: "",
+            sign: "",
           });
         }
+
+        return {
+          srNo: teamIdx + 1,
+          teamName: teamName,
+          teamSize: isDuo ? 2 : 1,
+          members: members,
+        };
       });
-      return participants;
     };
 
-    const ctf2ndYearParticipants = mapCtfParticipants(ctf2ndYearRegistrations, "3rd");
-    const ctf3rdYearParticipants = mapCtfParticipants(ctf3rdYearRegistrations, "5th");
-
-    // Master List of All Registered Participants
-    const allParticipants: OfficialAttendanceParticipant[] = [];
-    let allSr = 1;
-    filteredPrarambh.forEach((r, teamIdx) => {
-      const isDuo = r.teamSize === 2 && Boolean(r.teammateName);
-      const teamCode = r.teamName || (r.competition === "tech-quiz" ? "" : `Team G${teamIdx + 1}`);
-      const sem = r.year === "3rd Year" ? "5th" : r.year === "2nd Year" ? "3rd" : "1st";
-
-      allParticipants.push({
-        srNo: allSr++,
-        teamCode: teamCode,
-        participantName: isDuo ? `${r.fullName} (Leader)` : r.fullName,
-        school: r.college && r.college.toLowerCase().includes("uset") ? "USET" : r.college || "USET",
-        rollNumber: r.rollNumber || "N/A",
-        branch: r.branch || "CSE",
-        sem: sem,
-        contactNo: r.phone || "N/A",
-        email: r.email || "N/A",
-        signature: "",
-      });
-
-      if (isDuo && r.teammateName) {
-        allParticipants.push({
-          srNo: allSr++,
-          teamCode: teamCode,
-          participantName: `${r.teammateName} (Member)`,
-          school: r.college && r.college.toLowerCase().includes("uset") ? "USET" : r.college || "USET",
-          rollNumber: r.teammateRollNumber || "N/A",
-          branch: r.branch || "CSE",
-          sem: sem,
-          contactNo: r.teammatePhone || "N/A",
-          email: r.email ? `Team: ${r.email}` : "N/A",
-          signature: "",
-        });
-      }
-    });
+    const ctf2ndYearTeams = mapToTeamSlots(ctf2ndYearRegistrations, "3rd");
+    const ctf3rdYearTeams = mapToTeamSlots(ctf3rdYearRegistrations, "5th");
+    const techQuizTeams = mapToTeamSlots(techQuizRegistrations, "1st");
+    const allTeams = mapToTeamSlots(filteredPrarambh);
 
     const activeEvent = (currentEventName || "Prarambh").trim();
     const dateFormatted = (currentEventDate || "23rd September 2026").trim();
 
-    // Export Excel exactly matching C:\Users\itz_Ansh\Downloads\format.xlsx:
+    // Export Excel exactly matching C:\Users\itz_Ansh\Downloads\format:
     // 1. "CTF 3rd Year" sheet
-    // 2. "CTF 2nd Year " sheet
+    // 2. "CTF 2nd Year" sheet
     // 3. "Tech Quiz" sheet
     // 4. "All Participants" sheet
     exportOfficialAttendanceExcel({
@@ -738,31 +688,51 @@ export default function AdminDevnestPage() {
           sheetName: "CTF 3rd Year",
           trackTitle: "CTF 3rd Year",
           date: dateFormatted,
-          participants: ctf3rdYearParticipants,
-          minRows: 20,
+          teams: ctf3rdYearTeams,
+          slotsCount: Math.max(30, ctf3rdYearTeams.length),
         },
         {
-          sheetName: "CTF 2nd Year ",
+          sheetName: "CTF 2nd Year",
           trackTitle: "CTF 2nd Year",
           date: dateFormatted,
-          participants: ctf2ndYearParticipants,
-          minRows: 20,
+          teams: ctf2ndYearTeams,
+          slotsCount: Math.max(30, ctf2ndYearTeams.length),
         },
         {
           sheetName: "Tech Quiz",
           trackTitle: "Tech Quiz",
           date: dateFormatted,
-          participants: techQuizParticipants,
-          minRows: Math.max(20, techQuizParticipants.length + 2),
+          teams: techQuizTeams,
+          slotsCount: Math.max(30, techQuizTeams.length),
         },
         {
           sheetName: "All Participants",
           trackTitle: "All Participants Attendance",
           date: dateFormatted,
-          participants: allParticipants,
-          minRows: Math.max(20, allParticipants.length + 2),
+          teams: allTeams,
+          slotsCount: Math.max(30, allTeams.length),
         },
       ],
+    });
+  };
+
+  // Export blank official university event attendance template
+  const handleDownloadBlankFormat = () => {
+    const activeEvent = (currentEventName || "Prarambh").trim();
+    const dateFormatted = (currentEventDate || "23rd September 2026").trim();
+
+    exportBlankAttendanceFormat({
+      eventName: activeEvent,
+      date: dateFormatted,
+      trackTitle:
+        prarambhTrackFilter !== "all"
+          ? prarambhTrackFilter === "tech-quiz"
+            ? "Tech Quiz"
+            : prarambhTrackFilter === "ctf-2nd-year"
+            ? "CTF 2nd Year"
+            : "CTF 3rd Year"
+          : "Tech Quiz",
+      slotsCount: 30,
     });
   };
 
@@ -1187,8 +1157,8 @@ export default function AdminDevnestPage() {
               </div>
             </div>
 
-            {/* Official University Attendance Sheet (format.xlsx) Export Panel */}
-            <div className="glass-panel rounded-2xl p-4 sm:p-5 border border-emerald-500/30 bg-gradient-to-r from-emerald-500/[0.04] via-background/40 to-primary/[0.04] shadow-subtle flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+            {/* Official University Attendance Sheet (Downloads/format) Export Panel */}
+            <div className="glass-panel rounded-2xl p-4 sm:p-5 border border-emerald-500/30 bg-gradient-to-r from-emerald-500/[0.04] via-background/40 to-primary/[0.04] shadow-subtle flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-4">
               <div className="flex items-start sm:items-center gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0 shadow-sm">
                   <FileSpreadsheet className="w-5 h-5" />
@@ -1196,19 +1166,19 @@ export default function AdminDevnestPage() {
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-sm font-poppins font-bold text-foreground">
-                      Official University Attendance Sheet
+                      Official University Attendance Format
                     </span>
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-semibold border border-emerald-500/20">
-                      format.xlsx standard
+                      Standard Template (Unlimited Size)
                     </span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    Generates LTSU-compliant sheets with University Header (Row 1), dynamic Event Heading (Row 2), Date (Row 3), and Faculty Coordinator signatures.
+                    LTSU-compliant format: Row 1 University, Row 2 Event Heading, Row 3 Track &amp; Date, Row 4 Team headers with 4-row slots, coordinators signatures. Not limited to 30 serial numbers.
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2.5">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
                 {/* Event Name Configuration */}
                 <div className="flex items-center gap-2 bg-background/80 border border-border/80 rounded-xl px-3 h-10 text-xs shadow-sm">
                   <span className="text-muted-foreground font-semibold uppercase tracking-wider text-[10px]">
@@ -1219,31 +1189,42 @@ export default function AdminDevnestPage() {
                     onChange={(e) => handleEventNameChange(e.target.value)}
                     placeholder="Event Name (e.g. Prarambh)"
                     className="h-7 w-28 sm:w-36 px-2 py-0 border-none bg-transparent text-xs font-bold text-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
-                    title="Change this to any event name; it automatically updates Row 2 'Devnest Technical  Event <EventName>' across all sheets in the Excel download"
+                    title="Change this to any event name; it automatically updates Row 2 'Devnest Technical Event <EventName>' across all sheets in the Excel download"
                   />
                 </div>
 
                 {/* Event Date Configuration */}
                 <div className="flex items-center gap-1.5 bg-background/80 border border-border/80 rounded-xl px-3 h-10 text-xs shadow-sm">
-                  <Calendar className="w-3.5 h-3.5 text-muted-foreground" />
+                  <Calendar className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
                   <Input
                     value={currentEventDate}
                     onChange={(e) => handleEventDateChange(e.target.value)}
                     placeholder="Date (e.g. 23rd September 2026)"
-                    className="h-7 w-36 sm:w-44 px-2 py-0 border-none bg-transparent text-xs font-medium text-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
-                    title="Printed in Row 3 of the attendance sheet"
+                    className="h-7 w-32 sm:w-40 px-2 py-0 border-none bg-transparent text-xs font-medium text-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+                    title="Printed in Row 3 (Dated : <Date>) of the attendance sheet"
                   />
                 </div>
 
-                {/* Download Button */}
+                {/* Download Registered Attendance Button */}
                 <Button
                   onClick={handleExportPrarambhExcel}
                   disabled={filteredPrarambh.length === 0}
                   className="rounded-xl h-10 px-4 text-xs font-semibold gap-2 bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer shadow-subtle shrink-0"
-                  title={`Download Excel attendance file with top heading: Devnest Technical  Event ${currentEventName}`}
+                  title={`Download Excel attendance file with registrations for: ${currentEventName}`}
                 >
                   <Download className="w-4 h-4" />
-                  <span>Download Excel (.xlsx)</span>
+                  <span>Export Sheet ({filteredPrarambh.length})</span>
+                </Button>
+
+                {/* Download Blank Format Template Button */}
+                <Button
+                  variant="outline"
+                  onClick={handleDownloadBlankFormat}
+                  className="rounded-xl h-10 px-3.5 text-xs font-semibold gap-1.5 border-emerald-500/40 hover:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 cursor-pointer shadow-subtle shrink-0"
+                  title={`Download blank attendance template in official format for: ${currentEventName}`}
+                >
+                  <FileSpreadsheet className="w-3.5 h-3.5" />
+                  <span>Blank Format</span>
                 </Button>
               </div>
             </div>
