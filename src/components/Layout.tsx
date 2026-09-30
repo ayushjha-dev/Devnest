@@ -269,7 +269,7 @@ export function Layout({
                     href=""
                     className="text-neutral-700 hover:text-black hover:underline transition-colors duration-150"
                   >
-                    Documents
+                    Documentation
                   </Link>
                 </li>
                 <li>
