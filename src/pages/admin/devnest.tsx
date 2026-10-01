@@ -696,7 +696,6 @@ export default function AdminDevnestPage() {
           trackTitle: "CTF 2nd Year",
           date: dateFormatted,
           teams: ctf2ndYearTeams,
-          slotsCount: Math.max(30, ctf2ndYearTeams.length),
         },
       ];
     } else if (prarambhTrackFilter === "ctf-3rd-year") {
@@ -707,7 +706,6 @@ export default function AdminDevnestPage() {
           trackTitle: "CTF 3rd Year",
           date: dateFormatted,
           teams: ctf3rdYearTeams,
-          slotsCount: Math.max(30, ctf3rdYearTeams.length),
         },
       ];
     } else if (prarambhTrackFilter === "tech-quiz") {
@@ -718,7 +716,6 @@ export default function AdminDevnestPage() {
           trackTitle: "Tech Quiz",
           date: dateFormatted,
           teams: techQuizTeams,
-          slotsCount: Math.max(30, techQuizTeams.length),
         },
       ];
     } else {
@@ -730,28 +727,24 @@ export default function AdminDevnestPage() {
           trackTitle: "CTF 3rd Year",
           date: dateFormatted,
           teams: ctf3rdYearTeams,
-          slotsCount: Math.max(30, ctf3rdYearTeams.length),
         },
         {
           sheetName: "CTF 2nd Year",
           trackTitle: "CTF 2nd Year",
           date: dateFormatted,
           teams: ctf2ndYearTeams,
-          slotsCount: Math.max(30, ctf2ndYearTeams.length),
         },
         {
           sheetName: "Tech Quiz",
           trackTitle: "Tech Quiz",
           date: dateFormatted,
           teams: techQuizTeams,
-          slotsCount: Math.max(30, techQuizTeams.length),
         },
         {
           sheetName: "All Participants",
           trackTitle: "All Participants Attendance",
           date: dateFormatted,
           teams: allTeams,
-          slotsCount: Math.max(30, allTeams.length),
         },
       ];
     }
