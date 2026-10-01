@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Github, Linkedin, Instagram, ArrowUpRight, Sparkles } from "lucide-react";
+import { Github, Linkedin, ArrowUpRight, Sparkles } from "lucide-react";
 
 interface TeamMember {
 	id: number;
@@ -110,17 +110,7 @@ export function TeamCard({ member }: TeamCardProps) {
 							<Linkedin className="w-4 h-4" />
 						</a>
 					)}
-					{isValidLink(member.socials.instagram) && (
-						<a
-							href={member.socials.instagram}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="p-2 rounded-xl bg-[#FAF7EE] text-black hover:bg-[#FF70A6] border-2 border-black shadow-[2px_2px_0px_#000] transition-colors"
-							title="Instagram"
-						>
-							<Instagram className="w-4 h-4" />
-						</a>
-					)}
+
 				</div>
 			</div>
 
@@ -172,17 +162,7 @@ export function TeamCard({ member }: TeamCardProps) {
 								<Linkedin className="w-4 h-4 transition-transform group-hover/link:scale-110" />
 							</a>
 						)}
-						{isValidLink(member.socials.instagram) && (
-							<a
-								href={member.socials.instagram}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="p-2.5 rounded-xl bg-white hover:bg-[#FF70A6] text-black border-2 border-black shadow-[2px_2px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all group/link"
-								title="Instagram Profile"
-							>
-								<Instagram className="w-4 h-4 transition-transform group-hover/link:scale-110" />
-							</a>
-						)}
+
 					</div>
 				</div>
 			</div>

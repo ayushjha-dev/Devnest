@@ -168,7 +168,7 @@ export interface ExportOfficialAttendanceOptions {
  * - Row 2 (Merged A2:J2): "Devnest Technical Event <EventName>"
  * - Row 3 (Merged A3:G3): "<TrackTitle> Registration"
  * - Row 3 (Merged H3:J3): "Dated : <Date>"
- * - Row 4 (Headers A4:J4): ["Sr No.", "Team Name", "Team Size", "Name", "Roll No.", "Branch", "Sem", "Phone NO.", "Email", "Sign"]
+ * - Row 4 (Headers A4:J4): ["Sr No.", "Team Name", "Team Size", "Name", "Roll No.", "Course with Section Name", "Sem", "Phone NO.", "Email", "Sign"]
  * - Rows 5+: Team slots (4 rows per slot, Sr No. / Team Name / Team Size merged across rows, up to 4 members)
  * - Footers: Spacing row + Student Coordinator & Faculty Coordinator + Faculty Co-Coordinator
  * - NOT limited to 30: Dynamically scales to any number of teams/serial numbers
@@ -321,7 +321,7 @@ export function createOfficialAttendanceWorksheet({
     "Team Size",
     "Name",
     "Roll No.",
-    "Branch",
+    "Course with Section Name",
     "Sem",
     "Phone NO.",
     "Email",
@@ -612,7 +612,7 @@ export function createOfficialAttendanceWorksheet({
     { width: 12, wpx: 72, wch: 12 },    // Team Size
     { width: 25, wpx: 150, wch: 25 },   // Name
     { width: 16, wpx: 96, wch: 16 },    // Roll No.
-    { width: 14, wpx: 84, wch: 14 },    // Branch
+    { width: 25, wpx: 150, wch: 25 },   // Course with Section Name
     { width: 8.5, wpx: 51, wch: 8 },    // Sem
     { width: 16, wpx: 96, wch: 16 },    // Phone NO.
     { width: 26, wpx: 156, wch: 26 },   // Email

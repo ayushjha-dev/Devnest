@@ -55,7 +55,13 @@ import type {
   CompetitionTrack,
 } from "../../../server/prarambh-storage";
 import { AdminMessagesView } from "@/components/admin/AdminMessagesView";
+import { AdminDesignathonView } from "@/components/admin/AdminDesignathonView";
+import { AdminDesignathonApplyDialog } from "@/components/admin/AdminDesignathonApplyDialog";
 import type { MessageRecord, MessageStats } from "../../../server/messages-storage";
+import type {
+  DesignathonRegistration,
+  DesignathonStats,
+} from "../../../server/designathon-storage";
 import {
   exportToExcel,
   exportMultiSheetExcel,
@@ -67,8 +73,18 @@ import {
 } from "@/lib/excel-export";
 
 export default function AdminDevnestPage() {
-  // Navigation tabs: 'prarambh', 'members', or 'messages'
-  const [adminTab, setAdminTab] = useState<"prarambh" | "members" | "messages">("prarambh");
+  // Navigation tabs: 'events', 'members', or 'messages'
+  const [adminTab, setAdminTab] = useState<"events" | "members" | "messages">("events");
+
+  // Events sub-navigation: 'designathon' (active event) or 'prarambh' (concluded)
+  const [eventSubTab, setEventSubTab] = useState<"designathon" | "prarambh">("designathon");
+
+  // Designathon Registrations Data states
+  const [designathonRegistrations, setDesignathonRegistrations] = useState<DesignathonRegistration[]>([]);
+  const [designathonStats, setDesignathonStats] = useState<DesignathonStats | null>(null);
+  const [designathonLoading, setDesignathonLoading] = useState(false);
+  const [designathonError, setDesignathonError] = useState("");
+  const [adminDesignathonModalOpen, setAdminDesignathonModalOpen] = useState(false);
 
   // Authentication states
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -173,6 +189,7 @@ export default function AdminDevnestPage() {
         if (data.authenticated) {
           fetchMembers();
           fetchPrarambhRegistrations();
+          fetchDesignathonRegistrations();
           fetchMessages();
         }
       } catch {
@@ -252,6 +269,78 @@ export default function AdminDevnestPage() {
       setPrarambhError(message);
     } finally {
       setPrarambhLoading(false);
+    }
+  };
+
+  // Fetch protected Designathon registrations data strictly from backend API
+  const fetchDesignathonRegistrations = async () => {
+    setDesignathonLoading(true);
+    setDesignathonError("");
+    try {
+      const res = await fetch("/api/admin/designathon-registrations");
+      if (res.status === 401) {
+        setIsAuthenticated(false);
+        return;
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to load Designathon registrations");
+      }
+      const data = await res.json();
+      const list = Array.isArray(data.registrations) ? data.registrations : [];
+      setDesignathonRegistrations(list);
+      if (data.stats) {
+        setDesignathonStats(data.stats);
+      }
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Error loading Designathon registrations";
+      setDesignathonError(message);
+    } finally {
+      setDesignathonLoading(false);
+    }
+  };
+
+  const handleDesignathonStatusChange = async (
+    id: string,
+    status: "pending" | "approved" | "rejected"
+  ) => {
+    try {
+      const res = await fetch("/api/admin/designathon-registrations", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status }),
+      });
+      if (res.status === 401) {
+        setIsAuthenticated(false);
+        return;
+      }
+      if (!res.ok) throw new Error("Failed to update status");
+      const data = await res.json();
+      setDesignathonRegistrations((prev) =>
+        prev.map((r) => (r.id === id ? { ...r, status } : r))
+      );
+      if (data.stats) setDesignathonStats(data.stats);
+    } catch (err) {
+      console.error("Designathon status update error:", err);
+    }
+  };
+
+  const handleDeleteDesignathon = async (id: string) => {
+    try {
+      const res = await fetch(`/api/admin/designathon-registrations?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+      });
+      if (res.status === 401) {
+        setIsAuthenticated(false);
+        return;
+      }
+      if (!res.ok) throw new Error("Failed to delete registration");
+      const data = await res.json();
+      setDesignathonRegistrations((prev) => prev.filter((r) => r.id !== id));
+      if (data.stats) setDesignathonStats(data.stats);
+    } catch (err) {
+      console.error("Designathon delete error:", err);
     }
   };
 
@@ -954,15 +1043,26 @@ export default function AdminDevnestPage() {
                 variant="outline"
                 size="sm"
                 onClick={() => {
-                  if (adminTab === "prarambh") fetchPrarambhRegistrations();
-                  else if (adminTab === "members") fetchMembers();
-                  else fetchMessages();
+                  if (adminTab === "events") {
+                    if (eventSubTab === "designathon") fetchDesignathonRegistrations();
+                    else fetchPrarambhRegistrations();
+                  } else if (adminTab === "members") {
+                    fetchMembers();
+                  } else {
+                    fetchMessages();
+                  }
                 }}
-                disabled={dataLoading || prarambhLoading || messagesLoading}
+                disabled={dataLoading || prarambhLoading || designathonLoading || messagesLoading}
                 className="rounded-xl h-10 px-3 sm:px-4 border-border/80 gap-1.5 text-xs font-medium cursor-pointer"
                 title="Refresh Records"
               >
-                <RefreshCw className={`w-3.5 h-3.5 ${(dataLoading || prarambhLoading || messagesLoading) ? "animate-spin" : ""}`} />
+                <RefreshCw
+                  className={`w-3.5 h-3.5 ${
+                    dataLoading || prarambhLoading || designathonLoading || messagesLoading
+                      ? "animate-spin"
+                      : ""
+                  }`}
+                />
                 <span className="hidden sm:inline">Refresh</span>
               </Button>
 
@@ -970,12 +1070,17 @@ export default function AdminDevnestPage() {
                 variant="outline"
                 size="sm"
                 onClick={() => {
-                  if (adminTab === "prarambh") handleExportPrarambhExcel();
-                  else if (adminTab === "members") handleExportMembersExcel();
+                  if (adminTab === "events") {
+                    if (eventSubTab === "prarambh") handleExportPrarambhExcel();
+                  } else if (adminTab === "members") {
+                    handleExportMembersExcel();
+                  }
                 }}
                 disabled={
-                  adminTab === "prarambh"
-                    ? filteredPrarambh.length === 0
+                  adminTab === "events"
+                    ? eventSubTab === "designathon"
+                      ? designathonRegistrations.length === 0
+                      : filteredPrarambh.length === 0
                     : adminTab === "members"
                     ? filteredMembers.length === 0
                     : messages.length === 0
@@ -1001,29 +1106,30 @@ export default function AdminDevnestPage() {
         </div>
       </header>
 
-      {/* Sub-Navigation: Switch between Prarambh Registrations and DevNest Memberships */}
+      {/* Sub-Navigation: Switch between Events, Society Members, and Contact Messages */}
       <div className="border-b border-border/70 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           <div className="inline-flex p-1 rounded-2xl bg-secondary/80 border border-border/80 shadow-subtle shrink-0">
             <button
               type="button"
-              onClick={() => setAdminTab("prarambh")}
+              onClick={() => setAdminTab("events")}
               className={`inline-flex items-center gap-2 px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
-                adminTab === "prarambh"
+                adminTab === "events"
                   ? "bg-primary text-primary-foreground shadow-subtle"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <Trophy className="w-4 h-4" />
-              <span>Prarambh (Concluded)</span>
+              <Calendar className="w-4 h-4" />
+              <span>Events</span>
               <span
                 className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
-                  adminTab === "prarambh"
+                  adminTab === "events"
                     ? "bg-primary-foreground/20 text-primary-foreground"
                     : "bg-muted text-foreground"
                 }`}
               >
-                {prarambhStats ? prarambhStats.total : prarambhRegistrations.length}
+                {(designathonStats ? designathonStats.total : designathonRegistrations.length) +
+                  (prarambhStats ? prarambhStats.total : prarambhRegistrations.length)}
               </span>
             </button>
 
@@ -1077,28 +1183,87 @@ export default function AdminDevnestPage() {
               </span>
             </button>
           </div>
-
-          <div className="flex items-center gap-2">
-            {adminTab === "prarambh" && (
-              <Button
-                size="sm"
-                onClick={() => setAdminApplyModalOpen(true)}
-                className="rounded-xl h-9 px-3 text-xs font-semibold gap-1.5 shadow-subtle cursor-pointer"
-              >
-                <Trophy className="w-3.5 h-3.5" />
-                <span>+ Register Participant</span>
-              </Button>
-            )}
-          </div>
         </div>
       </div>
 
       {/* Main Admin Dashboard Container */}
       <main className="flex-grow py-6 sm:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-8">
-        {adminTab === "prarambh" ? (
-          <>
-            {/* Prarambh Metric Summary Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+        {adminTab === "events" ? (
+          <div className="space-y-6">
+            {/* Events Sub-Navigation Switcher */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-secondary/40 p-2 sm:p-2.5 rounded-2xl border border-border/80">
+              <div className="inline-flex p-1 rounded-xl bg-background border border-border/80 shadow-subtle shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setEventSubTab("designathon")}
+                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    eventSubTab === "designathon"
+                      ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] border border-black"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Sparkles className="w-4 h-4 text-black" />
+                  <span>Designathon 2026 (Live)</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-black text-[#FFE600]">
+                    {designathonStats ? designathonStats.total : designathonRegistrations.length}
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setEventSubTab("prarambh")}
+                  className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    eventSubTab === "prarambh"
+                      ? "bg-primary text-primary-foreground shadow-subtle"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Trophy className="w-4 h-4" />
+                  <span>Prarambh (Concluded)</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-muted text-foreground">
+                    {prarambhStats ? prarambhStats.total : prarambhRegistrations.length}
+                  </span>
+                </button>
+              </div>
+
+              <div>
+                {eventSubTab === "designathon" ? (
+                  <Button
+                    size="sm"
+                    onClick={() => setAdminDesignathonModalOpen(true)}
+                    className="rounded-xl h-9 px-3 text-xs font-bold gap-1.5 border-2 border-black bg-[#FFE600] text-black hover:bg-[#FFDE59] shadow-[2px_2px_0px_#000]"
+                  >
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>+ Register Designathon Participant</span>
+                  </Button>
+                ) : (
+                  <Button
+                    size="sm"
+                    onClick={() => setAdminApplyModalOpen(true)}
+                    className="rounded-xl h-9 px-3 text-xs font-semibold gap-1.5 shadow-subtle cursor-pointer"
+                  >
+                    <Trophy className="w-3.5 h-3.5" />
+                    <span>+ Register Prarambh Participant</span>
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            {eventSubTab === "designathon" ? (
+              <AdminDesignathonView
+                registrations={designathonRegistrations}
+                stats={designathonStats}
+                loading={designathonLoading}
+                error={designathonError}
+                onRefresh={fetchDesignathonRegistrations}
+                onStatusChange={handleDesignathonStatusChange}
+                onDelete={handleDeleteDesignathon}
+                onOpenAddModal={() => setAdminDesignathonModalOpen(true)}
+              />
+            ) : (
+              <>
+                {/* Prarambh Metric Summary Cards */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {/* Total Applications */}
               <div className="glass-panel rounded-2xl p-4 border border-border/80 flex flex-col justify-between shadow-subtle">
                 <div className="flex items-center justify-between">
@@ -1474,7 +1639,7 @@ export default function AdminDevnestPage() {
                         <th className="py-3.5 px-4">Candidate</th>
                         <th className="py-3.5 px-3">Year &amp; Track</th>
                         <th className="py-3.5 px-3">Team &amp; Format</th>
-                        <th className="py-3.5 px-3">Roll &amp; Branch</th>
+                        <th className="py-3.5 px-3">Roll &amp; Course with Section</th>
                         <th className="py-3.5 px-3">Status</th>
                         <th className="py-3.5 px-3">Registered At</th>
                         <th className="py-3.5 px-4 text-right">Actions</th>
@@ -1641,7 +1806,9 @@ export default function AdminDevnestPage() {
                 </div>
               </div>
             )}
-          </>
+              </>
+            )}
+          </div>
         ) : adminTab === "members" ? (
           <>
             {/* DevNest Members Metric Summary Cards */}
@@ -2698,6 +2865,13 @@ export default function AdminDevnestPage() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Admin Designathon Manual Apply Dialog */}
+      <AdminDesignathonApplyDialog
+        open={adminDesignathonModalOpen}
+        onOpenChange={setAdminDesignathonModalOpen}
+        onSuccess={fetchDesignathonRegistrations}
+      />
     </div>
   );
 }

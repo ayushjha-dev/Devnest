@@ -57,7 +57,7 @@ export default function TeamPage() {
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               Passionate leaders, developers, and mentors driving technical innovation across
               multiple disciplines. Hover over any member card to view their complete bio and
-              connect on GitHub, LinkedIn, or Instagram.
+              connect on GitHub or LinkedIn.
             </p>
           </div>
 
