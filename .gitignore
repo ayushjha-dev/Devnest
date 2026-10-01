@@ -21,6 +21,7 @@ pnpm-lock.yaml
 scripts
 .vercel
 .env*
+!.env.example
 
 # Temporarily exclude certificates for initial push
 public/certificates/
