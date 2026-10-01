@@ -191,7 +191,7 @@ export function AdminDesignathonView({
         { header: "Team Size", accessor: (r) => r.teamSize, width: 12 },
         { header: "Name", accessor: (r) => r.fullName, width: 22 },
         { header: "Roll No.", accessor: (r) => r.rollNumber, width: 16 },
-        { header: "Branch", accessor: (r) => r.branch, width: 20 },
+        { header: "Course with Section Name", accessor: (r) => r.branch, width: 26 },
         { header: "Sem", accessor: (r) => r.sem || r.semester || "1st Sem", width: 12 },
         { header: "Phone NO.", accessor: (r) => r.phone, width: 16 },
         { header: "Email", accessor: (r) => r.email, width: 26 },
@@ -202,7 +202,7 @@ export function AdminDesignathonView({
               ? r.teammates
                   .map(
                     (t) =>
-                      `${t.name} (Roll: ${t.rollNumber}, Branch: ${t.branch}, Sem: ${t.sem}, Phone: ${t.phone}, Email: ${t.email})`
+                      `${t.name} (Roll: ${t.rollNumber}, Course with Section: ${t.branch}, Sem: ${t.sem}, Phone: ${t.phone}, Email: ${t.email})`
                   )
                   .join(" | ")
               : "None",
@@ -557,7 +557,7 @@ export function AdminDesignathonView({
                   <th className="py-3.5 px-3">Team Size</th>
                   <th className="py-3.5 px-3">Name</th>
                   <th className="py-3.5 px-3">Roll No.</th>
-                  <th className="py-3.5 px-3">Branch</th>
+                  <th className="py-3.5 px-3">Course with Section Name</th>
                   <th className="py-3.5 px-3">Sem</th>
                   <th className="py-3.5 px-3">Phone NO.</th>
                   <th className="py-3.5 px-3">Email</th>
@@ -603,7 +603,7 @@ export function AdminDesignathonView({
                       <span className="font-mono text-muted-foreground">{reg.rollNumber}</span>
                     </td>
 
-                    {/* Branch */}
+                    {/* Course with Section Name */}
                     <td className="py-3.5 px-3">
                       <span className="text-foreground">{reg.branch}</span>
                     </td>
@@ -729,7 +729,7 @@ export function AdminDesignathonView({
                     <span className="font-semibold text-foreground">Roll No.:</span> {selectedReg.rollNumber}
                   </div>
                   <div>
-                    <span className="font-semibold text-foreground">Branch:</span> {selectedReg.branch}
+                    <span className="font-semibold text-foreground">Course with Section Name:</span> {selectedReg.branch}
                   </div>
                   <div>
                     <span className="font-semibold text-foreground">Sem:</span> {selectedReg.sem || selectedReg.semester || "1st Sem"}
@@ -766,7 +766,7 @@ export function AdminDesignathonView({
                             <span className="font-semibold text-foreground">Roll No.:</span> {tm.rollNumber}
                           </div>
                           <div>
-                            <span className="font-semibold text-foreground">Branch:</span> {tm.branch}
+                            <span className="font-semibold text-foreground">Course with Section Name:</span> {tm.branch}
                           </div>
                           <div>
                             <span className="font-semibold text-foreground">Sem:</span> {tm.sem}

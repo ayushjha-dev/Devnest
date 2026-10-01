@@ -99,7 +99,7 @@ export function DesignathonApplyDialog({
       return;
     }
     if (!leaderBranch.trim()) {
-      setErrorMessage("Please enter Leader Branch.");
+      setErrorMessage("Please enter Leader Course with Section Name.");
       return;
     }
     if (!leaderSem.trim()) {
@@ -129,7 +129,7 @@ export function DesignathonApplyDialog({
           return;
         }
         if (!tm.branch.trim()) {
-          setErrorMessage(`Please enter Branch for Teammate #${num}.`);
+          setErrorMessage(`Please enter Course with Section Name for Teammate #${num}.`);
           return;
         }
         if (!tm.sem.trim()) {
@@ -337,11 +337,11 @@ export function DesignathonApplyDialog({
 
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-foreground">
-                      Branch <span className="text-red-500">*</span>
+                      Course with Section Name <span className="text-red-500">*</span>
                     </label>
                     <Input
                       required
-                      placeholder="e.g. CSE, IT, ECE"
+                      placeholder="e.g. B.Tech CSE (AIML) - Sec A"
                       value={leaderBranch}
                       onChange={(e) => setLeaderBranch(e.target.value)}
                       className="rounded-xl border-2 border-border text-xs"
@@ -435,11 +435,11 @@ export function DesignathonApplyDialog({
 
                         <div className="space-y-1">
                           <label className="text-xs font-bold text-foreground">
-                            Branch <span className="text-red-500">*</span>
+                            Course with Section Name <span className="text-red-500">*</span>
                           </label>
                           <Input
                             required
-                            placeholder="e.g. CSE, IT, ECE"
+                            placeholder="e.g. B.Tech CSE (AIML) - Sec A"
                             value={teammates[idx]?.branch || ""}
                             onChange={(e) => handleTeammateChange(idx, "branch", e.target.value)}
                             className="rounded-xl border-2 border-border text-xs"

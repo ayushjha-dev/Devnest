@@ -76,7 +76,7 @@ export function AdminDesignathonApplyDialog({
     setErrorMessage("");
 
     if (!teamName.trim() || !leaderName.trim() || !leaderRollNumber.trim() || !leaderBranch.trim() || !leaderSem.trim() || !leaderPhone.trim() || !leaderEmail.trim()) {
-      setErrorMessage("Please fill all required Leader and Team details.");
+      setErrorMessage("Please fill all required Leader and Team details (including Course with Section Name).");
       return;
     }
 
@@ -84,7 +84,7 @@ export function AdminDesignathonApplyDialog({
       for (let i = 0; i < teamSize - 1; i++) {
         const tm = teammates[i];
         if (!tm.name.trim() || !tm.rollNumber.trim() || !tm.branch.trim() || !tm.sem.trim() || !tm.phone.trim() || !tm.email.trim()) {
-          setErrorMessage(`Please fill all required details for Teammate #${i + 2}.`);
+          setErrorMessage(`Please fill all required details (including Course with Section Name) for Teammate #${i + 2}.`);
           return;
         }
       }
@@ -228,7 +228,7 @@ export function AdminDesignathonApplyDialog({
               />
               <Input
                 required
-                placeholder="Branch *"
+                placeholder="Course with Section Name *"
                 value={leaderBranch}
                 onChange={(e) => setLeaderBranch(e.target.value)}
                 className="rounded-xl text-xs"
@@ -286,7 +286,7 @@ export function AdminDesignathonApplyDialog({
                     />
                     <Input
                       required
-                      placeholder="Branch *"
+                      placeholder="Course with Section Name *"
                       value={teammates[idx]?.branch || ""}
                       onChange={(e) => handleTeammateChange(idx, "branch", e.target.value)}
                       className="rounded-xl text-xs"

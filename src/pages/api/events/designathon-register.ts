@@ -37,7 +37,7 @@ export default async function handler(
     }
 
     if (!branch || typeof branch !== "string" || !branch.trim()) {
-      return res.status(400).json({ error: "Branch is required." });
+      return res.status(400).json({ error: "Course with Section Name is required." });
     }
 
     const resolvedSem = (sem || semester || "").toString().trim();
@@ -62,7 +62,7 @@ export default async function handler(
         const tm = teammates[i];
         if (!tm?.name?.trim() || !tm?.rollNumber?.trim() || !tm?.branch?.trim() || !tm?.sem?.trim() || !tm?.phone?.trim() || !tm?.email?.trim()) {
           return res.status(400).json({
-            error: `Please fill all required details (Name, Roll No., Branch, Sem, Phone, Email) for Teammate #${i + 2}.`,
+            error: `Please fill all required details (Name, Roll No., Course with Section Name, Sem, Phone, Email) for Teammate #${i + 2}.`,
           });
         }
         cleanedTeammates.push({

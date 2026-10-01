@@ -1639,7 +1639,7 @@ export default function AdminDevnestPage() {
                         <th className="py-3.5 px-4">Candidate</th>
                         <th className="py-3.5 px-3">Year &amp; Track</th>
                         <th className="py-3.5 px-3">Team &amp; Format</th>
-                        <th className="py-3.5 px-3">Roll &amp; Branch</th>
+                        <th className="py-3.5 px-3">Roll &amp; Course with Section</th>
                         <th className="py-3.5 px-3">Status</th>
                         <th className="py-3.5 px-3">Registered At</th>
                         <th className="py-3.5 px-4 text-right">Actions</th>
