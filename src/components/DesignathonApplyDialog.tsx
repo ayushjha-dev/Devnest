@@ -220,7 +220,7 @@ export function DesignathonApplyDialog({
               DevNest Designathon 2026
             </DialogTitle>
             <DialogDescription className="text-black/85 font-medium text-xs sm:text-sm mt-1">
-              Venue: IBM Lab, LTSU Punjab &bull; Trophies &amp; Cash Prizes &bull; 80% UI/UX &bull; 30% Backend
+              Venue: IBM Lab, LTSU Punjab &bull; Trophies &amp; Cash Prizes &bull; 70% UI/UX &bull; 30% Backend
             </DialogDescription>
           </div>
         </div>

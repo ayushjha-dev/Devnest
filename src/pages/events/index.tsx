@@ -45,7 +45,7 @@ const upcomingEvents: Array<{
     time: "09:30 AM - 05:30 PM",
     location: "IBM Lab, LTSU Punjab",
     description:
-      "DevNest's premier design and build competition! Showcase your UI/UX mastery (80% evaluation) backed by functional backend integration (30% evaluation). Turn high-impact user experiences into reality at IBM Lab.",
+      "DevNest's premier design and build competition! Showcase your UI/UX mastery (70% evaluation) backed by functional backend integration (30% evaluation). Turn high-impact user experiences into reality at IBM Lab.",
     domains: [
       "UI/UX Design",
       "Frontend",
@@ -56,7 +56,7 @@ const upcomingEvents: Array<{
     ],
     prizes: "Trophies & Cash Prize",
     highlights: [
-      "Evaluation: 80% UI/UX & 30% Backend",
+      "Evaluation: 70% UI/UX & 30% Backend",
       "Prizes: Trophies and Cash Prize",
       "Venue: IBM Lab, LTSU Punjab",
       "Open to all students (Solo or Team participation)",

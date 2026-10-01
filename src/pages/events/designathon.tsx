@@ -29,7 +29,7 @@ export default function DesignathonPage() {
         <title>DevNest Designathon 2026 | UI/UX & Backend Competition</title>
         <meta
           name="description"
-          content="Participate in DevNest Designathon 2026 at IBM Lab, LTSU Punjab. Evaluated 80% on UI/UX and 30% on Backend. Compete for trophies and cash prizes with open registration for all students."
+          content="Participate in DevNest Designathon 2026 at IBM Lab, LTSU Punjab. Evaluated 70% on UI/UX and 30% on Backend. Compete for trophies and cash prizes with open registration for all students."
         />
       </Head>
 
@@ -61,7 +61,7 @@ export default function DesignathonPage() {
 
             <p className="text-base sm:text-lg font-medium text-black/90 leading-relaxed">
               DevNest&apos;s premier design-and-code competition! Showcase your UI/UX design mastery
-              (80% evaluation) backed by functional backend integration (30% evaluation). Turn high-impact user experiences into reality at IBM Lab.
+              (70% evaluation) backed by functional backend integration (30% evaluation). Turn high-impact user experiences into reality at IBM Lab.
             </p>
 
             {/* Quick Metadata Pill Grid */}
@@ -71,7 +71,7 @@ export default function DesignathonPage() {
                   <Palette className="w-3.5 h-3.5" />
                   Criteria
                 </div>
-                <div className="text-xs font-black">80% UI/UX &bull; 30% Backend</div>
+                <div className="text-xs font-black">70% UI/UX &bull; 30% Backend</div>
               </div>
 
               <div className="bg-white/85 rounded-2xl p-3 border-2 border-black shadow-[2px_2px_0px_#000]">
@@ -123,7 +123,7 @@ export default function DesignathonPage() {
 
         {/* Evaluation Breakdown & Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Card 1: 80% UI/UX Design */}
+          {/* Card 1: 70% UI/UX Design */}
           <div className="glass-panel rounded-3xl p-6 sm:p-8 border-2 border-border/80 space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-[#FFE600] border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center text-black">
               <Palette className="w-6 h-6 stroke-[2.2]" />
@@ -133,7 +133,7 @@ export default function DesignathonPage() {
                 Primary Weightage
               </span>
               <h2 className="text-2xl font-black font-space text-foreground mt-0.5">
-                80% UI/UX Design Evaluation
+                70% UI/UX Design Evaluation
               </h2>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -185,40 +185,6 @@ export default function DesignathonPage() {
                 <span>Clean project architecture and separation of concerns</span>
               </li>
             </ul>
-          </div>
-        </div>
-
-        {/* Prizes and Perks */}
-        <div className="rounded-3xl border-2 border-black bg-secondary/40 p-6 sm:p-8 space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold">
-              <Trophy className="w-3.5 h-3.5" />
-              <span>Rewards &amp; Recognition</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black font-space text-foreground">
-              Trophies &amp; Cash Prizes
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Top teams and individual designers receive trophies, certificates of excellence, and cash prizes, along with DevNest Hall of Fame inclusion!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="glass-panel rounded-2xl p-5 border border-border text-center space-y-2">
-              <div className="text-3xl">🏆</div>
-              <h3 className="font-bold text-foreground">Winner Trophy &amp; Cash Prize</h3>
-              <p className="text-xs text-muted-foreground">Awarded to the overall best UI/UX and Backend project.</p>
-            </div>
-            <div className="glass-panel rounded-2xl p-5 border border-border text-center space-y-2">
-              <div className="text-3xl">🥈</div>
-              <h3 className="font-bold text-foreground">Runner-Up Trophy &amp; Cash Prize</h3>
-              <p className="text-xs text-muted-foreground">Celebrated for outstanding design execution &amp; ingenuity.</p>
-            </div>
-            <div className="glass-panel rounded-2xl p-5 border border-border text-center space-y-2">
-              <div className="text-3xl">⭐</div>
-              <h3 className="font-bold text-foreground">Best UI/UX Special Mention</h3>
-              <p className="text-xs text-muted-foreground">Recognizing pixel-perfect artistry and user empathy.</p>
-            </div>
           </div>
         </div>
 

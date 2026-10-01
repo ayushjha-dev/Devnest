@@ -351,7 +351,7 @@ export function AdminDesignathonView({
               IBM Lab, LTSU Punjab
             </div>
             <p className="text-[11px] text-blue-600 dark:text-blue-400 font-semibold mt-0.5">
-              80% UI/UX &bull; 30% Backend &bull; Trophies &amp; Cash
+              70% UI/UX &bull; 30% Backend &bull; Trophies &amp; Cash
             </p>
           </div>
         </div>
@@ -430,7 +430,7 @@ export function AdminDesignathonView({
             >
               <option value="all">All Focus Tracks</option>
               <option value="fullstack">UI/UX + Backend</option>
-              <option value="ui-ux">UI/UX (80%)</option>
+              <option value="ui-ux">UI/UX (70%)</option>
               <option value="backend">Backend (30%)</option>
             </select>
 
