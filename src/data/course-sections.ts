@@ -9,6 +9,7 @@ export const COURSE_SECTIONS = [
   "B.Tech CSE(CS) Cyber Data Nexus",
   "B.Tech CSE(CORE) Syntax Squad",
   "B.Tech CSE(CORE) Binary Brains",
+  "B.Tech CSE(CORE) Stackhive",
   "B.Tech CSE(AIML) 1st Year",
   "B.Tech CSE(CS) 1st Year",
 ] as const;
