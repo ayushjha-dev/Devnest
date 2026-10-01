@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Layout } from "@/components/Layout";
 import { MembershipForm } from "@/components/MembershipForm";
-import { Users, Zap, Trophy, Rocket, Sparkles, Mail, Instagram } from "lucide-react";
+import { Users, Zap, Trophy, Rocket, Sparkles, Mail } from "lucide-react";
 
 const benefits = [
   {
@@ -127,15 +127,6 @@ export default function MembershipPage() {
                   <span>Email Core Team</span>
                 </a>
 
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-zinc-100 font-space font-bold text-xs sm:text-sm active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-150"
-                >
-                  <Instagram className="w-4 h-4 text-black" />
-                  <span>Instagram</span>
-                </a>
               </div>
             </div>
           </section>

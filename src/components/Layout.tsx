@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import {
   Github,
   Linkedin,
-  Instagram,
   Mail,
   ArrowUpRight,
   Sparkles,
@@ -339,16 +338,6 @@ export function Layout({
                 <Linkedin className="w-4 h-4" />
               </a>
 
-              <a
-                href="https://www.instagram.com/devnest_tech_club/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-xl bg-white border-2 border-black text-black shadow-[2px_2px_0px_#000] hover:bg-[#FF70A6] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
-                aria-label="Instagram"
-                title="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
 
               <a
                 href="mailto:devnest.techclub@gmail.com"

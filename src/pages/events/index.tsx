@@ -11,7 +11,6 @@ import {
   ArrowRight,
   Sparkles,
   CheckCircle2,
-  Instagram,
   Bell,
   Trophy,
 } from "lucide-react";
@@ -60,7 +59,6 @@ const upcomingEvents: Array<{
       "Prizes: Trophies and Cash Prize",
       "Venue: IBM Lab, LTSU Punjab",
       "Open to all students (Solo or Team participation)",
-      "Live jury review and portfolio recognition",
     ],
     status: "open",
     icon: "🎨",
@@ -668,7 +666,7 @@ export default function EventsPage() {
                 </h2>
 
                 <p className="text-sm sm:text-base text-muted-foreground max-w-lg mx-auto mb-8 leading-relaxed">
-                  Join our official WhatsApp group and follow us on Instagram for spot updates, registration windows, and mentor announcements.
+                  Join our official WhatsApp group and community channels for spot updates, registration windows, and mentor announcements.
                 </p>
 
                 <div className="flex flex-wrap gap-3 justify-center">
@@ -679,16 +677,6 @@ export default function EventsPage() {
                     <span>Join DevNest Community</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
-
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-secondary text-foreground hover:bg-secondary/80 border border-border/80 text-xs sm:text-sm font-semibold transition-all duration-200"
-                  >
-                    <Instagram className="w-4 h-4 text-primary" />
-                    <span>Follow on Instagram</span>
-                  </a>
                 </div>
               </div>
             </div>

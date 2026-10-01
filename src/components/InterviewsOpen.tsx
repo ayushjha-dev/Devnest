@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Zap, CheckCircle, Instagram, Rocket, Sparkles, Smartphone, Palette, BarChart3, KeyRound } from "lucide-react";
+import { Zap, CheckCircle, Rocket, Sparkles, Smartphone, Palette, BarChart3, KeyRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShinyText from "@/components/ShinyText";
 import { openJoinCommunityModal } from "@/components/JoinCommunityDialog";
@@ -105,20 +105,6 @@ export function InterviewsOpen() {
             <span>Join DevNest</span>
           </Button>
 
-          <a
-            href="https://www.instagram.com/devnest_tech_club/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto"
-          >
-            <Button
-              variant="outline"
-              className="w-full border-primary/50 hover:bg-primary/10 gap-2 text-base sm:text-lg px-6 sm:px-8 py-6 sm:py-auto active:scale-95 transition-transform duration-150"
-            >
-              <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-              Follow us
-            </Button>
-          </a>
         </div>
 
         {/* Info Text */}
