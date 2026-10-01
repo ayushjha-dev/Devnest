@@ -6,7 +6,6 @@ uploads
 
 # pnpm
 .pnpm-debug.log*
-pnpm-lock.yaml
 
 # Environment variables
 .env.local
@@ -15,6 +14,7 @@ pnpm-lock.yaml
 !package.json
 !tsconfig.json
 !components.json
+!.eslintrc.json
 !src/data/*.json
 # Always track TypeScript source data files
 !src/data/*.ts

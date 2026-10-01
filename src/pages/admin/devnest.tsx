@@ -2478,7 +2478,7 @@ export default function AdminDevnestPage() {
                       Why DevNest? (Statement)
                     </h4>
                     <div className="p-3.5 rounded-xl bg-muted/30 border border-border text-xs sm:text-sm text-foreground italic leading-relaxed">
-                      "{selectedMember.statement}"
+                      &quot;{selectedMember.statement}&quot;
                     </div>
                   </div>
                 )}
