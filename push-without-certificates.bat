@@ -47,7 +47,7 @@ if %ERRORLEVEL% EQU 0 (
     echo 3. Run: git commit -m "Add certificate images"
     echo 4. Run: git push origin main
     echo.
-    echo Repository URL: https://github.com/ayushjha-dev/Devnest
+    echo Repository URL: https://github.com/devnest-tech/Devnest
     echo.
 ) else (
     echo.

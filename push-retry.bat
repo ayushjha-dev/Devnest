@@ -32,7 +32,7 @@ if %ERRORLEVEL% EQU 0 (
     echo SUCCESS! Code pushed to GitHub!
     echo ==========================================
     echo.
-    echo Repository URL: https://github.com/ayushjha-dev/Devnest
+    echo Repository URL: https://github.com/devnest-tech/Devnest
     echo.
     echo Next steps:
     echo 1. Visit your repository on GitHub

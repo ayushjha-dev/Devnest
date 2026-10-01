@@ -7,7 +7,7 @@ echo This may take 5-10 minutes due to large files...
 echo Please wait and don't close this window.
 echo.
 
-cd /d "c:\Users\sanat\Downloads\Devnest-Web-Application-main\Devnest-Web-Application-main"
+cd /d "%~dp0"
 
 echo Pushing to GitHub...
 git push -u origin main
