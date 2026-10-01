@@ -149,7 +149,7 @@ export interface OfficialAttendanceSheet {
   date?: string; // e.g. "23rd September 2026"
   teams?: AttendanceTeamSlot[];
   participants?: OfficialAttendanceParticipant[]; // Backward-compatibility
-  slotsCount?: number; // Unlimited! If not set, defaults to max(30, teams.length)
+  slotsCount?: number; // Number of slots. If not set, dynamically matches teams.length. For blank templates, pass desired count (e.g. 30).
   minRows?: number; // Legacy alias for slotsCount
 }
 
@@ -344,13 +344,14 @@ export function createOfficialAttendanceWorksheet({
     };
   }
 
-  // Calculate dynamic capacity without size limits
-  // If slotsCount is 0, fit exact registrations (min 1). Otherwise pad up to slotsCount or resolvedTeams.length
-  const requestedCapacity =
-    slotsCount !== undefined ? slotsCount : minRows !== undefined ? minRows : 30;
+  // Calculate dynamic capacity without size limits:
+  // If slotsCount or minRows is explicitly specified (e.g. for blank templates), use that capacity (or teams count if greater).
+  // Otherwise, dynamically fit the exact number of teams (e.g. 20 teams -> 20 slots; expands when > 30, decreases when < 30).
+  // If no teams are present and slotsCount is not provided, default to 1 slot.
+  const explicitCapacity = slotsCount !== undefined ? slotsCount : minRows;
   const totalSlots =
-    requestedCapacity > 0
-      ? Math.max(requestedCapacity, resolvedTeams.length)
+    explicitCapacity !== undefined
+      ? Math.max(explicitCapacity, resolvedTeams.length)
       : Math.max(1, resolvedTeams.length);
 
   const merges: XLSX.Range[] = [
