@@ -16,6 +16,7 @@ import {
   User,
 } from "lucide-react";
 import type { DesignathonTeammate } from "../../../server/designathon-storage";
+import { COURSE_SECTIONS } from "@/data/course-sections";
 
 interface AdminDesignathonApplyDialogProps {
   open: boolean;
@@ -226,13 +227,28 @@ export function AdminDesignathonApplyDialog({
                 onChange={(e) => setLeaderRollNumber(e.target.value)}
                 className="rounded-xl text-xs"
               />
-              <Input
+              <select
                 required
-                placeholder="Course with Section Name *"
                 value={leaderBranch}
                 onChange={(e) => setLeaderBranch(e.target.value)}
-                className="rounded-xl text-xs"
-              />
+                className={`w-full h-10 px-3 rounded-xl border-2 border-border bg-background text-xs font-medium focus:border-black cursor-pointer ${
+                  !leaderBranch ? "text-muted-foreground" : "text-foreground"
+                }`}
+              >
+                <option value="" disabled>
+                  Course with Section Name *
+                </option>
+                {COURSE_SECTIONS.map((sec) => (
+                  <option key={sec} value={sec} className="text-foreground">
+                    {sec}
+                  </option>
+                ))}
+                {leaderBranch && !COURSE_SECTIONS.includes(leaderBranch as any) && (
+                  <option value={leaderBranch} className="text-foreground">
+                    {leaderBranch}
+                  </option>
+                )}
+              </select>
               <Input
                 required
                 placeholder="Sem *"
@@ -284,13 +300,29 @@ export function AdminDesignathonApplyDialog({
                       onChange={(e) => handleTeammateChange(idx, "rollNumber", e.target.value)}
                       className="rounded-xl text-xs"
                     />
-                    <Input
+                    <select
                       required
-                      placeholder="Course with Section Name *"
                       value={teammates[idx]?.branch || ""}
                       onChange={(e) => handleTeammateChange(idx, "branch", e.target.value)}
-                      className="rounded-xl text-xs"
-                    />
+                      className={`w-full h-10 px-3 rounded-xl border-2 border-border bg-background text-xs font-medium focus:border-black cursor-pointer ${
+                        !teammates[idx]?.branch ? "text-muted-foreground" : "text-foreground"
+                      }`}
+                    >
+                      <option value="" disabled>
+                        Course with Section Name *
+                      </option>
+                      {COURSE_SECTIONS.map((sec) => (
+                        <option key={sec} value={sec} className="text-foreground">
+                          {sec}
+                        </option>
+                      ))}
+                      {teammates[idx]?.branch &&
+                        !COURSE_SECTIONS.includes(teammates[idx]?.branch as any) && (
+                          <option value={teammates[idx]?.branch} className="text-foreground">
+                            {teammates[idx]?.branch}
+                          </option>
+                        )}
+                    </select>
                     <Input
                       required
                       placeholder="Sem *"
