@@ -19,6 +19,7 @@ import {
   User,
 } from "lucide-react";
 import type { DesignathonTeammate } from "../../server/designathon-storage";
+import { COURSE_SECTIONS } from "@/data/course-sections";
 
 interface DesignathonApplyDialogProps {
   open: boolean;
@@ -99,7 +100,7 @@ export function DesignathonApplyDialog({
       return;
     }
     if (!leaderBranch.trim()) {
-      setErrorMessage("Please enter Leader Course with Section Name.");
+      setErrorMessage("Please select Leader Course with Section Name.");
       return;
     }
     if (!leaderSem.trim()) {
@@ -129,7 +130,7 @@ export function DesignathonApplyDialog({
           return;
         }
         if (!tm.branch.trim()) {
-          setErrorMessage(`Please enter Course with Section Name for Teammate #${num}.`);
+          setErrorMessage(`Please select Course with Section Name for Teammate #${num}.`);
           return;
         }
         if (!tm.sem.trim()) {
@@ -339,13 +340,28 @@ export function DesignathonApplyDialog({
                     <label className="text-xs font-bold text-foreground">
                       Course with Section Name <span className="text-red-500">*</span>
                     </label>
-                    <Input
+                    <select
                       required
-                      placeholder="e.g. B.Tech CSE (AIML) - Sec A"
                       value={leaderBranch}
                       onChange={(e) => setLeaderBranch(e.target.value)}
-                      className="rounded-xl border-2 border-border text-xs"
-                    />
+                      className={`w-full h-10 px-3 rounded-xl border-2 border-border bg-background text-xs font-medium focus:border-black cursor-pointer ${
+                        !leaderBranch ? "text-muted-foreground" : "text-foreground"
+                      }`}
+                    >
+                      <option value="" disabled>
+                        Select Course with Section
+                      </option>
+                      {COURSE_SECTIONS.map((sec) => (
+                        <option key={sec} value={sec} className="text-foreground">
+                          {sec}
+                        </option>
+                      ))}
+                      {leaderBranch && !COURSE_SECTIONS.includes(leaderBranch as any) && (
+                        <option value={leaderBranch} className="text-foreground">
+                          {leaderBranch}
+                        </option>
+                      )}
+                    </select>
                   </div>
 
                   <div className="space-y-1">
@@ -437,13 +453,29 @@ export function DesignathonApplyDialog({
                           <label className="text-xs font-bold text-foreground">
                             Course with Section Name <span className="text-red-500">*</span>
                           </label>
-                          <Input
+                          <select
                             required
-                            placeholder="e.g. B.Tech CSE (AIML) - Sec A"
                             value={teammates[idx]?.branch || ""}
                             onChange={(e) => handleTeammateChange(idx, "branch", e.target.value)}
-                            className="rounded-xl border-2 border-border text-xs"
-                          />
+                            className={`w-full h-10 px-3 rounded-xl border-2 border-border bg-background text-xs font-medium focus:border-black cursor-pointer ${
+                              !teammates[idx]?.branch ? "text-muted-foreground" : "text-foreground"
+                            }`}
+                          >
+                            <option value="" disabled>
+                              Select Course with Section
+                            </option>
+                            {COURSE_SECTIONS.map((sec) => (
+                              <option key={sec} value={sec} className="text-foreground">
+                                {sec}
+                              </option>
+                            ))}
+                            {teammates[idx]?.branch &&
+                              !COURSE_SECTIONS.includes(teammates[idx]?.branch as any) && (
+                                <option value={teammates[idx]?.branch} className="text-foreground">
+                                  {teammates[idx]?.branch}
+                                </option>
+                              )}
+                          </select>
                         </div>
 
                         <div className="space-y-1">
