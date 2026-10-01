@@ -259,7 +259,7 @@ export function Hero() {
 
                   {/* Upcoming Event Highlight */}
                   <Link
-                    href="/events"
+                    href="/events/designathon"
                     className="flex items-center justify-between p-3 px-4 rounded-xl bg-[#FFE600] hover:bg-[#FFDE59] border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all group"
                   >
                     <span className="text-black text-xs font-bold flex items-center gap-2">
@@ -267,7 +267,7 @@ export function Hero() {
                       Upcoming Event
                     </span>
                     <span className="text-xs font-black text-black flex items-center gap-1.5">
-                      Tech Quiz &amp; CTF
+                      Designathon 2026
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </Link>

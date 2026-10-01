@@ -19,6 +19,7 @@ import Head from "next/head";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { TechIcon } from "@/components/TechIcon";
+import { DesignathonApplyDialog } from "@/components/DesignathonApplyDialog";
 
 const upcomingEvents: Array<{
   id: number;
@@ -28,96 +29,47 @@ const upcomingEvents: Array<{
   location: string;
   description: string;
   domains: string[];
-  capacity: string;
+  capacity?: string;
+  prizes?: string;
   highlights: string[];
   status: "open" | "closed";
   icon: string;
   registrationUrl: string;
   learnMoreUrl: string;
+  isRegistrationOpen?: boolean;
 }> = [
-    {
-      id: 3,
-      title: "Designathon & Ideathon",
-      date: "October 2026",
-      time: "TBA",
-      location: "On-Campus",
-      description:
-        "Unleash your creativity and innovation! Design stunning UI/UX solutions and pitch groundbreaking ideas that solve real-world problems. Perfect for designers, developers, and creative thinkers.",
-      domains: [
-        "UI/UX Design",
-        "Product Design",
-        "Innovation",
-        "Prototyping",
-        "Problem Solving",
-      ],
-      capacity: "80+",
-      highlights: [
-        "Two parallel tracks: Design & Ideas",
-        "Mentorship from industry experts",
-        "Prototype your concepts",
-        "Present to judges panel",
-      ],
-      status: "open",
-      icon: "🎨",
-      registrationUrl: "mailto:devnest.techclub@gmail.com",
-      learnMoreUrl: "/events",
-    },
-    {
-      id: 4,
-      title: "LeetCode Competition & Webathon",
-      date: "November 2026",
-      time: "TBA",
-      location: "On-Campus",
-      description:
-        "A dual-track event combining competitive programming and web development. Solve algorithmic challenges on LeetCode while building stunning web applications. Showcase both your problem-solving and development skills.",
-      domains: [
-        "Competitive Programming",
-        "Data Structures",
-        "Algorithms",
-        "Web Development",
-        "Frontend",
-      ],
-      capacity: "120+",
-      highlights: [
-        "LeetCode-style programming challenges",
-        "Web development hackathon track",
-        "Time-bound competitions",
-        "Recognition for both tracks",
-      ],
-      status: "open",
-      icon: "💻",
-      registrationUrl: "mailto:devnest.techclub@gmail.com",
-      learnMoreUrl: "/events",
-    },
-    {
-      id: 5,
-      title: "Startup Hackathon",
-      date: "December 2026",
-      time: "TBA",
-      location: "On-Campus",
-      description:
-        "Build the next big thing! A 24-48 hour hackathon focused on creating startup-ready products. From ideation to MVP, work with your team to develop innovative solutions that could become real startups.",
-      domains: [
-        "Entrepreneurship",
-        "Full-Stack Development",
-        "Product Development",
-        "Business Strategy",
-        "Pitching",
-      ],
-      capacity: "100+",
-      highlights: [
-        "Extended hackathon format",
-        "Mentorship from startup founders",
-        "Pitch to investors",
-        "Seed funding opportunities for winners",
-        "Networking with startup ecosystem",
-      ],
-      status: "open",
-      icon: "🚀",
-      registrationUrl: "mailto:devnest.techclub@gmail.com",
-      learnMoreUrl: "/events",
-    },
-  ];
+  {
+    id: 1,
+    title: "Designathon",
+    date: "October 2026",
+    time: "09:30 AM - 05:30 PM",
+    location: "IBM Lab, LTSU Punjab",
+    description:
+      "DevNest's premier design and build competition! Showcase your UI/UX mastery (80% evaluation) backed by functional backend integration (30% evaluation). Turn high-impact user experiences into reality at IBM Lab.",
+    domains: [
+      "UI/UX Design",
+      "Frontend",
+      "Backend",
+      "Product Design",
+      "Prototyping",
+      "Full-Stack",
+    ],
+    prizes: "Trophies & Cash Prize",
+    highlights: [
+      "Evaluation: 80% UI/UX & 30% Backend",
+      "Prizes: Trophies and Cash Prize",
+      "Venue: IBM Lab, LTSU Punjab",
+      "Open to all students (Solo or Team participation)",
+      "Live jury review and portfolio recognition",
+    ],
+    status: "open",
+    icon: "🎨",
+    registrationUrl: "/events/designathon",
+    learnMoreUrl: "/events/designathon",
+    isRegistrationOpen: true,
+  },
+];
+
 
 const pastEvents: Array<{
   id: number;
@@ -242,6 +194,7 @@ const pastEvents: Array<{
 
 export default function EventsPage() {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
+  const [designathonModalOpen, setDesignathonModalOpen] = useState(false);
 
   return (
     <Layout>
@@ -404,15 +357,27 @@ export default function EventsPage() {
                             </span>
                           </div>
 
-                          <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
-                            <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
-                              <Users className="w-3.5 h-3.5" />
-                              <span>Capacity</span>
+                          {event.prizes ? (
+                            <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
+                              <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
+                                <Trophy className="w-3.5 h-3.5" />
+                                <span>Prizes</span>
+                              </div>
+                              <span className="text-xs text-foreground font-medium truncate block">
+                                {event.prizes}
+                              </span>
                             </div>
-                            <span className="text-xs text-foreground font-medium truncate block">
-                              {event.capacity} Slots
-                            </span>
-                          </div>
+                          ) : event.capacity ? (
+                            <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
+                              <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
+                                <Users className="w-3.5 h-3.5" />
+                                <span>Capacity</span>
+                              </div>
+                              <span className="text-xs text-foreground font-medium truncate block">
+                                {event.capacity} Slots
+                              </span>
+                            </div>
+                          ) : null}
 
                           <div className="p-3 rounded-xl bg-secondary/60 border border-border/60">
                             <div className="flex items-center gap-1.5 text-primary text-xs font-semibold mb-0.5">
@@ -444,33 +409,62 @@ export default function EventsPage() {
                       {/* Right Registration / Status Card */}
                       <div className="lg:col-span-1 rounded-2xl p-6 bg-secondary/50 border border-border/60 flex flex-col justify-between items-center text-center">
                         <div className="w-full flex flex-col items-center">
-                          <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500 mb-3">
-                            <Bell className="w-6 h-6 animate-pulse" />
-                          </div>
+                          {event.isRegistrationOpen ? (
+                            <>
+                              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-500 mb-3 shadow-[2px_2px_0px_#059669]">
+                                <Sparkles className="w-6 h-6 animate-pulse" />
+                              </div>
 
-                          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-semibold mb-2">
-                            Registrations Opening Soon
-                          </span>
+                              <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs font-semibold mb-2">
+                                Registrations Open
+                              </span>
 
-                          <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
-                            Keep your team ready! Registration links and problem statements will be announced across our official channels.
-                          </p>
+                              <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
+                                Registrations are live! Open to all individuals and teams across campuses.
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-center text-amber-500 mb-3">
+                                <Bell className="w-6 h-6 animate-pulse" />
+                              </div>
+
+                              <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-600 dark:text-amber-400 text-xs font-semibold mb-2">
+                                Registrations Opening Soon
+                              </span>
+
+                              <p className="text-xs text-muted-foreground leading-relaxed max-w-xs">
+                                Keep your team ready! Registration links and problem statements will be announced across our official channels.
+                              </p>
+                            </>
+                          )}
                         </div>
 
                         <div className="w-full mt-6 space-y-2">
-                          <a
-                            href={event.registrationUrl}
-                            className="inline-flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold shadow-subtle hover:shadow-glow-primary transition-all duration-200 active:scale-95"
-                          >
-                            <span>Express Interest</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </a>
+                          {event.isRegistrationOpen ? (
+                            <button
+                              type="button"
+                              onClick={() => setDesignathonModalOpen(true)}
+                              className="inline-flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 border-black bg-[#FFE600] text-black text-xs sm:text-sm font-black shadow-[3px_3px_0px_#000] hover:bg-[#FFDE59] transition-all duration-200 active:scale-95 cursor-pointer"
+                            >
+                              <span>Register Now</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </button>
+                          ) : (
+                            <a
+                              href={event.registrationUrl}
+                              className="inline-flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs sm:text-sm font-semibold shadow-subtle hover:shadow-glow-primary transition-all duration-200 active:scale-95"
+                            >
+                              <span>Express Interest</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </a>
+                          )}
 
                           <Link
-                            href="/events/schedule"
+                            href={event.learnMoreUrl || "/events/schedule"}
                             className="inline-flex w-full items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs text-muted-foreground hover:text-foreground transition-colors"
                           >
-                            <span>See Schedule Details</span>
+                            <span>See Full Event Details</span>
                           </Link>
                         </div>
                       </div>
@@ -701,6 +695,11 @@ export default function EventsPage() {
           </section>
         </div>
       </div>
+
+      <DesignathonApplyDialog
+        open={designathonModalOpen}
+        onOpenChange={setDesignathonModalOpen}
+      />
     </Layout>
   );
 }
