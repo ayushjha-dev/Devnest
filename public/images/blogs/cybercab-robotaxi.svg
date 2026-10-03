@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Self driving taxi robotaxi on city roads">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="60" y="654" width="1480" height="118" fill="#000"/>
+  <rect x="60" y="640" width="1480" height="118" fill="#3A3A3A" stroke="#000" stroke-width="6"/>
+  <g fill="#FFE600">
+    <rect x="100" y="688" width="96" height="22" rx="8"/>
+    <rect x="252" y="688" width="96" height="22" rx="8"/>
+    <rect x="404" y="688" width="96" height="22" rx="8"/>
+    <rect x="556" y="688" width="96" height="22" rx="8"/>
+    <rect x="708" y="688" width="96" height="22" rx="8"/>
+    <rect x="860" y="688" width="96" height="22" rx="8"/>
+    <rect x="1012" y="688" width="96" height="22" rx="8"/>
+    <rect x="1164" y="688" width="96" height="22" rx="8"/>
+    <rect x="1316" y="688" width="96" height="22" rx="8"/>
+  </g>
+
+  <rect x="430" y="440" width="740" height="204" rx="52" fill="#000"/>
+  <rect x="410" y="420" width="740" height="204" rx="52" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <path d="M520 420 h240 l74 76 h-388 Z" fill="#C4B5FD" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="556" y="440" width="200" height="60" rx="16" fill="#FAF7EE" stroke="#000" stroke-width="5"/>
+  <rect x="560" y="530" width="150" height="30" rx="12" fill="#000" opacity=".2"/>
+  <circle cx="1060" cy="502" r="30" fill="#FFE600" stroke="#000" stroke-width="6"/>
+
+  <circle cx="560" cy="628" r="54" fill="#000"/>
+  <circle cx="560" cy="628" r="24" fill="#FAF7EE"/>
+  <circle cx="1000" cy="628" r="54" fill="#000"/>
+  <circle cx="1000" cy="628" r="24" fill="#FAF7EE"/>
+
+  <g fill="none" stroke="#000" stroke-width="6">
+    <rect x="332" y="150" width="240" height="130" rx="22" fill="#FFE600" stroke-width="6"/>
+    <rect x="1064" y="150" width="240" height="130" rx="22" fill="#FF70A6" stroke-width="6"/>
+  </g>
+  <text x="452" y="206" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="26" fill="#000" text-anchor="middle">ONE CITY</text>
+  <text x="452" y="246" font-family="Verdana, Geneva, sans-serif" font-size="21" fill="#000" opacity=".7" text-anchor="middle">is the easy part</text>
+  <text x="1184" y="206" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="26" fill="#000" text-anchor="middle">MANY CITIES</text>
+  <text x="1184" y="246" font-family="Verdana, Geneva, sans-serif" font-size="21" fill="#000" opacity=".7" text-anchor="middle">is the real work</text>
+  <path d="M572 226 h44 M1064 226 h-44" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+  <path d="M630 226 l-20 -14 v28 Z" fill="#000"/>
+  <path d="M1006 226 l20 -14 v28 Z" fill="#000"/>
+
+  <g fill="none" stroke="#000" stroke-width="7">
+    <path d="M1264 356 a96 96 0 0 1 0 140" stroke-linecap="round"/>
+    <path d="M1310 328 a140 140 0 0 1 0 196" stroke-linecap="round"/>
+  </g>
+</svg>

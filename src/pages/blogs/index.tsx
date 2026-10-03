@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ArrowRight, Clock, User, BookOpen, Sparkles, Send } from "lucide-react";
+import { Search, ArrowRight, Calendar, Clock, User, BookOpen, Sparkles, Send } from "lucide-react";
 import { TechIcon } from "@/components/TechIcon";
 import Link from "next/link";
 import { useState } from "react";
@@ -42,7 +42,7 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
         />
       </Head>
 
-      <div className="min-h-screen py-16 sm:py-24">
+      <div className="min-h-screen py-10 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Left-Aligned Header */}
           <div className="text-left mb-12">
@@ -73,7 +73,7 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
                 placeholder="Search articles by title or keyword..."
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                className="pl-11 pr-4 h-12 rounded-2xl border-2 border-black bg-white text-black placeholder:text-zinc-400 shadow-[2px_2px_0px_#000] focus:shadow-[4px_4px_0px_#000] focus:outline-none text-sm transition-all font-medium"
+                className="pl-11 pr-4 h-12 rounded-2xl border-2 border-black bg-white text-black placeholder:text-zinc-400 shadow-[2px_2px_0px_#000] focus:shadow-[4px_4px_0px_#000] focus:outline-none text-base sm:text-sm transition-all font-medium"
               />
             </div>
 
@@ -82,7 +82,7 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
               <button
                 type="button"
                 onClick={() => setSelectedCategory(null)}
-                className={`px-4 py-2 rounded-xl text-xs font-space font-bold border-2 border-black transition-all duration-150 ${
+                className={`px-4 py-2.5 rounded-xl text-[13px] sm:text-xs font-space font-bold border-2 border-black transition-all duration-150 ${
                   selectedCategory === null
                     ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000]"
                     : "bg-white text-black/80 hover:bg-zinc-100"
@@ -96,7 +96,7 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
                   type="button"
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-xl text-xs font-space font-bold border-2 border-black transition-all duration-150 ${
+                  className={`px-4 py-2.5 rounded-xl text-[13px] sm:text-xs font-space font-bold border-2 border-black transition-all duration-150 ${
                     selectedCategory === category
                       ? "bg-[#FFE600] text-black shadow-[2px_2px_0px_#000]"
                       : "bg-white text-black/80 hover:bg-zinc-100"
@@ -110,7 +110,7 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
 
           {/* Blogs Grid */}
           {filteredBlogs.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-14 sm:mb-20">
               {filteredBlogs.map((blog) => (
                 <Link
                   key={blog.slug}
@@ -119,10 +119,20 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
                 >
                   <article className="rounded-3xl overflow-hidden border-2 border-black bg-white shadow-[4px_4px_0px_#000] group-hover:shadow-[6px_6px_0px_#000] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between h-full">
                     {/* Thumbnail */}
-                    <div className="relative h-44 bg-[#FAF7EE] border-b-2 border-black overflow-hidden flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-3xl bg-white border-2 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <TechIcon name={blog.thumbnail} className="w-10 h-10 text-black stroke-[2.2]" />
-                      </div>
+                    <div className="relative h-40 sm:h-44 bg-[#FAF7EE] border-b-2 border-black overflow-hidden flex items-center justify-center">
+                      {blog.coverImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={blog.coverImage}
+                          alt={blog.title}
+                          loading="lazy"
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-20 h-20 rounded-3xl bg-white border-2 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                          <TechIcon name={blog.thumbnail} className="w-10 h-10 text-black stroke-[2.2]" />
+                        </div>
+                      )}
                     </div>
 
                     {/* Content */}
@@ -148,10 +158,21 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
 
                       <div>
                         {/* Meta Info */}
-                        <div className="flex items-center justify-between text-xs text-muted-foreground border-t-2 border-black/10 pt-3.5 mb-3.5">
-                          <div className="flex items-center gap-1.5 font-bold text-foreground truncate max-w-[140px] font-space">
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground border-t-2 border-black/10 pt-3.5 mb-3.5">
+                          <div className="flex items-center gap-1.5 font-bold text-foreground font-space">
                             <User className="w-3.5 h-3.5 text-black shrink-0" />
                             <span className="truncate">{blog.author}</span>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 font-medium">
+                            <Calendar className="w-3.5 h-3.5 text-black shrink-0" />
+                            <span className="whitespace-nowrap">
+                              {new Date(blog.date).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </span>
                           </div>
 
                           <div className="flex items-center gap-1.5 font-medium">
@@ -209,7 +230,7 @@ export default function BlogsPage({ blogs }: BlogsPageProps) {
 
               <a
                 href="mailto:devnest.techclub@gmail.com?subject=DevNest%20Blog%20Submission"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#FFE600] text-black font-space font-extrabold text-xs sm:text-sm border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-[#FFE600]/90 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-150"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#FFE600] text-black sm:py-3 font-space font-extrabold text-sm border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-[#FFE600]/90 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-150"
               >
                 <Send className="w-4 h-4" />
                 <span>Submit an Article</span>

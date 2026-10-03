@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Privacy permissions and locked file access">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <path d="M800 128 L1082 220 V436 c0 160-118 268-282 330-164-62-282-170-282-330 V220 Z" fill="#000"/>
+  <path d="M800 156 L1054 238 V436 c0 142-104 238-254 296-150-58-254-154-254-296 V238 Z" fill="#88EA73" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+
+  <rect x="694" y="418" width="212" height="168" rx="26" fill="#000"/>
+  <rect x="680" y="404" width="212" height="168" rx="26" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <path d="M716 404 v-46 a70 70 0 0 1 140 0 v46" fill="none" stroke="#000" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="786" cy="482" r="24" fill="#000"/>
+  <rect x="780" y="496" width="14" height="42" rx="7" fill="#000"/>
+
+  <g stroke="#000" stroke-width="6">
+    <rect x="236" y="286" width="290" height="106" rx="20" fill="#fff"/>
+    <rect x="236" y="424" width="290" height="106" rx="20" fill="#fff"/>
+    <rect x="236" y="562" width="290" height="106" rx="20" fill="#fff"/>
+    <rect x="1074" y="286" width="290" height="106" rx="20" fill="#fff"/>
+    <rect x="1074" y="424" width="290" height="106" rx="20" fill="#fff"/>
+    <rect x="1074" y="562" width="290" height="106" rx="20" fill="#fff"/>
+  </g>
+  <g font-family="Verdana, Geneva, sans-serif" font-size="24" fill="#000">
+    <text x="268" y="334">Documents</text><text x="268" y="366" font-size="19" opacity=".65">private</text>
+    <text x="268" y="472">Messages</text><text x="268" y="504" font-size="19" opacity=".65">private</text>
+    <text x="268" y="610">Photos</text><text x="268" y="642" font-size="19" opacity=".65">private</text>
+    <text x="1106" y="334">Passwords</text><text x="1106" y="366" font-size="19" opacity=".65">sensitive</text>
+    <text x="1106" y="472">Browser data</text><text x="1106" y="504" font-size="19" opacity=".65">sensitive</text>
+    <text x="1106" y="610">Keychain</text><text x="1106" y="642" font-size="19" opacity=".65">critical</text>
+  </g>
+  <g fill="#FF70A6"><circle cx="494" cy="339" r="22"/><circle cx="494" cy="477" r="22"/><circle cx="494" cy="615" r="22"/></g>
+  <g fill="#FF9F43"><circle cx="1106" cy="339" r="22"/><circle cx="1106" cy="477" r="22"/><circle cx="1106" cy="615" r="22"/></g>
+
+  <rect x="540" y="716" width="520" height="96" rx="26" fill="#000"/>
+  <rect x="522" y="698" width="520" height="96" rx="26" fill="#C4B5FD" stroke="#000" stroke-width="6"/>
+  <text x="782" y="742" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">REVIEW WHAT YOU</text>
+  <text x="782" y="776" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">HAVE ALREADY ALLOWED</text>
+</svg>

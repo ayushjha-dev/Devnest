@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="AI chip market leader versus rising challenger">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="596" y="188" width="408" height="408" rx="28" fill="#000"/>
+  <rect x="572" y="164" width="408" height="408" rx="28" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <g stroke="#000" stroke-width="6" stroke-linecap="round">
+    <path d="M660 164 v-56 M740 164 v-56 M820 164 v-56 M900 164 v-56"/>
+    <path d="M660 572 v56 M740 572 v56 M820 572 v56 M900 572 v56"/>
+    <path d="M572 252 h-56 M572 332 h-56 M572 412 h-56 M572 492 h-56"/>
+    <path d="M980 252 h56 M980 332 h56 M980 412 h56 M980 492 h56"/>
+  </g>
+  <rect x="672" y="264" width="208" height="208" rx="22" fill="#000"/>
+  <rect x="652" y="244" width="208" height="208" rx="22" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <g stroke="#000" stroke-width="6">
+    <line x1="700" y1="244" y2="452"/><line x1="756" y1="244" y2="452"/><line x1="812" y1="244" y2="452"/>
+    <line x1="652" y1="292" x2="860"/><line x1="652" y1="348" x2="860"/><line x1="652" y1="404" x2="860"/>
+  </g>
+  <text x="756" y="492" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">AI CHIP</text>
+
+  <path d="M318 700 h150 l-52 -168 h-46 Z" fill="#88EA73" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="346" y="596" width="94" height="26" rx="8" fill="#000" opacity=".35"/>
+  <text x="393" y="762" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="27" fill="#000" text-anchor="middle">LEADER</text>
+  <path d="M1132 700 h150 l-52 -168 h-46 Z" fill="#FF70A6" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="1160" y="596" width="94" height="26" rx="8" fill="#000" opacity=".35"/>
+  <text x="1207" y="762" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="27" fill="#000" text-anchor="middle">CHALLENGER</text>
+
+  <path d="M470 660 l90 -34" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M1130 660 l-90 -34" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+  <rect x="522" y="216" width="200" height="64" rx="20" fill="#000"/>
+  <rect x="510" y="204" width="200" height="64" rx="20" fill="#C4B5FD" stroke="#000" stroke-width="6"/>
+  <text x="610" y="246" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="26" fill="#000" text-anchor="middle">RECORD HIGH</text>
+
+  <rect x="1084" y="228" width="212" height="64" rx="20" fill="#000"/>
+  <rect x="1072" y="216" width="212" height="64" rx="20" fill="#FF9F43" stroke="#000" stroke-width="6"/>
+  <text x="1178" y="258" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="26" fill="#000" text-anchor="middle">NEW LOW</text>
+</svg>

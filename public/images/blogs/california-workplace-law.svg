@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Human oversight of algorithmic workplace decisions">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="404" y="150" width="792" height="520" rx="30" fill="#000"/>
+  <rect x="380" y="126" width="792" height="520" rx="30" fill="#fff" stroke="#000" stroke-width="6"/>
+  <path d="M380 126 H1172 V206 H380 Z" fill="#FF70A6" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <text x="418" y="180" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="32" fill="#000">DECISION REVIEW</text>
+
+  <rect x="424" y="252" width="704" height="90" rx="18" fill="#FAF7EE" stroke="#000" stroke-width="5"/>
+  <rect x="424" y="368" width="704" height="90" rx="18" fill="#FAF7EE" stroke="#000" stroke-width="5"/>
+  <rect x="424" y="484" width="704" height="90" rx="18" fill="#FAF7EE" stroke="#000" stroke-width="5"/>
+
+  <rect x="448" y="278" width="240" height="20" rx="10" fill="#000" opacity=".7"/>
+  <rect x="448" y="310" width="360" height="16" rx="8" fill="#000" opacity=".3"/>
+  <rect x="448" y="394" width="290" height="20" rx="10" fill="#000" opacity=".7"/>
+  <rect x="448" y="426" width="330" height="16" rx="8" fill="#000" opacity=".3"/>
+  <rect x="448" y="510" width="200" height="20" rx="10" fill="#000" opacity=".7"/>
+  <rect x="448" y="542" width="380" height="16" rx="8" fill="#000" opacity=".3"/>
+
+  <circle cx="1046" cy="297" r="26" fill="#FFE600" stroke="#000" stroke-width="5"/>
+  <circle cx="1046" cy="413" r="26" fill="#FFE600" stroke="#000" stroke-width="5"/>
+  <circle cx="1046" cy="529" r="26" fill="#FFE600" stroke="#000" stroke-width="5"/>
+  <g stroke="#000" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M1035 297 l8 9 l16 -18"/>
+    <path d="M1035 413 l8 9 l16 -18"/>
+    <path d="M1035 529 l8 9 l16 -18"/>
+  </g>
+
+  <rect x="628" y="700" width="344" height="150" rx="24" fill="#000"/>
+  <rect x="610" y="682" width="344" height="150" rx="24" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <text x="782" y="742" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">A HUMAN</text>
+  <text x="782" y="782" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">STAYS ACCOUNTABLE</text>
+  <text x="782" y="814" font-family="Verdana, Geneva, sans-serif" font-size="21" fill="#000" opacity=".7" text-anchor="middle">not just a checkbox</text>
+
+  <circle cx="228" cy="330" r="62" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <circle cx="1372" cy="330" r="62" fill="#88EA73" stroke="#000" stroke-width="6"/>
+  <path d="M196 470 h64 v132 h-64 Z M252 470 h64 v132 h-64 Z" fill="#C4B5FD" stroke="#000" stroke-width="6"/>
+  <rect x="1296" y="470" width="60" height="132" rx="10" fill="#FF9F43" stroke="#000" stroke-width="6"/>
+  <rect x="1368" y="500" width="60" height="102" rx="10" fill="#FF9F43" stroke="#000" stroke-width="6"/>
+</svg>

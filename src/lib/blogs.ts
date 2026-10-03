@@ -15,6 +15,7 @@ export interface BlogMeta {
 	thumbnail: string;
 	excerpt: string;
 	readTime: string;
+	coverImage?: string;
 }
 
 export interface BlogPost extends BlogMeta {
@@ -43,6 +44,7 @@ export function getAllBlogs(): BlogMeta[] {
 			thumbnail: String(data.thumbnail ?? "📝"),
 			excerpt: String(data.excerpt ?? ""),
 			readTime: String(data.readTime ?? "5 min read"),
+			...(data.coverImage ? { coverImage: String(data.coverImage) } : {}),
 		};
 	});
 
@@ -77,6 +79,7 @@ export async function getBlogBySlug(slug: string): Promise<BlogPost | null> {
 		thumbnail: String(data.thumbnail ?? "📝"),
 		excerpt: String(data.excerpt ?? ""),
 		readTime: String(data.readTime ?? "5 min read"),
+		...(data.coverImage ? { coverImage: String(data.coverImage) } : {}),
 		contentHtml: processedContent.toString(),
 	};
 }

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Data center power and water usage">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="596" y="152" width="408" height="556" rx="26" fill="#000"/>
+  <rect x="574" y="130" width="408" height="556" rx="26" fill="#fff" stroke="#000" stroke-width="6"/>
+  <g stroke="#000" stroke-width="5">
+    <rect x="606" y="164" width="344" height="46" rx="12" fill="#70D6FF"/>
+    <rect x="606" y="222" width="344" height="46" rx="12" fill="#C4B5FD"/>
+    <rect x="606" y="280" width="344" height="46" rx="12" fill="#88EA73"/>
+    <rect x="606" y="338" width="344" height="46" rx="12" fill="#FF70A6"/>
+    <rect x="606" y="396" width="344" height="46" rx="12" fill="#FFE600"/>
+    <rect x="606" y="454" width="344" height="46" rx="12" fill="#FF9F43"/>
+    <rect x="606" y="512" width="344" height="46" rx="12" fill="#70D6FF"/>
+    <rect x="606" y="570" width="344" height="46" rx="12" fill="#C4B5FD"/>
+  </g>
+  <g fill="#000">
+    <circle cx="632" cy="187" r="11"/><circle cx="632" cy="245" r="11"/><circle cx="632" cy="303" r="11"/><circle cx="632" cy="361" r="11"/>
+    <circle cx="632" cy="419" r="11"/><circle cx="632" cy="477" r="11"/><circle cx="632" cy="535" r="11"/><circle cx="632" cy="593" r="11"/>
+  </g>
+  <rect x="606" y="632" width="180" height="30" rx="15" fill="#000" opacity=".15"/>
+
+  <path d="M286 206 v-58 M286 206 l-30 -46 M286 206 l30 -46" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M262 232 h48 l-8 -34 h-32 Z" fill="#FFE600" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M1314 306 v-58 M1314 306 l-30 -46 M1314 306 l30 -46" stroke="#000" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M1290 332 h48 l-8 -34 h-32 Z" fill="#FFE600" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+
+  <path d="M252 470 h96 v104 a48 48 0 0 1 -96 0 Z" fill="#000"/>
+  <path d="M236 454 h96 v104 a48 48 0 0 1 -96 0 Z" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <path d="M1252 470 h96 v104 a48 48 0 0 1 -96 0 Z" fill="#000"/>
+  <path d="M1236 454 h96 v104 a48 48 0 0 1 -96 0 Z" fill="#88EA73" stroke="#000" stroke-width="6"/>
+
+  <rect x="452" y="716" width="696" height="94" rx="24" fill="#000"/>
+  <rect x="436" y="700" width="696" height="94" rx="24" fill="#FF70A6" stroke="#000" stroke-width="6"/>
+  <text x="784" y="742" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">EVERY ANSWER HAS</text>
+  <text x="784" y="776" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">A PHYSICAL COST</text>
+</svg>

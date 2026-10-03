@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Voluntary safety framework, balance of self regulation and law">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="760" y="330" width="80" height="360" fill="#000"/>
+  <rect x="580" y="676" width="440" height="76" rx="20" fill="#000"/>
+  <rect x="566" y="662" width="440" height="76" rx="20" fill="#FFE600" stroke="#000" stroke-width="6"/>
+
+  <g stroke="#000" stroke-width="8" stroke-linecap="round">
+    <line x1="800" y1="316" x2="800" y2="286"/>
+  </g>
+  <line x1="560" y1="286" x2="1040" y2="286" stroke="#000" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="800" cy="286" r="24" fill="#FFE600" stroke="#000" stroke-width="7"/>
+
+  <line x1="560" y1="286" x2="470" y2="440" stroke="#000" stroke-width="6"/>
+  <line x1="1040" y1="286" x2="1130" y2="440" stroke="#000" stroke-width="6"/>
+
+  <rect x="404" y="440" width="200" height="24" rx="12" fill="#000"/>
+  <rect x="1064" y="440" width="200" height="24" rx="12" fill="#000"/>
+  <rect x="378" y="464" width="252" height="110" rx="24" fill="#000"/>
+  <rect x="364" y="450" width="252" height="110" rx="24" fill="#88EA73" stroke="#000" stroke-width="6"/>
+  <rect x="1038" y="450" width="252" height="110" rx="24" fill="#FF70A6" stroke="#000" stroke-width="6"/>
+
+  <g font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="25" fill="#000" text-anchor="middle">
+    <text x="490" y="500">VOLUNTARY</text>
+    <text x="490" y="534">PROMISES</text>
+    <text x="1164" y="500">ENFORCED</text>
+    <text x="1164" y="534">RULES</text>
+  </g>
+
+  <rect x="252" y="196" width="316" height="92" rx="22" fill="#000"/>
+  <rect x="238" y="182" width="316" height="92" rx="22" fill="#C4B5FD" stroke="#000" stroke-width="6"/>
+  <text x="396" y="238" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="25" fill="#000" text-anchor="middle">move faster than law</text>
+
+  <rect x="1046" y="196" width="316" height="92" rx="22" fill="#000"/>
+  <rect x="1032" y="182" width="316" height="92" rx="22" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <text x="1190" y="238" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="25" fill="#000" text-anchor="middle">no penalties, no proof</text>
+
+  <rect x="486" y="778" width="628" height="78" rx="24" fill="#000"/>
+  <rect x="472" y="764" width="628" height="78" rx="24" fill="#fff" stroke="#000" stroke-width="6"/>
+  <text x="786" y="814" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">WHO KEEPS AI SAFE?</text>
+</svg>

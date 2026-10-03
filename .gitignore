@@ -31,3 +31,7 @@ public/certificates/
 
 *.tsbuildinfo
 
+# Local build / dev server logs
+build-out.log
+dev-out.log
+

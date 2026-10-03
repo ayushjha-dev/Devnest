@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Building AI skills and talent">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="340" y="212" width="920" height="112" rx="28" fill="#000"/>
+  <rect x="322" y="194" width="920" height="112" rx="28" fill="#fff" stroke="#000" stroke-width="6"/>
+  <rect x="322" y="194" width="920" height="112" rx="28" fill="#FAF7EE"/>
+  <rect x="356" y="228" width="420" height="24" rx="12" fill="#000" opacity=".32"/>
+  <rect x="356" y="264" width="600" height="24" rx="12" fill="#000" opacity=".22"/>
+
+  <rect x="392" y="386" width="500" height="46" rx="14" fill="#fff" stroke="#000" stroke-width="5"/>
+  <rect x="398" y="392" width="392" height="34" rx="10" fill="#70D6FF"/>
+  <text x="712" y="418" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="22" fill="#000" text-anchor="middle">using tools</text>
+
+  <rect x="392" y="462" width="500" height="46" rx="14" fill="#fff" stroke="#000" stroke-width="5"/>
+  <rect x="398" y="468" width="330" height="34" rx="10" fill="#FFE600"/>
+  <text x="712" y="494" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="22" fill="#000" text-anchor="middle">clear instructions</text>
+
+  <rect x="392" y="538" width="500" height="46" rx="14" fill="#fff" stroke="#000" stroke-width="5"/>
+  <rect x="398" y="544" width="270" height="34" rx="10" fill="#FF70A6"/>
+  <text x="712" y="570" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="22" fill="#000" text-anchor="middle">checking output</text>
+
+  <rect x="392" y="614" width="500" height="46" rx="14" fill="#fff" stroke="#000" stroke-width="5"/>
+  <rect x="398" y="620" width="196" height="34" rx="10" fill="#88EA73"/>
+  <text x="712" y="646" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="22" fill="#000" text-anchor="middle">knowing when to stop</text>
+
+  <path d="M1042 258 l216 92 -216 92 -216 -92 Z" fill="#000"/>
+  <path d="M1042 274 l190 81 -190 81 -190 -81 Z" fill="#C4B5FD" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="1030" y="440" width="24" height="92" fill="#000"/>
+  <circle cx="1042" cy="548" r="18" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <path d="M1148 380 l96 34 -96 34" fill="none" stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="352" y="720" width="700" height="92" rx="26" fill="#000"/>
+  <rect x="336" y="704" width="700" height="92" rx="26" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <text x="686" y="744" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="27" fill="#000" text-anchor="middle">START WITH ONE TASK</text>
+  <text x="686" y="778" font-family="Verdana, Geneva, sans-serif" font-size="22" fill="#000" opacity=".7" text-anchor="middle">then repeat it daily</text>
+
+  <circle cx="216" cy="420" r="56" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <text x="216" y="434" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">01</text>
+  <circle cx="1400" cy="420" r="56" fill="#FF9F43" stroke="#000" stroke-width="6"/>
+  <text x="1400" y="434" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">02</text>
+</svg>

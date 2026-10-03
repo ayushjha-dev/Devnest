@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="AI shopping assistant and completed checkout">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <path d="M286 300 h72 l58 258 h368" fill="none" stroke="#000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M380 348 h330 l44 168 h-330 Z" fill="#000"/>
+  <path d="M366 334 h330 l44 168 h-330 Z" fill="#FF70A6" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="410" y="374" width="200" height="26" rx="13" fill="#000" opacity=".28"/>
+  <rect x="410" y="416" width="260" height="26" rx="13" fill="#000" opacity=".28"/>
+  <circle cx="472" cy="622" r="42" fill="#000"/>
+  <circle cx="472" cy="622" r="16" fill="#FAF7EE"/>
+  <circle cx="672" cy="622" r="42" fill="#000"/>
+  <circle cx="672" cy="622" r="16" fill="#FAF7EE"/>
+
+  <rect x="880" y="196" width="460" height="150" rx="26" fill="#000"/>
+  <rect x="862" y="178" width="460" height="150" rx="26" fill="#fff" stroke="#000" stroke-width="6"/>
+  <text x="898" y="228" font-family="Verdana, Geneva, sans-serif" font-size="22" fill="#000" opacity=".6">assistant</text>
+  <rect x="898" y="248" width="340" height="22" rx="11" fill="#000" opacity=".35"/>
+  <rect x="898" y="282" width="260" height="22" rx="11" fill="#000" opacity=".35"/>
+  <path d="M1236 292 l52 52 l104 -110" fill="none" stroke="#88EA73" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1236 292 l52 52 l104 -110" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="880" y="392" width="460" height="150" rx="26" fill="#000"/>
+  <rect x="862" y="374" width="460" height="150" rx="26" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <text x="898" y="424" font-family="Verdana, Geneva, sans-serif" font-size="22" fill="#000" opacity=".6">checkout</text>
+  <text x="898" y="482" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="40" fill="#000">PAID</text>
+  <rect x="1108" y="438" width="150" height="46" rx="23" fill="#FF70A6" stroke="#000" stroke-width="5"/>
+  <text x="1183" y="469" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="23" fill="#000" text-anchor="middle">LIMIT?</text>
+
+  <rect x="300" y="740" width="660" height="88" rx="26" fill="#000"/>
+  <rect x="284" y="724" width="660" height="88" rx="26" fill="#C4B5FD" stroke="#000" stroke-width="6"/>
+  <text x="614" y="778" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">HAND SOMEONE YOUR WALLET?</text>
+
+  <circle cx="222" cy="248" r="58" fill="#88EA73" stroke="#000" stroke-width="6"/>
+  <path d="M196 248 l18 18 l36 -40" fill="none" stroke="#000" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1378" cy="660" r="58" fill="#FF9F43" stroke="#000" stroke-width="6"/>
+  <path d="M1378 634 v34 M1378 682 v10" stroke="#000" stroke-width="12" stroke-linecap="round"/>
+</svg>

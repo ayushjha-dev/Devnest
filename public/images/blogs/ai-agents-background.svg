@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Persistent AI agents running tasks in the background">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+    <clipPath id="pc"><rect x="360" y="150" width="880" height="600" rx="34"/></clipPath>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <g stroke="#000" stroke-width="6">
+    <rect x="196" y="196" width="128" height="128" rx="28" fill="#FF70A6" transform="rotate(-9 260 260)"/>
+    <rect x="1276" y="212" width="128" height="128" rx="28" fill="#70D6FF" transform="rotate(8 1340 276)"/>
+    <rect x="214" y="600" width="128" height="128" rx="28" fill="#88EA73" transform="rotate(7 278 664)"/>
+    <rect x="1258" y="596" width="128" height="128" rx="28" fill="#C4B5FD" transform="rotate(-8 1322 660)"/>
+  </g>
+  <g font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="34" fill="#000" text-anchor="middle">
+    <text x="260" y="272" transform="rotate(-9 260 260)">24/7</text>
+    <text x="1340" y="286" transform="rotate(8 1340 276)">LIVE</text>
+    <text x="278" y="676" transform="rotate(7 278 664)">MEM</text>
+    <text x="1322" y="668" transform="rotate(-8 1322 660)">TOOLS</text>
+  </g>
+
+  <rect x="384" y="174" width="880" height="600" rx="34" fill="#000"/>
+  <g clip-path="url(#pc)"><rect x="360" y="150" width="880" height="96" fill="#FFE600"/></g>
+  <rect x="360" y="150" width="880" height="600" rx="34" fill="#fff" stroke="#000" stroke-width="6"/>
+  <line x1="360" y1="246" x2="1240" y2="246" stroke="#000" stroke-width="6"/>
+  <text x="404" y="214" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="40" fill="#000">BACKGROUND AGENTS</text>
+  <circle cx="1192" cy="198" r="26" fill="#000"/><rect x="1204" y="184" width="18" height="18" rx="5" fill="#FFE600"/>
+
+  <g stroke="#000" stroke-width="5">
+    <rect x="410" y="288" width="780" height="104" rx="20" fill="#fff"/>
+    <rect x="410" y="418" width="780" height="104" rx="20" fill="#fff"/>
+    <rect x="410" y="548" width="780" height="104" rx="20" fill="#fff"/>
+    <circle cx="472" cy="340" r="30" fill="#70D6FF"/>
+    <circle cx="472" cy="470" r="30" fill="#FFE600"/>
+    <circle cx="472" cy="600" r="30" fill="#88EA73"/>
+    <rect x="524" y="318" width="360" height="20" rx="10" fill="#000" opacity=".75"/>
+    <rect x="524" y="352" width="270" height="18" rx="9" fill="#000" opacity=".35"/>
+    <rect x="524" y="448" width="330" height="20" rx="10" fill="#000" opacity=".75"/>
+    <rect x="524" y="482" width="300" height="18" rx="9" fill="#000" opacity=".35"/>
+    <rect x="524" y="578" width="380" height="20" rx="10" fill="#000" opacity=".75"/>
+    <rect x="524" y="612" width="240" height="18" rx="9" fill="#000" opacity=".35"/>
+    <rect x="1004" y="312" width="160" height="56" rx="28" fill="#88EA73"/>
+    <rect x="1004" y="442" width="160" height="56" rx="28" fill="#FFE600"/>
+    <rect x="1004" y="572" width="160" height="56" rx="28" fill="#70D6FF"/>
+  </g>
+  <g font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="26" fill="#000" text-anchor="middle">
+    <text x="1084" y="349">WATCHING</text>
+    <text x="1084" y="479">PLANNING</text>
+    <text x="1084" y="609">BOOKED</text>
+  </g>
+
+  <rect x="434" y="688" width="756" height="46" rx="23" fill="#fff" stroke="#000" stroke-width="5"/>
+  <rect x="440" y="694" width="452" height="34" rx="17" fill="#FF70A6"/>
+  <text x="906" y="721" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="24" fill="#000">running</text>
+</svg>

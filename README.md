@@ -135,6 +135,40 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the applicati
 
 ---
 
+## 📊 Data Management
+
+### **Team Data**
+Edit `src/data/team.json` to update:
+- Core team members
+- Alumni members
+- Photos, roles, social links
+
+### **Blog Data**
+Articles are authored as Markdown in `src/content/blogs/` — one `.md` file per post, with YAML frontmatter:
+
+```yaml
+title: "Post title"
+author: "Author name"
+date: "YYYY-MM-DD"          # posts are sorted newest-first
+category: "Cyber Security"  # drives the category filter and related posts
+thumbnail: "🔒"             # emoji/key resolved by src/components/TechIcon.tsx
+coverImage: "/images/blogs/example.svg"  # optional; falls back to the themed icon banner
+excerpt: "One or two sentence summary."
+readTime: "6 min read"
+```
+
+To add a post, create `src/content/blogs/<slug>.md` — the filename becomes the URL (`/blog/<slug>`).
+Real hero images live in `public/images/blogs/`. `src/data/blogs.json` holds a matching metadata catalogue for reference and tooling.
+
+> **Note:** Markdown is rendered with `remark` **without GFM**, so GitHub-style tables, strikethrough and task lists are not supported in article bodies. Use plain Markdown lists instead.
+
+### **Events**
+Edit events in `src/pages/events/index.tsx`:
+- Update upcoming events
+- Add past events
+
+---
+
 ## 🌿 Git & GitHub Contribution Guidelines
 
 We welcome contributions from DevNest community members and open-source contributors! Please follow our established git workflow:

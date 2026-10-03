@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Developer conference announcements and AI tooling">
+  <defs>
+    <pattern id="d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="#000" opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#FAF7EE"/>
+  <rect width="1600" height="900" fill="url(#d)"/>
+
+  <rect x="330" y="200" width="1000" height="500" rx="32" fill="#000"/>
+  <rect x="306" y="176" width="1000" height="500" rx="32" fill="#fff" stroke="#000" stroke-width="6"/>
+  <path d="M306 176 H1306 V268 H306 Z" fill="#C4B5FD" stroke="#000" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="356" cy="222" r="17" fill="#FF70A6" stroke="#000" stroke-width="5"/>
+  <circle cx="406" cy="222" r="17" fill="#FFE600" stroke="#000" stroke-width="5"/>
+  <circle cx="456" cy="222" r="17" fill="#88EA73" stroke="#000" stroke-width="5"/>
+  <text x="500" y="234" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="34" fill="#000">devday / keynotes</text>
+
+  <rect x="356" y="308" width="280" height="150" rx="22" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <text x="496" y="368" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">GPT-6.1 SOL</text>
+  <text x="496" y="410" font-family="Verdana, Geneva, sans-serif" font-size="21" fill="#000" opacity=".7" text-anchor="middle">model + tools</text>
+
+  <rect x="666" y="308" width="280" height="150" rx="22" fill="#70D6FF" stroke="#000" stroke-width="6"/>
+  <text x="806" y="368" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">DOTS AGENTS</text>
+  <text x="806" y="410" font-family="Verdana, Geneva, sans-serif" font-size="21" fill="#000" opacity=".7" text-anchor="middle">tasks, not answers</text>
+
+  <rect x="976" y="308" width="280" height="150" rx="22" fill="#88EA73" stroke="#000" stroke-width="6"/>
+  <text x="1116" y="368" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="28" fill="#000" text-anchor="middle">CODEX CLOUD</text>
+  <text x="1116" y="410" font-family="Verdana, Geneva, sans-serif" font-size="21" fill="#000" opacity=".7" text-anchor="middle">hand off coding</text>
+
+  <rect x="356" y="496" width="600" height="140" rx="22" fill="#FAF7EE" stroke="#000" stroke-width="6"/>
+  <g font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="24" fill="#000">
+    <text x="386" y="540">* new agent primitives</text>
+    <text x="386" y="580">* ChatGPT Spaces</text>
+    <text x="386" y="620">* from answers to actions</text>
+  </g>
+
+  <rect x="986" y="496" width="270" height="140" rx="22" fill="#FF70A6" stroke="#000" stroke-width="6"/>
+  <text x="1121" y="566" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">WHAT IT</text>
+  <text x="1121" y="606" font-family="Verdana, Geneva, sans-serif" font-weight="bold" font-size="30" fill="#000" text-anchor="middle">MEANS FOR YOU</text>
+
+  <circle cx="240" cy="300" r="56" fill="#FFE600" stroke="#000" stroke-width="6"/>
+  <path d="M240 258 L258 292 L236 292 L248 322 L214 288 L238 288 Z" fill="#000"/>
+  <circle cx="1372" cy="616" r="56" fill="#C4B5FD" stroke="#000" stroke-width="6"/>
+  <path d="M1348 616 h48 M1372 592 v48" stroke="#000" stroke-width="9" stroke-linecap="round"/>
+</svg>
