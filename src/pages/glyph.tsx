@@ -60,15 +60,7 @@ export default function GlyphPage() {
               seamless experience. We appreciate your patience and understanding.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t-2 border-black/10 text-left">
-              <div className="p-3 rounded-xl bg-[#FAF7EE] border border-black/20">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block mb-0.5">
-                  Platform
-                </span>
-                <span className="text-xs font-bold text-black flex items-center gap-1.5">
-                  Glyph Engine
-                </span>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t-2 border-black/10 text-left">
               <div className="p-3 rounded-xl bg-[#FAF7EE] border border-black/20">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block mb-0.5">
                   Status
